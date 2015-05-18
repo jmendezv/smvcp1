@@ -12,9 +12,17 @@ import org.springframework.stereotype.Repository;
 
 import pep.mendez.webapplication1.model.entity.Student;
 
+/**
+ * A repository is a specialization of @Component. DAO objects must be annotated
+ * as such. A mechanism for encapsulating storage, retrieval, and search
+ * behavior which emulates a collection of objects
+ * 
+ * @author pep
+ *
+ */
 @Repository
 public class StudentDAOImpl implements StudentDAO {
-	
+
 	// Looks for an entityManagerFactory bean
 	@PersistenceContext
 	private EntityManager entityManager;

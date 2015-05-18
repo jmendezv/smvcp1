@@ -13,9 +13,16 @@ import org.springframework.web.servlet.ModelAndView;
 import pep.mendez.webapplication1.model.entity.Student;
 import pep.mendez.webapplication1.service.StudentService;
 
+/**
+ * The Controler from the MVC model
+ * 
+ * @author pep
+ *
+ */
 @Controller
+@RequestMapping("/")
 public class DefaultController {
-	
+
 	@Autowired(required = true)
 	private StudentService studentService;
 
@@ -39,7 +46,7 @@ public class DefaultController {
 		}
 		return mav;
 	}
-	
+
 	public void setStudentService(StudentService studentService) {
 		this.studentService = studentService;
 	}

@@ -11,7 +11,12 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
-
+/**
+ * Entities are matched to tables in a relational database.
+ * 
+ * @author pep
+ *
+ */
 @NamedQueries(value = {
 		@NamedQuery(name = "Student.findAllStudents", query="FROM Student"),
 		@NamedQuery(name = "Student.findStudentById", query = "FROM Student s WHERE s.id = :id"),
