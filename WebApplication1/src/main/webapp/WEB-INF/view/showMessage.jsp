@@ -30,6 +30,6 @@
 		${student1.name} ${student1.mark}
 		</c:if>
 
-
+	<h6>Current Locale : ${pageContext.response.locale}</h6>
 </body>
 </html>
