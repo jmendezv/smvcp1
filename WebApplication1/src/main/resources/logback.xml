@@ -51,11 +51,25 @@ The <appender> element may contain zero or one <layout> elements, zero or more <
 
 Setting the context name is a simple and straightforward method in order to distinguish between multiple applications logging to the same target.
 
+During substitution, properties are looked up in the local scope first, in the context scope second, in the system properties scope third, and in the OS environment fourth and last.
+
 	-->
 <configuration debug="true" scan="true" scanPeriod="30 seconds">
 	
+	 <!-- include file="src/main/java/whatever.xml"/ -->
+	 
+	 <!-- include resource="includedConfig.xml"/ -->
+	 
+	 <!-- include url="http://some.host.com/includedConfig.xml" optional="true" / -->
+	
 	<!-- Default context name is 'default' -->
 	<contextName>WebApplication1</contextName>
+
+	<!-- 
+	propagates changes made to the level of any logback-classic logger onto the java.util.logging framework
+	Such propagation eliminates the performance impact of disabled log statements. 
+	
+	-->
 
 	<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
 		<resetJUL>true</resetJUL>
@@ -77,7 +91,16 @@ Setting the context name is a simple and straightforward method in order to dist
 	
 	<!-- You may also reference a resource in the class path instead of a file? -->
 	
-	<property resource="resource1.properties" />
+	<property name="messages" resource="resource1.properties" />
+	
+	<define name="existsMessages" class="ch.qos.logback.core.property.FileExistsPropertyDefiner">
+		<path>${messages}</path>
+	</define>
+	
+	<!--if condition="">
+		<then></then>
+		<else></else>
+	</if -->
 
 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
 		<!-- default encoder -->
