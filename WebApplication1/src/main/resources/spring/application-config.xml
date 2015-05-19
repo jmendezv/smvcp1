@@ -50,7 +50,7 @@
 		<property name="password" value="${jdbc.password}" />
 	</bean>
 
-	<!-- Config EntityManagerFactory -->
+	<!-- Config EntityManagerFactory, no persistence.xml needed -->
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -89,7 +89,7 @@
 		autowire="byName">
 	</bean>
 	
-	<!-- Logger Aspect -->
+	<!-- Logger Aspect. It must be prensent in order to be active -->
 	
 	<bean class="pep.mendez.webapplication1.aop.LoggerAspect"/>
 	
