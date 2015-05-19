@@ -34,8 +34,8 @@
 
 		<!-- Test -->
 		<junit.version>4.11</junit.version>
-		
-		<!-- AspectJ -->		
+
+		<!-- AspectJ -->
 		<aspectj.version>1.8.5</aspectj.version>
 
 	</properties>
@@ -163,11 +163,22 @@
 			<version>${aspectj.version}</version>
 		</dependency>
 
+		<!-- Proxy-based Aspect Oriented Programming  -->
+
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
 			<version>2.2.2</version>
 		</dependency>
+
+		<!-- Apache Commons DBCP, a pool connector -->
+
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+
 
 	</dependencies>
 </project>
