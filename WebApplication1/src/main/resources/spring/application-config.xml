@@ -38,7 +38,9 @@
 
 	<!-- Config data source -->
 	
-	<!-- "org.apache.commons.dbcp2.BasicDataSource"  -->
+	<!-- bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close" -->
+	
+	<!-- com.mysql.jdbc.jdbc2.optional.MysqlDataSource  -->
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
