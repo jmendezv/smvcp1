@@ -3,7 +3,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -15,14 +15,26 @@
 
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
+	<!-- Interceptors -->
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/login.html" />
+			<bean class="pep.mendez.webapplication1.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
 	<!-- Enable the @Controller model -->
 
-	<mvc:annotation-driven />
-	
+	<mvc:annotation-driven enable-matrix-variables="true" />
 
-	<!-- Enable AspectJ -->
 
-	<aop:aspectj-autoproxy />
+	<!-- Enable AspectJ class or interface based (CGLIB) proxies. If the class 
+		of a target object that is to be proxied doesn’t implement any interfaces, 
+		then a CGLIB-based proxy will be created. JDK proxies are interface based, 
+		and no interfaces means JDK proxying isn’t even possible -->
+
+	<aop:aspectj-autoproxy proxy-target-class="true" />
 
 	<!-- Check this packages and subpackages for Spring objects and register 
 		them -->
@@ -40,25 +52,32 @@
 
 	<!-- Load custom validation error messages, should not be from class path -->
 
-	<bean id="messageSource"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basename" value="/WEB-INF/config/messages" />
-		<property name="defaultEncoding" value="UTF-8" />
-		<property name="cacheSeconds" value="60" />
-	</bean>
-
 	<!-- Config data source -->
+
+	<!-- bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource"> 
+		<property name="basename" value="/WEB-INF/config/messages" /> <property name="defaultEncoding" 
+		value="UTF-8" /> <property name="cacheSeconds" value="60" /> </bean -->
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+		p:basename="/WEB-INF/config/messages" p:defaultEncoding="UTF-8"
+		p:cacheSeconds="60" />
 
 	<!-- bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" 
 		destroy-method="close" -->
 
 	<!-- com.mysql.jdbc.jdbc2.optional.MysqlDataSource -->
 
+	<!-- com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource -->
+
+	<!-- org.springframework.jdbc.datasource.DriverManagerDataSource -->
+
 	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		class="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource">
+		<!-- property name="driverClassName" value="${jdbc.driverClassName}" / -->
 		<property name="url" value="${jdbc.url}" />
-		<property name="username" value="${jdbc.username}" />
+		<!-- property name="username" value="${jdbc.username}" / -->
+		<property name="user" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
 	</bean>
 
@@ -102,5 +121,9 @@
 	<!-- Logger Aspect. It must be prensent in order to be active -->
 
 	<bean class="pep.mendez.webapplication1.aop.LoggerAspect" />
+
+
+	<bean id="persistenceExceptionTranslationPostProcessor"
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
 </beans>

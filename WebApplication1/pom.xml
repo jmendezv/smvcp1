@@ -27,9 +27,9 @@
 
 		<!-- Hibernate entity manager -->
 		<hibernate.version>4.3.3.Final</hibernate.version>
-		
+
 		<!-- Hibernate Validator -->
-		<hibernate-validator.version>5.1.3.Final</hibernate-validator.version>		
+		<hibernate-validator.version>5.1.3.Final</hibernate-validator.version>
 
 		<!-- Logging -->
 		<logback.version>1.0.13</logback.version>
@@ -40,19 +40,22 @@
 
 		<!-- AspectJ -->
 		<aspectj.version>1.8.5</aspectj.version>
-		
+
 		<!-- MySQL -->
 		<mysql.version>5.1.35</mysql.version>
-		
+
 		<!-- Apache Commons -->
-		
+
 		<org.apache.commons.version>2.0.1</org.apache.commons.version>
-		
+
 		<!-- javax validation -->
 		<javax.validation.version>1.1.0.Final</javax.validation.version>
-		
+
 		<!-- CGLIB -->
 		<cglib.version>2.2.2</cglib.version>
+		
+		<!-- Spring framework security -->
+		<org.springframework.security.version>4.0.1.RELEASE</org.springframework.security.version>
 
 	</properties>
 
@@ -71,14 +74,14 @@
 			<artifactId>jstl</artifactId>
 			<version>${jstl.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>${servlet.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
@@ -100,7 +103,7 @@
 			<version>${slf4j.version}</version>
 			<scope>compile</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
@@ -123,7 +126,7 @@
 			<version>${spring-framework.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -183,13 +186,10 @@
 			<version>${aspectj.version}</version>
 		</dependency>
 
-		<!-- Proxy-based Aspect Oriented Programming  -->
+		<!-- Proxy-based Aspect Oriented Programming -->
 
-		<!-- dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib</artifactId>
-			<version>${cglib.version}</version>
-		</dependency -->
+		<!-- dependency> <groupId>cglib</groupId> <artifactId>cglib</artifactId> 
+			<version>${cglib.version}</version> </dependency -->
 
 		<!-- Apache Commons DBCP, a pool connector -->
 
@@ -198,6 +198,33 @@
 			<artifactId>commons-dbcp2</artifactId>
 			<version>${org.apache.commons.version}</version>
 		</dependency>
+
+		<!-- Spring framework security -->
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>4.0.1.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${org.springframework.security.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${org.springframework.security.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${org.springframework.security.version}</version>
+		</dependency>
+
 
 	</dependencies>
 </project>

@@ -3,3 +3,7 @@ When the server cannot be launched because its port is being used it is necessar
 sudo netstat -lnp | egrep 8080
 
 kill -9 <port>
+
+Security
+
+http://www.beingjavaguys.com/2014/08/spring-security-with-hibernate.html

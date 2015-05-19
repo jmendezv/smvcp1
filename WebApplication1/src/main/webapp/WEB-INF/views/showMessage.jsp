@@ -16,6 +16,7 @@
 <link href="<c:url value='/resources/css/main.css' />" rel="stylesheet" type="text/css" />
 <style>
 	.error {font-style: italic; color: red;}
+	.message {font-weight: bold; color: blue;}
 </style>
 <title>Welcome</title>
 </head>
@@ -33,7 +34,7 @@
 	</form:form>
 
 	<c:if test="${not empty student1}">
-		${student1.name} ${student1.mark}
+		<p class="message">${student1.name} ${student1.mark} was added</p>
 		</c:if>
 
 	<h6>Current Locale : ${pageContext.response.locale}</h6>
