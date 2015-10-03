@@ -55,7 +55,7 @@ public class ValidateController {
 				msgValidationError);
 		mav.addObject("user", "");
 		User user = userService.findOne(id);
-		String encodedPassword = user.getPassword();
+		//String encodedPassword = user.getPassword();
 		String md5Hex = DigestUtils.md5DigestAsHex((user.getUserName() + Utility.SALT).getBytes());
 		if (md5Hex.equals(digest)) {
 			user.setEnabled(true);

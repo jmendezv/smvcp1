@@ -59,7 +59,7 @@ public interface UserRepository extends JpaRepository<User, Long>,
 	 * @Caching: A grouping annotation for applying multiples of the other
 	 * caching annotations at once.
 	 */
-	@Cacheable(value = "usersCache", condition = "true", unless = "false")
+	//@Cacheable(value = "usersCache", condition = "true", unless = "false")
 	//@Lock(LockModeType.READ)
 	User findByUserName(String userName);
 

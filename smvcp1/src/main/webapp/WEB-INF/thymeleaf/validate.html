@@ -8,9 +8,16 @@
 <title>SMVCP1</title>
 </head>
 <body th:inline="text">
+
 	<div th:include="fragments/header :: header"></div>
 
+	<h3 th:text="#{validate.title}">Validacion</h3>
+	
+	<p th:text="|${user} ${message}|">usuario validado</p>
 
-	<div th:replace="fragments/footer :: footer" />
+	<p th:text="#{validate.welcome}">welcome</p>
+	
+	<!-- div th:replace="fragments/footer :: footer" / -->
+
 </body>
 </html>
