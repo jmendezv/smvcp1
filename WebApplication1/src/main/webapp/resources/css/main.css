@@ -1,9 +1,0 @@
-body { background-color: beige; background-image: url("images/background.jpg");}
-.error {display: table-cell; padding: 10px; color: red; font-size: xx-small; font-weight: bold;}
-form {display: table;}
-p {display: table-row;}
-label {display: table-cell;}
-input {display: table-cell; color: darkred;}
-table, td, th { border: 1px solid green;}
-td {padding: 5px;}
-th {background-color: lightblue; color: grey;}
