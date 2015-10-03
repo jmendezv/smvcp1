@@ -37,7 +37,7 @@ public class UserRestController {
 	}
 
 	/*
-	 * PathVariable truncates at dot position
+	 * PathVariable truncates at dot position and name is supposed to be an email
 	 */
 	@RequestMapping(value = "/user/{name:.+}", method = RequestMethod.GET)
 	public User userByName(@PathVariable("name") String name) {
