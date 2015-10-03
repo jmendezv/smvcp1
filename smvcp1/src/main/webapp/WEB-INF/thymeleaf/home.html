@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" th:href="@{resources/css/main.css}" />
+<title>SMVCP1</title>
+</head>
+<body th:inline="text">
+
+	<div th:include="fragments/header :: header"></div>
+
+	<h3 th:text="#{home.title}"></h3>
+
+	<div th:object="${#httpServletRequest.userPrincipal}">
+		[[#{home.welcome}]] <span
+			th:text="*{#strings.capitalize(#strings.substringBefore(name, '@'))}">xxx</span>
+		<img th:if="${user.enabled}" alt="enabled"
+			src="../../resources/images/enabled.png"
+			th:src="@{resources/images/enabled.png}" />
+	</div>
+
+	<table style="width: 25%;" th:object="${user}" th:if="${user.enabled}">
+		<caption th:text="#{home.caption}">xx</caption>
+		<thead>
+			<tr>
+				<th th:text="#{home.role}">Role</th>
+				<th th:text="#{home.role.label}">Email</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="auth : *{authorities}"
+				th:class="${authStat.even} ? 'even' : 'odd'">
+				<td><img
+					th:if="${#strings.substringAfter(auth.authority,'_') eq 'ADMIN'}"
+					alt="admin" src="../../resources/images/admin.png"
+					th:src="@{resources/images/admin.png}" /> <img
+					th:if="${#strings.substringAfter(auth.authority,'_') eq 'USER'}"
+					alt="user" src="../../resources/images/user.png"
+					th:src="@{resources/images/user.png}" /></td>
+				<td th:text="${#strings.substringAfter(auth.authority,'_')}">x</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div>
+		[ <a href="profile" th:href="@{/profile}">[[#{home.profile}]]</a> ] <span
+			sec:authorize-url="/admin"> [ <a href="admin"
+			th:href="@{/admin}">[[#{home.adminArea}]]</a> ]
+		</span>
+	</div>
+
+	<form action="logout" th:action="@{/logout}" method="post">
+
+		<div class="form-actions">
+			<button type="submit" class="btnSmall">[[#{home.logout}]]</button>
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
+		</div>
+	</form>
+
+	<div th:replace="fragments/footer :: footer" />
+
+</body>
+</html>

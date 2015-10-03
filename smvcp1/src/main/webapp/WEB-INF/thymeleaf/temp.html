@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<!-- TODO Not working yet -->
+<!-- link rel="stylesheet" type="text/css" th:href="@{/assets/css/main.css}"></link -->
+</head>
+<body th:inline="text">
+	<div th:include="fragments/header :: header" />
+	<span sec:authentication="name">xxx</span> -
+	[[${#httpServletRequest.remoteUser}]]
+
+	<span th:text="${user.enabled} ? 'Activo' : 'Inactivo'"></span>
+
+	<div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+		Hola admin</div>
+
+	<div sec:authorize="hasRole('ROLE_ADMIN')">Hola administrador</div>
+
+	<a href="/register" th:href="@{/register}"><span
+		th:text="#{login.register}">Registrate</span></a>
+	<p />
+	<p
+		th:text="|a preprocession expression ${__#{operation.addition('2.0')}__}|">Preprocessing
+		expressions</p>
+	<!--/*  This comment will be removed from the template when thymeleaf parses it */-->
+	<!-- Special comment block, this is a comment for static prototyping but will be removed when executed although the content will remain -->
+	<!--/*/ [[ ${! (1 + 1 gt 3)} and (false) ]]   /*/-->
+	<p th:text="${'hola if'}" th:if="${1 gt 3}"></p>
+	<p th:text="${'hola unless'}" th:unless="${1 gt 3}"></p>
+	<p>[[${#ctx.locale}]]</p>
+	<p th:text="${#dates.format(#dates.createNow())}"></p>
+	<p
+		th:text="${#dates.format(#dates.createNow(), 'dd/MM/yyyy HH:mm:ss')}" />
+	<p th:text="${null} ?: 'valor es ' + 'nulo'">valor conocido</p>
+	<div th:switch="${null}">
+		<p th:case="A">A</p>
+		<p th:case="B">B</p>
+		<p th:case="*">Desconocido</p>
+	</div>
+	<div th:text="${#vars.principal}" />
+
+	<div th:object="${#httpServletRequest.userPrincipal}">
+		<p>
+			Nombre <span th:text="*{name}">xxx</span>
+		</p>
+		<p>
+			Nick <span th:text="*{#strings.substringBefore(name, '@')}">xxx</span>
+		</p>
+		<p>
+			Nick <span
+				th:text="*{#strings.toUpperCase(#strings.substringBefore(name, '@'))}">xxx</span>
+		</p>
+	</div>
+	
+	<div
+		th:with="estadoActivo=#{home.estadoActivo},stadoInactivo=#{home.estadoInactivo}">
+		[[#{home.welcome}]] <span sec:authentication="name" /> <span
+			th:text="${user.enabled} ? ${estadoActivo} : ${estadoInactivo}" />
+	</div>
+	
+	<div th:replace="fragments/footer :: footer" />
+</body>
+</html>

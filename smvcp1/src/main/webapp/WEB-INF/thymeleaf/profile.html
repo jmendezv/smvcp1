@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" th:href="@{resources/css/main.css}" />
+<title>SMVCP1</title>
+</head>
+<body th:inline="text">
+	<div th:include="fragments/header :: header"></div>
+
+	<h3 th:text="#{profile.title}"></h3>
+
+	<form action="#" th:action="@{/profile}" th:object="${profileBean}"
+		method="post">
+		<fieldset>
+			<legend th:text="#{profile.legend}" />
+			<!-- ul th:if="${#fields.hasAnyErrors()}">
+				<li th:each="error : ${#fields.allErrors()}" th:text="${error}">Error
+					de entrada</li>
+			</ul -->
+			<p>
+				<label for="name" th:text="#{profile.name}" /> <input type="text"
+					id="name" name="name" th:field="*{name}" />
+			<ul th:if="${#fields.hasErrors('name')}">
+				<li th:each="error : ${#fields.errors('name')}" th:text="${error}">Error
+					de entrada</li>
+			</ul>
+			</p>
+
+			<p>
+				<label for="city" th:text="#{profile.city}" /> <input type="text"
+					id="city" name="city" th:field="*{city}" />
+			<ul th:if="${#fields.hasErrors('name')}">
+				<li th:each="error : ${#fields.errors('name')}" th:text="${error}">Error
+					de entrada</li>
+			</ul>
+			</p>
+			<p>
+				<label for="profession" th:text="#{profile.profession}" /> <input type="text"
+					id="profession" name="profession" th:field="*{profession}" />
+			<ul th:if="${#fields.hasErrors('profession')}">
+				<li th:each="error : ${#fields.errors('profession')}" th:text="${error}">Error
+					de entrada</li>
+			</ul>
+			</p>
+			<p>
+				<label for="phone" th:text="#{profile.phone}" /> <input type="text"
+					id="phone" name="phone" th:field="*{phone}" />
+			<ul th:if="${#fields.hasErrors('phone')}">
+				<li th:each="error : ${#fields.errors('phone')}" th:text="${error}">Error
+					de entrada</li>
+			</ul>
+			</p>
+			
+			<div>
+				<button type="submit" class="btnSmall" name="action" value="save">[[#{register.action.save}]]</button>
+				<button type="submit" class="btnSmall" name="action" value="cancel">[[#{register.action.cancel}]]</button>
+			</div>
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
+		</fieldset>
+	</form>
+
+	<div th:replace="fragments/footer :: footer" />
+</body>
+</html>

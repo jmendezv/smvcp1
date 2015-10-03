@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8" />
+<!-- https://github.com/thymeleaf/thymeleaf-extras-springsecurity -->
+<link rel="stylesheet" th:href="@{resources/css/main.css}" />
+<link rel='stylesheet'
+	href='webjars/bootstrap/3.3.5/css/bootstrap.min.css' />
+<style>
+#outer {
+	position: relative;
+}
+
+#inner {
+	width: 30%;
+	margin: 0 auto;
+}
+
+.rcorners1 {
+	border-radius: 25px;
+	background: #8AC007;
+	padding: 20px;
+	width: 200px;
+	height: 350px;
+}
+
+.rcorners2 {
+	border-radius: 25px;
+	border: 2px solid #8AC007;
+	padding: 20px;
+	width: 200px;
+	height: 350px;
+}
+
+.rcorners3 {
+	border-radius: 25px;
+	background: url(resources/images/paper.gif);
+	background-position: left top;
+	background-repeat: repeat;
+	padding: 20px;
+	width: 200px;
+	height: 350px;
+}
+</style>
+<title>SMVCP1</title>
+</head>
+<body th:inline="text">
+	<div th:include="fragments/header :: header"></div>
+
+	<h3 th:text="#{help.title}"></h3>
+
+	<h4 th:text="#{help.subtitle}"></h4>
+
+	<div id="outer" style="width: 100%">
+		<div id="inner" class="rcorners3">
+			<ul>
+				<li>JDK 8</li>
+				<li>Spring Model View Controller 4.1.7</li>
+				<li>Spring Security Framework 3.2.8</li>
+				<li>Spring Framework Data 1.8.0</li>
+				<li>AspectJ 1.7.0</li>
+				<li>Validation JRS 303</li>
+				<li>MySQL 5.1.30</li>
+				<li>Hibernate JPA 4.2.1</li>
+				<li>Apache Tiles 3.0.5</li>
+				<li>Thymeleaf 2.1.3</li>
+				<li>Thymeleaf extras springsecurity 3 2.1.2</li>
+				<li>ehcache 2.10.0</li>
+			</ul>
+		</div>
+
+	</div>
+
+	<div>
+		<a href="../smvcp1" th:href="@{../smvcp1}"><span
+			th:text="#{help.back}"></span></a>
+	</div>
+
+	<div th:replace="fragments/footer :: footer" />
+
+	<script type="text/javascript"
+		src="webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="webjars/jquery/2.1.4/jquery.min.js"></script>
+</body>
+</html>

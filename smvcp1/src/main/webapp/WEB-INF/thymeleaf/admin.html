@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" th:href="@{resources/css/main.css}" />
+<title>SMVCP1</title>
+</head>
+<body th:inline="text">
+	<div th:include="fragments/header :: header"></div>
+
+	<div sec:authorize="hasRole('ROLE_ADMIN')">
+		<span
+			th:text="|*{#strings.capitalize(#strings.substringBefore(principal, '@'))} (Administrador)|" />
+	</div>
+
+	<div th:object="${#httpServletRequest.session}">
+		<p>
+			[[#{admin.sessionid}]] <span th:text="*{id}"></span>
+		</p>
+	</div>
+
+	<table>
+		<thead>
+			<tr>
+				<th>[[#{admin.order}]]</th>
+				<th>[[#{admin.name}]]</th>
+				<th>[[#{admin.enabled}]]</th>
+				<th>[[#{admin.roles}]]</th>
+				<th>[[#{admin.action}]]</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user : ${users}"
+				th:class="${userStat.even} ? 'even' : 'odd'">
+				<td th:text="${userStat.count}">xx</td>
+				<td style="text-align: left;"
+					th:text="${user.userName} +  (${user.userName eq principal} ? ' *' : '')">xxx</td>
+				<td><img th:if="${user.enabled}" alt="Si"
+					scr="../../resources/images/check.png"
+					th:src="@{resources/images/check.png}" /> <img
+					th:if="${not user.enabled}" alt="Si"
+					scr="../../resources/images/cross.png"
+					th:src="@{resources/images/cross.png}" /></td>
+				<td>
+					<table th:object="${user}">
+						<tr th:each="auth : *{authorities}">
+							<td th:text="${#strings.substringAfter(auth.authority, '_')}"></td>
+						</tr>
+					</table>
+				</td>
+				<!-- td><a th:href="@{/edit/__${user.id}__}">[[#{admin.edit}]]</a></td -->
+				<td><a th:href="@{/edit(id=${user.id})}">[[#{admin.edit}]]</a></td>
+			</tr>
+		</tbody>
+
+	</table>
+
+	<div>
+		<a href="../smvcp1" th:href="@{../smvcp1}"><span
+			th:text="#{admin.back}"></span></a>
+	</div>
+	
+	<div th:replace="fragments/footer :: footer" />
+</body>
+</html>

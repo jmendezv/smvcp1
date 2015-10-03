@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="classicTemplate" template="/WEB-INF/templates/classic-template.jsp">
+		<put-attribute name="header" value="/WEB-INF/templates/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/templates/menu.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/templates/footer.jsp" />
+	</definition>
+
+	<definition name="simpleTemplate" template="/WEB-INF/templates/simple-template.jsp">
+		<put-attribute name="title" value="SMVCP1" />
+		<put-attribute name="menu" value="/WEB-INF/templates/menu.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/templates/footer.jsp" />
+	</definition>
+
+	<definition name="index" extends="classicTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/index.jsp" />
+	</definition>
+
+	<definition name="home" extends="classicTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+	</definition>
+
+	<definition name="profile" extends="classicTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/profile.jsp" />
+	</definition>
+
+	<definition name="register" extends="classicTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/register.jsp" />
+	</definition>
+
+	<definition name="admin" extends="classicTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/admin.jsp" />
+	</definition>
+
+	<definition name="login" extends="classicTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+	</definition>
+
+	<definition name="validate" extends="classicTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/validate.jsp" />
+	</definition>
+
+</tiles-definitions>

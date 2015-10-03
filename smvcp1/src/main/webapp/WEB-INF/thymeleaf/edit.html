@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" th:href="@{resources/css/main.css}" />
+<title>SMVCP1</title>
+</head>
+<body th:inline="text">
+	<div th:include="fragments/header :: header"></div>
+
+	<h3 th:text="#{edit.title}"></h3>
+
+	<form action="#" th:action="@{/edit}" th:object="${userEditBean}"
+		method="post">
+		<fieldset>
+			<legend th:text="#{edit.legend}" />
+			<!-- ul th:if="${#fields.hasAnyErrors()}">
+				<li th:each="error : ${#fields.allErrors()}" th:text="${error}">Error
+					de entrada</li>
+			</ul -->
+			<p>
+				<label for="userName" th:text="#{edit.userName}" /> <input
+					type="text" id="userName" name="userName" th:field="*{userName}"
+					readonly="readonly" />
+			<ul th:if="${#fields.hasErrors('userName')}">
+				<li th:each="error : ${#fields.errors('userName')}"
+					th:text="${error}">Error de entrada</li>
+			</ul>
+			</p>
+
+			<p>
+				<label th:for="${#ids.seq('enabled')}" th:text="#{edit.enabled}" />
+				<input type="checkbox" th:field="*{enabled}" />
+			</p>
+
+			<p><b>[[#{edit.roles}]]</b></p> 
+						
+				<p th:each="role, roleStat: ${allRoles}">
+					<label th:for="${#ids.next('roles')}" th:text="#{${'edit.role.' + role}}" />
+					<input type="checkbox" th:field="*{roles}" th:value="${role}" /> 
+				</p>
+
+			<div>
+				<button type="submit" class="btnSmall" name="action" value="save">[[#{edit.action.save}]]</button>
+				<button type="submit" class="btnSmall" name="action" value="cancel">[[#{edit.action.cancel}]]</button>
+			</div>
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
+		</fieldset>
+	</form>
+
+	<div th:replace="fragments/footer :: footer" />
+
+</body>
+</html>

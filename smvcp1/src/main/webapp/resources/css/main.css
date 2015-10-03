@@ -1,0 +1,36 @@
+/* Styles */
+@import url("forms.css");
+
+@import url("tables.css");
+
+@import url("typography.css");
+
+body {
+	color: #666666;
+	background-color: #f8f8f8;
+	text-align: center;
+}
+
+#page {
+	width: 600px;
+	text-align: left;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid #d6d6d6;
+	padding: 20px;
+}
+
+p+p, li+li, div+div {
+	margin-top: 10px;
+}
+
+h3 {
+	margin: 10px;
+	color: #547ca0;
+}
+
+div {
+	margin: 15px;
+}
+
+

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<body>
+	<div th:fragment="header">
+		<h1>
+			<span th:utext="#{application.title}">Default application
+				title</span>
+		</h1>
+		<h2>
+			<span th:utext="#{header.title}">Default header title</span>
+		</h2>
+	</div>
+	<hr/>
+</body>
+</html>
