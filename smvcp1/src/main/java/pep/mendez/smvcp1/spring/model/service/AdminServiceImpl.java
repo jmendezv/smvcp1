@@ -52,16 +52,16 @@ public class AdminServiceImpl implements AdminService {
 	 * security expression if the expression evaluates to false
 	 */
 	/*
-	 * (non-Javadoc)
+	 * TODO Not working
 	 * 
 	 * @see
 	 * pep.mendez.smvcp1.spring.service.AdminService#performSomeAdminService3
 	 * (long)
 	 */
 	@Override
-	@PostAuthorize("returnObject.user.username == principal.username")
+	@PostAuthorize("returnObject != null ? returnObject.user.userName == principal.name : true")
 	public User performSomeAdminService3(long id) {
-		System.out.println("in perfomSomeAdminService3");
+		System.out.println("in perfomSomeAdminService3 " + id);
 		return null;
 	}
 

@@ -18,24 +18,25 @@
 	<form name="f_login" th:action="@{/login}" method="post">
 
 		<fieldset>
-			<legend>[[#{login.legend}]]</legend>
+			<legend><span th:utext="#{login.legend}"/></legend>
 			<div th:if="${param.error}" class="alert error">[[#{login.error.validacion}]]</div>
 			<div th:if="${param.logout}" class="alert success">[[#{login.loggedout}]]</div>
 			<div class="for-input">
-				<label for="username">[[#{login.name}]]</label> <input type="text"
-					id="username" name="username" value="pep@smvcp.com" />
+				<label for="username"><span th:utext="#{login.name}"/></label> 
+				<input type="email" placeholder="Email"
+					id="username" name="username" value="pep@smvcp.com" required="required"  />
 			</div>
 			<div class="form-input">
-				<label for="password">[[#{login.password}]]</label> <input
-					type="password" id="password" name="password" value="123456" /> <input
-					type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<label for="password"><span th:utext="#{login.password}"/></label> <input
+					type="password"  placeholder="Clave" id="password" name="password" value="123456" /> <input
+					type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" required="required" />
 			</div>
 			<p>
-				<label for="remember_me">[[#{login.rememberme}]]</label> 
+				<label for="remember_me"><span th:utext="#{login.rememberme}"/></label> 
 				<input type="checkbox" id="remember_me" name="remember-me" />
 			</p>
 			<div class="form-actions">
-				<button type="submit" class="btnBig">[[#{login.login}]]</button>
+				<button type="submit" class="btnBig"><span th:utext="#{login.login}"/></button>
 			</div>
 		</fieldset>
 

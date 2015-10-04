@@ -5,15 +5,18 @@ import java.io.Serializable;
 import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.GrantedAuthorityImpl;
+//import org.springframework.security.core.authority.GrantedAuthorityImpl;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 /*
- * Strategy used in expression evaluation to determine whether a user has a permission or permissions for a given domain object.
+ * Strategy used in expression evaluation to determine whether a user has a 
+ * permission or permissions for a given domain object.
  */
 public class CustomPermissionEvaluator implements PermissionEvaluator {
-	
-	private static final GrantedAuthority ADMIN_AUTHORITY = new GrantedAuthorityImpl("ROLE_ADMIN");
+	/*  GrantedAuthorityImpl class removed from Spring Securety 4.x */
+	//private static final GrantedAuthority ADMIN_AUTHORITY = new GrantedAuthorityImpl("ROLE_ADMIN");
+	private static final GrantedAuthority ADMIN_AUTHORITY = new SimpleGrantedAuthority("ROLE_ADMIN");
 
 	/**
 	 * authentication - represents the user in question. Should not be null.

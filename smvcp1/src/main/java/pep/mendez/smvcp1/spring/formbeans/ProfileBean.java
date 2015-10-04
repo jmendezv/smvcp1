@@ -1,12 +1,26 @@
-package pep.mendez.smvcp1.formbeans;
+package pep.mendez.smvcp1.spring.formbeans;
+
+import java.io.Serializable;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import pep.mendez.smvcp1.spring.validators.Phone;
 
-public class ProfileBean {
+public class ProfileBean implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	// @DateTimeFormat(pattern="MM/dd/yyyy") @NotNull @Past
+	// ignores leading and trailing blanks
+	@NotBlank
 	private String name;
+	@NotBlank
 	private String city;
+	@NotBlank
 	private String profession;
 	@Phone
 	private String phone;

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import pep.mendez.smvcp1.formbeans.UserRegistrationBean;
+import pep.mendez.smvcp1.spring.formbeans.UserRegistrationBean;
 import pep.mendez.smvcp1.spring.model.entities.Authority;
 import pep.mendez.smvcp1.spring.model.entities.User;
 import pep.mendez.smvcp1.spring.model.service.UserService;
@@ -50,8 +50,8 @@ public class RegisterController {
 	JavaMailSender mailSender;
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String registerPage(ModelMap model) {
-		model.addAttribute(new UserRegistrationBean());
+	public String registerPage(UserRegistrationBean userRegistrationBean) {
+		//userRegistrationBean is added to de model automatically
 		return "register";
 	}
 

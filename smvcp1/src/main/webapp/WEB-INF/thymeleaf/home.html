@@ -14,8 +14,8 @@
 	<h3 th:text="#{home.title}"></h3>
 
 	<div th:object="${#httpServletRequest.userPrincipal}">
-		[[#{home.welcome}]] <span
-			th:text="*{#strings.capitalize(#strings.substringBefore(name, '@'))}">xxx</span>
+		<span
+			th:text="|#{home.welcome} *{#strings.capitalize(#strings.substringBefore(name, '@'))}|" />
 		<img th:if="${user.enabled}" alt="enabled"
 			src="../../resources/images/enabled.png"
 			th:src="@{resources/images/enabled.png}" />
@@ -45,16 +45,16 @@
 	</table>
 
 	<div>
-		[ <a href="profile" th:href="@{/profile}">[[#{home.profile}]]</a> ] <span
+		[ <a href="profile" th:href="@{/profile}"><span th:text="#{home.profile}" /></a> ] <span
 			sec:authorize-url="/admin"> [ <a href="admin"
-			th:href="@{/admin}">[[#{home.adminArea}]]</a> ]
+			th:href="@{/admin}"><span th:text="#{home.adminArea}" /></a> ]
 		</span>
 	</div>
 
 	<form action="logout" th:action="@{/logout}" method="post">
 
 		<div class="form-actions">
-			<button type="submit" class="btnSmall">[[#{home.logout}]]</button>
+			<button type="submit" class="btnSmall"><span th:text="#{home.logout}" /></button>
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
 		</div>

@@ -19,17 +19,26 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import pep.mendez.smvcp1.formbeans.ProfileBean;
+import pep.mendez.smvcp1.spring.formbeans.ProfileBean;
 import pep.mendez.smvcp1.spring.model.entities.Profile;
 import pep.mendez.smvcp1.spring.model.entities.User;
 import pep.mendez.smvcp1.spring.model.service.UserService;
 
+/*
+ * We can create our custom validator implementations by two ways:
+ * 
+ * First we can create an annotation that conforms to the JSR-303 specs and implements its Validator class
+ * 
+ * Second approach is to implement the org.springframework.validation.Validator interface and set it as a validator in the Controller class using @InitBinder
+ * 
+ */
 @Controller
 @PropertySources(value = { @PropertySource(name = "props", value = { "classpath:application.properties" }) })
 public class ProfileController {
@@ -52,9 +61,9 @@ public class ProfileController {
 	@Autowired
 	JavaMailSender mailSender;
 
-	@Autowired
-	@Qualifier("profileValidator")
-	private Validator validator;
+//	@Autowired
+//	@Qualifier("profileValidator")
+//	private Validator validator;
 
 	/*
 	 * Annotation that identifies methods which initialize the WebDataBinder
@@ -68,6 +77,7 @@ public class ProfileController {
 
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String registerPage(Principal principal, ModelMap model) {
+		
 		User user = userService.findByUserName(principal.getName());
 		Profile profile = user.getProfile();
 		ProfileBean profileBean = new ProfileBean();
@@ -77,7 +87,7 @@ public class ProfileController {
 			profileBean.setPhone(profile.getPhone());
 			profileBean.setProfession(profile.getProfession());
 		}
-		model.addAttribute(profileBean);
+		model.addAttribute("profileBean", profileBean);
 		return "profile";
 	}
 
@@ -109,7 +119,7 @@ public class ProfileController {
 		}
 
 		if (bindingResult.hasErrors()) {
-			return "profile";
+			return "redirect:profile";
 		}
 
 		String ip = request.getRemoteAddr();

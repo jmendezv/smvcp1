@@ -16,10 +16,10 @@
 		method="post">
 		<fieldset>
 			<legend th:text="#{profile.legend}" />
-			<!-- ul th:if="${#fields.hasAnyErrors()}">
+			<ul th:if="${#fields.hasAnyErrors()}">
 				<li th:each="error : ${#fields.allErrors()}" th:text="${error}">Error
 					de entrada</li>
-			</ul -->
+			</ul>
 			<p>
 				<label for="name" th:text="#{profile.name}" /> <input type="text"
 					id="name" name="name" th:field="*{name}" />
@@ -55,8 +55,8 @@
 			</p>
 			
 			<div>
-				<button type="submit" class="btnSmall" name="action" value="save">[[#{register.action.save}]]</button>
-				<button type="submit" class="btnSmall" name="action" value="cancel">[[#{register.action.cancel}]]</button>
+				<button type="submit" class="btnSmall" name="action" value="save"><span th:text="#{register.action.save}" /></button>
+				<button type="submit" class="btnSmall" name="action" value="cancel"><span th:text="#{register.action.cancel}" /></button>
 			</div>
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />

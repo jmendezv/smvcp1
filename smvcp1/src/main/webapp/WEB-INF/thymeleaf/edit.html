@@ -26,7 +26,7 @@
 					readonly="readonly" />
 			<ul th:if="${#fields.hasErrors('userName')}">
 				<li th:each="error : ${#fields.errors('userName')}"
-					th:text="${error}">Error de entrada</li>
+					th:text="${error}">xxx</li>
 			</ul>
 			</p>
 
@@ -35,7 +35,7 @@
 				<input type="checkbox" th:field="*{enabled}" />
 			</p>
 
-			<p><b>[[#{edit.roles}]]</b></p> 
+			<p><b><span th:text="#{edit.roles}" /></b></p> 
 						
 				<p th:each="role, roleStat: ${allRoles}">
 					<label th:for="${#ids.next('roles')}" th:text="#{${'edit.role.' + role}}" />
@@ -43,8 +43,8 @@
 				</p>
 
 			<div>
-				<button type="submit" class="btnSmall" name="action" value="save">[[#{edit.action.save}]]</button>
-				<button type="submit" class="btnSmall" name="action" value="cancel">[[#{edit.action.cancel}]]</button>
+				<button type="submit" class="btnSmall" name="action" value="save"><span th:text="#{edit.action.save}" /></button>
+				<button type="submit" class="btnSmall" name="action" value="cancel"><span th:text="#{edit.action.cancel}" /></button>
 			</div>
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />

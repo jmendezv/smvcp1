@@ -10,6 +10,9 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
+/*
+ * Esta clase hace que no funcione validacion
+ */
 @Configuration
 public class RESTConfig
 {
@@ -25,17 +28,17 @@ public class RESTConfig
 //        return new BeanNameViewResolver();
 //    }
     
-    @Bean
-    public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
-    	RequestMappingHandlerAdapter requestMappingHandlerAdapter = new RequestMappingHandlerAdapter();
-    	List<HttpMessageConverter<?>> list = new ArrayList<HttpMessageConverter<?>>();
-    	list.add(jsonMessageConverter());
-    	requestMappingHandlerAdapter.setMessageConverters(list);
-    	return requestMappingHandlerAdapter;
-    }
-    
-    @Bean
-    public MappingJackson2HttpMessageConverter jsonMessageConverter() {
-    	return new  MappingJackson2HttpMessageConverter();
-    }
+//    @Bean
+//    public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
+//    	RequestMappingHandlerAdapter requestMappingHandlerAdapter = new RequestMappingHandlerAdapter();
+//    	List<HttpMessageConverter<?>> list = new ArrayList<HttpMessageConverter<?>>();
+//    	list.add(jsonMessageConverter());
+//    	requestMappingHandlerAdapter.setMessageConverters(list);
+//    	return requestMappingHandlerAdapter;
+//    }
+//    
+//    @Bean
+//    public MappingJackson2HttpMessageConverter jsonMessageConverter() {
+//    	return new  MappingJackson2HttpMessageConverter();
+//    }
 }

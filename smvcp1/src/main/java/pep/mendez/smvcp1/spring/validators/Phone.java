@@ -15,7 +15,7 @@ import javax.validation.Payload;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Phone {
 
-	String message() default "{Phone}";
+	String message() default "error formato";
 
 	Class<?>[] groups() default {};
 

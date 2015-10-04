@@ -4,7 +4,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import pep.mendez.smvcp1.formbeans.ProfileBean;
+import pep.mendez.smvcp1.spring.formbeans.ProfileBean;
 
 /*
  *  Custom Validator implementation that is specific to Spring Framework
@@ -21,7 +21,7 @@ public class ProfileFormValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		ProfileBean profileBean = (ProfileBean) target;
 
-		//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "name.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "name.required");
 	}
 
 }

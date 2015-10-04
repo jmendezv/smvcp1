@@ -10,14 +10,16 @@
 <body th:inline="text">
 	<div th:include="fragments/header :: header"></div>
 
+	<h3 th:text="#{register.title}"></h3>
+
 	<form th:action="@{/register}"
 		th:object="${userRegistrationBean}" method="post">
 		<fieldset>
 			<legend th:text="#{register.legend}" />
-			<!-- ul th:if="${#fields.hasAnyErrors()}">
+			<ul th:if="${#fields.hasAnyErrors()}">
 				<li th:each="error : ${#fields.allErrors()}" th:text="${error}">Error
 					de entrada</li>
-			</ul -->
+			</ul>
 			<p>
 				<label for="username" th:text="#{register.username}" /> <input
 					type="text" id="username" name="username" th:field="*{userName}" />
@@ -39,15 +41,15 @@
 				<label for="passwordConfirmation"
 					th:text="#{register.passwordConfirmation}" /> <input
 					type="password" id="passwordConfirmation"
-					name="passwordConfirmation" th:value="${passwordConfirmation}" />
+					name="passwordConfirmation" th:field="*{passwordConfirmation}" />
 			<ul th:if="${#fields.hasErrors('passwordConfirmation')}">
 				<li th:each="error : ${#fields.errors('passwordConfirmation')}"
 					th:text="${error}">Error de entrada</li>
 			</ul>
 			</p>
 			<div>
-				<button type="submit" class="btnSmall" name="action" value="save" >[[#{register.action.save}]]</button>
-				<button type="submit" class="btnSmall" name="action" value="cancel" >[[#{register.action.cancel}]]</button>
+				<button type="submit" class="btnSmall" name="action" value="save" ><span th:text="#{register.action.save}" /></button>
+				<button type="submit" class="btnSmall" name="action" value="cancel" ><span th:text="#{register.action.cancel}" /></button>
 			</div>
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />

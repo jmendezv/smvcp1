@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,8 +25,14 @@ import pep.mendez.smvcp1.spring.model.service.CustomUserDetailsService;
  * 
  */
 @Configuration
-@EnableWebMvcSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true)
+// @EnableWebMvcSecurity
+/*
+ * As of Spring Security 4.0, @EnableWebMvcSecurity is deprecated. The
+ * replacement is @EnableWebSecurity which will determine adding the Spring MVC
+ * features based upon the classpath.
+ */
+@EnableWebSecurity
+//@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -35,42 +42,46 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private PasswordEncoder passwordEncoder;
 
 	@Autowired
-	private CustomUserDetailsService userDao;
+	private CustomUserDetailsService customUserDetailService;
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 			throws Exception {
 		auth.jdbcAuthentication().dataSource(dataSource)
 				.passwordEncoder(passwordEncoder);
-//		 auth.userDetailsService(userDao).passwordEncoder(passwordEncoder);
 	}
 
+	/*
+	 * It allows configuring web based security for specific http requests. By
+	 * default it will be applied to all requests, but can be restricted using
+	 * requestMatcher(RequestMatcher) or other similar methods.
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http
-			.authorizeRequests()
-				.antMatchers("/login", "/validate/**", "/register", "/help", "/about", "/closed", "/user/**", "/resources/**", "/webjars/**")
-				.permitAll()
-				.antMatchers("/home")
-				.hasAnyRole("USER", "ADMIN")
-				.antMatchers("/admin", "/edit/**")
-				.hasRole("ADMIN")
-				// Security SpEL
-				//.access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-				// .hasAnyRole("USER", "ADMIN")
-				// appends ROLE_
-				.anyRequest().authenticated().and().formLogin()
-				.loginPage("/login").and().httpBasic()
-				.and().exceptionHandling().accessDeniedPage("/403")
-				.and().rememberMe()
-				.tokenValiditySeconds(2419200).key("smvcp1").and()
-				// .requiresChannel().antMatchers("/**").requiresSecure().and()
-				.sessionManagement().maximumSessions(1);
+		http.authorizeRequests()
+				.antMatchers("/login", "/validate/**", "/register", "/help",
+						"/about", "/closed", "/user/**", "/resources/**",
+						"/webjars/**").permitAll().antMatchers("/home")
+				.hasAnyRole("USER", "ADMIN").antMatchers("/admin", "/edit/**")
+				.hasRole("ADMIN").anyRequest().authenticated().and()
+				.formLogin().loginPage("/login").and().httpBasic().and()
+				//.exceptionHandling().accessDeniedPage("/403").and()
+				.rememberMe().tokenValiditySeconds(2419200).key("smvcp1").and()
+				.sessionManagement().maximumSessions(1);//.and().and().csrf().disable();
 	}
 
 }
 
+// .requiresChannel().antMatchers("/**").requiresSecure().and()
+// .and().and().csrf().disable();
+// Security SpEL
+// .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+// .hasAnyRole("USER", "ADMIN")
+// appends ROLE_
+
+/* legacy db's */
+// auth.userDetailsService(userDao).passwordEncoder(passwordEncoder);
 /*
  * in memory authentication is used for testing purposes
  */

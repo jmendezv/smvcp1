@@ -1,4 +1,4 @@
-package pep.mendez.smvcp1.formbeans;
+package pep.mendez.smvcp1.spring.formbeans;
 
 import java.util.ArrayList;
 import java.util.List;
