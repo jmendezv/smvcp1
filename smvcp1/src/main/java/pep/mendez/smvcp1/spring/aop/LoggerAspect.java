@@ -11,7 +11,22 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @author pep
- *
+ * 
+ *         Aspect-Oriented Programming (AOP) complements Object-Oriented
+ *         Programming (OOP) by providing another way of thinking about program
+ *         structure.
+ * 
+ *         The key unit of modularity in OOP is the class, whereas in AOP the
+ *         unit of modularity is the aspect.
+ * 
+ *         Aspects enable the modularization of concerns (cross-cutting
+ *         concerns) such as transaction management or logging that cut across
+ *         multiple types of objects.
+ * 
+ *         One aspect represents the modularization of a concern that cuts
+ *         across multiples classes.
+ * 
+ *         this class register calls to the service layer.
  */
 @Aspect
 public class LoggerAspect {
@@ -38,8 +53,10 @@ public class LoggerAspect {
 	}
 
 	@Before("allPublicServiceIntMethodsPointcut(id)")
-	public void beforeAllPublicServiceIntMethodsPointcutAdvice(JoinPoint joinPoint, int id) {
-		logger.info(String.format("*** %s (%d) ***%n", joinPoint.getSignature(), id));
+	public void beforeAllPublicServiceIntMethodsPointcutAdvice(
+			JoinPoint joinPoint, int id) {
+		logger.info(String.format("*** %s (%d) ***%n",
+				joinPoint.getSignature(), id));
 	}
 
 	@Before("allPublicServiceMethodsPointcut()")
@@ -57,7 +74,6 @@ public class LoggerAspect {
 			procidingJoinPoint.proceed();
 			// whatever more you want to do
 		} catch (Throwable e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

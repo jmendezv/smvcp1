@@ -25,6 +25,7 @@ import pep.mendez.smvcp1.spring.model.repository.RepositoryDef;
  *
  */
 @Configuration
+// will fail if classes are refactored
 //@EnableJpaRepositories(basePackages = { "pep.mendez.smvcp1.spring.model.repository" }, repositoryImplementationPostfix = "Impl", enableDefaultTransactions = true)
 @EnableJpaRepositories(basePackageClasses = {RepositoryDef.class}, repositoryImplementationPostfix = "Impl", enableDefaultTransactions = true)
 @EnableTransactionManagement

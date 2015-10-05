@@ -123,7 +123,7 @@ public class ProfileController {
 		}
 
 		if (bindingResult.hasErrors()) {
-			return "redirect:profile";
+			return "profile";
 		}
 
 		String ip = request.getRemoteAddr();

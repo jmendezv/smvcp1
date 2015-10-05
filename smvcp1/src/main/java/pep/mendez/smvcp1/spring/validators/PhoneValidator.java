@@ -22,13 +22,14 @@ public class PhoneValidator implements ConstraintValidator<Phone, String> {
 		if (phoneNumber == null) {
 			return false;
 		}
-		// validate phone numbers of format "1234567890"
-//		if (phoneNumber.matches("\\d+")) {
-//			return true;
-//		}
+		// one or more digits
+		if (phoneNumber.matches("\\d+")) {
+			return true;
+		}
 		// return false if nothing matches the input
-		context.buildConstraintViolationWithTemplate("{PhoneValidator.phone.illegalformat}")
-				.addConstraintViolation();
+//		context.disableDefaultConstraintViolation();
+//		context.buildConstraintViolationWithTemplate("\\d+")
+//				.addConstraintViolation();
 		return false;
 	}
 

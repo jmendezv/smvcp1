@@ -32,29 +32,6 @@ public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
 	org.slf4j.Logger logger = LoggerFactory
 			.getLogger(this.getClass().getName());
 
-
-	// @Override
-	// public void configureContentNegotiation(
-	// ContentNegotiationConfigurer configurer) {
-	// configurer.defaultContentType(MediaType.APPLICATION_JSON);
-	// }
-
-	// @Override
-	// public void configureMessageConverters(List<HttpMessageConverter<?>>
-	// converters) {
-	// // http
-	// // HttpMessageConverter converter = new StringHttpMessageConverter();
-	// // converters.add(converter);
-	//
-	// // string
-	// // converter = new FormHttpMessageConverter();
-	// // converters.add(converter);
-	//
-	// // json
-	// converters.add(new MappingJackson2HttpMessageConverter());
-	//
-	// }
-
 	/**
 	 * Access resource files
 	 */
@@ -72,15 +49,14 @@ public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
 			DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
+
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		super.addInterceptors(registry);
 		int startTime = Integer.parseInt(env.getProperty("startTime"));
 		Integer endTime = Integer.valueOf(env.getProperty("endTime"));
-		CustomScheduleInterceptor customScheduleInterceptor = new CustomScheduleInterceptor();
-		customScheduleInterceptor.setStartTime(startTime);
-		customScheduleInterceptor.setEndTime(endTime);
+		CustomScheduleInterceptor customScheduleInterceptor = new CustomScheduleInterceptor(startTime, endTime);
 		registry.addInterceptor(customScheduleInterceptor).addPathPatterns("/login"); 
 	}
 }

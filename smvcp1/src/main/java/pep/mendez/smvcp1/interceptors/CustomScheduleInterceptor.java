@@ -27,6 +27,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  * like multipart forms and GZIP compression. This typically shows when one 
  * needs to map the filter to certain content types (e.g. images), or to all requests.
  */
+
 /**
  * @author pep
  *
@@ -43,6 +44,11 @@ public class CustomScheduleInterceptor extends HandlerInterceptorAdapter {
 	 * Hora de cierre, segun application.properties
 	 */
 	private int endTime;
+
+	public CustomScheduleInterceptor(int startTime, int endTime) {
+		this.startTime = startTime;
+		this.endTime = endTime;
+	}
 
 	/*
 	 * returns true if the execution chain should proceed with the next
@@ -64,14 +70,6 @@ public class CustomScheduleInterceptor extends HandlerInterceptorAdapter {
 			response.sendRedirect("closed");
 		}
 		return ret;
-	}
-
-	public void setStartTime(int startTime) {
-		this.startTime = startTime;
-	}
-
-	public void setEndTime(int endTime) {
-		this.endTime = endTime;
 	}
 
 }

@@ -19,8 +19,8 @@
 
 		<fieldset>
 			<legend><span th:utext="#{login.legend}"/></legend>
-			<div th:if="${param.error}" class="alert error">[[#{login.error.validacion}]]</div>
-			<div th:if="${param.logout}" class="alert success">[[#{login.loggedout}]]</div>
+			<div th:if="${param.error}" class="alert error"><span th:text="#{login.error.validacion}" /></div>
+			<div th:if="${param.logout}" class="alert success"><span th:text="#{login.loggedout}" /></div>
 			<div class="for-input">
 				<label for="username"><span th:utext="#{login.name}"/></label> 
 				<input type="email" placeholder="Email"
@@ -28,8 +28,9 @@
 			</div>
 			<div class="form-input">
 				<label for="password"><span th:utext="#{login.password}"/></label> <input
-					type="password"  placeholder="Clave" id="password" name="password" value="123456" /> <input
-					type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" required="required" />
+					type="password"  placeholder="Clave" id="password" name="password" value="123456" /> 
+					
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" required="required" />
 			</div>
 			<p>
 				<label for="remember_me"><span th:utext="#{login.rememberme}"/></label> 

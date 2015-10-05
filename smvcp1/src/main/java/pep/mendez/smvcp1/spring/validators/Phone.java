@@ -19,7 +19,7 @@ import javax.validation.Payload;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Phone {
 
-	String message() default "error formato";
+	String message() default "Formato incorrecto";
 
 	Class<?>[] groups() default {};
 

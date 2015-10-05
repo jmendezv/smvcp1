@@ -12,47 +12,61 @@
 
 	<h3 th:text="#{register.title}"></h3>
 
-	<form th:action="@{/register}"
-		th:object="${userRegistrationBean}" method="post">
+	<form th:action="@{/register}" th:object="${userRegistrationBean}"
+		method="post">
 		<fieldset>
 			<legend th:text="#{register.legend}" />
-			<ul th:if="${#fields.hasAnyErrors()}">
+			<table th:if="${#fields.hasAnyErrors()}" class="errorMessages">
+				<tr th:each="error : ${#fields.allErrors()}">
+					<td th:text="${error}">Error
+						de entrada</td>
+				</tr>
+			</table>
+			
+				<!--  ul th:if="${#fields.hasAnyErrors()}">
 				<li th:each="error : ${#fields.allErrors()}" th:text="${error}">Error
 					de entrada</li>
-			</ul>
+			</ul -->
 			<p>
-				<label for="username" th:text="#{register.username}" /> <input
-					type="text" id="username" name="username" th:field="*{userName}" />
-			<ul th:if="${#fields.hasErrors('userName')}">
+				<label for="username" th:text="#{register.userName}" /> <input
+						type="text" id="username" name="username" th:field="*{userName}" />
+			
+				<!--  ul th:if="${#fields.hasErrors('userName')}">
 				<li th:each="error : ${#fields.errors('userName')}"
-					th:text="${error}">Error de entrada</li>
-			</ul>
+						th:text="${error}">Error de entrada</li>
+			</ul -->
 			</p>
 			<p>
 				<label for="password" th:text="#{register.password}" /> <input
-					type="password" id="password" name="password"
-					th:field="*{password}" />
-			<ul th:if="${#fields.hasErrors('password')}">
+						type="password" id="password" name="password"
+						th:field="*{password}" />
+			
+				<!-- ul th:if="${#fields.hasErrors('password')}">
 				<li th:each="error : ${#fields.errors('password')}"
-					th:text="${error}">Error de entrada</li>
-			</ul>
+						th:text="${error}">Error de entrada</li>
+			</ul -->
 			</p>
 			<p>
 				<label for="passwordConfirmation"
-					th:text="#{register.passwordConfirmation}" /> <input
-					type="password" id="passwordConfirmation"
-					name="passwordConfirmation" th:field="*{passwordConfirmation}" />
-			<ul th:if="${#fields.hasErrors('passwordConfirmation')}">
+						th:text="#{register.passwordConfirmation}" /> <input
+						type="password" id="passwordConfirmation"
+						name="passwordConfirmation" th:field="*{passwordConfirmation}" />
+			
+				<!-- ul th:if="${#fields.hasErrors('passwordConfirmation')}">
 				<li th:each="error : ${#fields.errors('passwordConfirmation')}"
-					th:text="${error}">Error de entrada</li>
-			</ul>
+						th:text="${error}">Error de entrada</li>
+			</ul -->
 			</p>
 			<div>
-				<button type="submit" class="btnSmall" name="action" value="save" ><span th:text="#{register.action.save}" /></button>
-				<button type="submit" class="btnSmall" name="action" value="cancel" ><span th:text="#{register.action.cancel}" /></button>
+				<button type="submit" class="btnSmall" name="action" value="save">
+						<span th:text="#{register.action.save}" />
+					</button>
+				<button type="submit" class="btnSmall" name="action" value="cancel">
+						<span th:text="#{register.action.cancel}" />
+					</button>
 			</div>
 			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
+					value="${_csrf.token}" />
 		</fieldset>
 	</form>
 

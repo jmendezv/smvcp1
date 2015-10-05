@@ -25,7 +25,7 @@ public class JspConfig {
 //		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 //		viewResolver.setPrefix("/WEB-INF/views/");
 //		viewResolver.setSuffix(".jsp");
-//		viewResolver.setOrder(Ordered.HIGHEST_PRECEDENCE);
+//		viewResolver.setOrder(Ordered.LOWEST_PRECEDENCE);
 //		viewResolver.setViewClass(JstlView.class);
 //		viewResolver.setExposeContextBeansAsAttributes(true);
 //		return viewResolver;

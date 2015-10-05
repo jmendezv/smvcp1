@@ -26,7 +26,6 @@ label {
 	width: 100px;
 }
 
-
 .btnBig {
 	margin: 20px 0;
 	line-height: 34px;
@@ -46,6 +45,11 @@ label {
 	outline: none !important;
 	width: 30%;
 }
+
+.fieldError {
+	color: red;
+}
+
 
 
 button:active {

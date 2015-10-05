@@ -3,6 +3,7 @@ package pep.mendez.smvcp1.spring.formbeans;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.ScriptAssert;
 
 /*
@@ -20,6 +21,7 @@ import org.hibernate.validator.constraints.ScriptAssert;
 public class UserRegistrationBean {
 
 	@Email
+	@NotBlank
 	private String userName;
 	@Size(min = 6, max = 8)
 	private String password;

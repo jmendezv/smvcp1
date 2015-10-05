@@ -70,9 +70,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.hasAnyRole("USER", "ADMIN").antMatchers("/admin", "/edit/**")
 				.hasRole("ADMIN").anyRequest().authenticated().and()
 				.formLogin().loginPage("/login").and().httpBasic().and()
-				//.exceptionHandling().accessDeniedPage("/403").and()
+				.exceptionHandling().accessDeniedPage("/403").and()
 				.rememberMe().tokenValiditySeconds(2419200).key("smvcp1").and()
-				.sessionManagement().maximumSessions(1);//.and().and().csrf().disable();
+				.sessionManagement().maximumSessions(1).and().and().csrf().disable();
 	}
 
 }
