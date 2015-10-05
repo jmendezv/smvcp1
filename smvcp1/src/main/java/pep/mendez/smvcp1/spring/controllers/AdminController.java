@@ -2,6 +2,9 @@ package pep.mendez.smvcp1.spring.controllers;
 
 import java.security.Principal;
 import java.util.Collection;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,8 +17,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import pep.mendez.smvcp1.spring.model.entities.Connection;
 import pep.mendez.smvcp1.spring.model.entities.User;
 import pep.mendez.smvcp1.spring.model.service.AdminService;
+import pep.mendez.smvcp1.spring.model.service.ConnectionService;
 import pep.mendez.smvcp1.spring.model.service.UserService;
 
 /**
@@ -39,6 +44,9 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private ConnectionService connectionService;
 
 	@Autowired(required = true)
 	private UserService userService;
@@ -51,11 +59,19 @@ public class AdminController {
 		return "admin";
 	}
 
+	/*
+	 * Registra el acceso en la base de datos
+	 */
 	@RequestMapping(value = "/adminService")
-	public String adminService(ModelMap model, Principal principal) {
-		adminService.performSomeAdminService1(123456);
-		adminService.performSomeAdminService2();
-		adminService.performSomeAdminService3(1);
+	public String adminService(ModelMap model, Principal principal, HttpServletRequest request) {
+		String ip = request.getRemoteAddr();
+		Connection connection = new Connection(new Date(), ip);
+		User user = userService.findByUserName(principal.getName());
+		connection.setUserConnection(user );
+		connectionService.save(connection);
+//		adminService.performSomeAdminService1(123456);
+//		adminService.performSomeAdminService2();
+//		adminService.performSomeAdminService3(1);
 		// java.lang.ClassCastException porque hay un proxy por medio
 		//((AdminService2) adminService).performNewService();
 		//model.addAttribute("principal", principal.getName());

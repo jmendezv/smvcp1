@@ -35,8 +35,8 @@ public class Connection implements Serializable {
 	private long id;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date timeIn;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date timeOut;
+//	@Temporal(TemporalType.TIMESTAMP)
+//	private Date timeOut;
 	// Ready for IPv6
 	@Column(name = "ip", length = 64)
 	private String ip;
@@ -46,12 +46,17 @@ public class Connection implements Serializable {
 
 	public Connection() {
 	}
-
-	public Connection(Date timeIn, Date timeOut, String ip) {
+	
+	public Connection(Date timeIn, String ip) {
 		this.timeIn = timeIn;
-		this.timeOut = timeOut;
 		this.ip = ip;
 	}
+
+//	public Connection(Date timeIn, Date timeOut, String ip) {
+//		this.timeIn = timeIn;
+//		this.timeOut = timeOut;
+//		this.ip = ip;
+//	}
 
 	public long getId() {
 		return id;
@@ -69,13 +74,13 @@ public class Connection implements Serializable {
 		this.timeIn = timeIn;
 	}
 
-	public Date getTimeOut() {
-		return timeOut;
-	}
-
-	public void setTimeOut(Date timeOut) {
-		this.timeOut = timeOut;
-	}
+//	public Date getTimeOut() {
+//		return timeOut;
+//	}
+//
+//	public void setTimeOut(Date timeOut) {
+//		this.timeOut = timeOut;
+//	}
 
 	public String getIp() {
 		return ip;
@@ -83,5 +88,19 @@ public class Connection implements Serializable {
 
 	public void setIp(String ip) {
 		this.ip = ip;
+	}
+
+	/**
+	 * @return the userConnection
+	 */
+	public User getUserConnection() {
+		return userConnection;
+	}
+
+	/**
+	 * @param userConnection the userConnection to set
+	 */
+	public void setUserConnection(User userConnection) {
+		this.userConnection = userConnection;
 	}
 }
