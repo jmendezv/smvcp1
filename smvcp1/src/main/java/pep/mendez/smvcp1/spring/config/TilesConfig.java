@@ -14,6 +14,10 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
  * 
  * @return ViewResolver
  */
+/**
+ * @author pep
+ *
+ */
 @Configuration
 public class TilesConfig {
 

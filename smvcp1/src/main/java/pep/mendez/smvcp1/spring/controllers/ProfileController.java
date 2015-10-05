@@ -39,6 +39,10 @@ import pep.mendez.smvcp1.spring.model.service.UserService;
  * Second approach is to implement the org.springframework.validation.Validator interface and set it as a validator in the Controller class using @InitBinder
  * 
  */
+/**
+ * @author pep
+ *
+ */
 @Controller
 @PropertySources(value = { @PropertySource(name = "props", value = { "classpath:application.properties" }) })
 public class ProfileController {

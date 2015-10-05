@@ -5,6 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import pep.mendez.smvcp1.spring.model.entities.Profile;
 
+/**
+ * @author pep
+ *
+ */
 @Repository
 public interface ProfileRepository extends JpaRepository<Profile, Long> {
 

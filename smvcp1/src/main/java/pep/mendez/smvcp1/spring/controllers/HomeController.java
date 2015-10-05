@@ -23,6 +23,10 @@ import pep.mendez.smvcp1.spring.model.entities.User;
 import pep.mendez.smvcp1.spring.model.service.UserService;
 
 // '123456' $2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje
+/**
+ * @author pep
+ *
+ */
 @Controller
 @RequestMapping(value = "/")
 @PropertySources(value = { @PropertySource(name = "props", value = { "classpath:application.properties" }) })

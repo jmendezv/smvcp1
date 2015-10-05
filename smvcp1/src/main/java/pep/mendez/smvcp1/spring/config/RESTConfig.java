@@ -1,17 +1,13 @@
 package pep.mendez.smvcp1.spring.config;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
 /*
  * Esta clase hace que no funcione validacion
+ */
+/**
+ * @author pep
+ *
  */
 @Configuration
 public class RESTConfig

@@ -18,6 +18,10 @@ import org.thymeleaf.templateresolver.TemplateResolver;
  * 
  * @return ViewResolver
  */
+/**
+ * @author pep
+ *
+ */
 @Configuration
 @PropertySource("classpath:thymeleaf.properties")
 public class ThymeleafConfig {

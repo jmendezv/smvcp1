@@ -3,6 +3,10 @@ package pep.mendez.smvcp1.spring.model.service;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author pep
+ *
+ */
 @Service
 public class AdminService2Impl implements AdminService2 {
 

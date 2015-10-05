@@ -13,6 +13,10 @@ import org.springframework.security.core.userdetails.User;
  * Strategy used in expression evaluation to determine whether a user has a 
  * permission or permissions for a given domain object.
  */
+/**
+ * @author pep
+ *
+ */
 public class CustomPermissionEvaluator implements PermissionEvaluator {
 	/*  GrantedAuthorityImpl class removed from Spring Securety 4.x */
 	//private static final GrantedAuthority ADMIN_AUTHORITY = new GrantedAuthorityImpl("ROLE_ADMIN");

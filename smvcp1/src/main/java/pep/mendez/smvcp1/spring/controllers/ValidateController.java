@@ -21,6 +21,10 @@ import pep.mendez.smvcp1.spring.model.entities.User;
 import pep.mendez.smvcp1.spring.model.service.UserService;
 import pep.mendez.smvcp1.utils.Utility;
 
+/**
+ * @author pep
+ *
+ */
 @Controller
 @PropertySources(value = { @PropertySource(name = "props", value = { "classpath:application.properties" }) })
 public class ValidateController {

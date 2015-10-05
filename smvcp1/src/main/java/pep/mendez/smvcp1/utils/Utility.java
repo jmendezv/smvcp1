@@ -9,6 +9,10 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
+/**
+ * @author pep
+ *
+ */
 public class Utility implements UtilityConstants {
 
 	public static boolean sendEmail(JavaMailSender mailSender, String from, String to, String subject, String body) {

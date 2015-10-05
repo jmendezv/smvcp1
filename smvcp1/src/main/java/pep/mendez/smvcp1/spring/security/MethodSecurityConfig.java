@@ -9,6 +9,10 @@ import org.springframework.security.config.annotation.method.configuration.Globa
 /*
  * Method-level security is an important complement to Sring Security's web-level security
  */
+/**
+ * @author pep
+ *
+ */
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration {

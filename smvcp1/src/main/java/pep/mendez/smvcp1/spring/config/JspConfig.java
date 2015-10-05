@@ -1,12 +1,6 @@
 package pep.mendez.smvcp1.spring.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
-import org.springframework.data.domain.Sort.Order;
-import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
 
 /**
  * Configure a JSP view resolver
@@ -18,6 +12,10 @@ import org.springframework.web.servlet.view.JstlView;
  * name is returned.
  * 
  * @return ViewResolver
+ */
+/**
+ * @author pep
+ *
  */
 @Configuration
 public class JspConfig {

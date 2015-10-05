@@ -8,6 +8,10 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 /*
  * web.xml
  */
+/**
+ * @author pep
+ *
+ */
 public class WebInitializer extends
 		AbstractAnnotationConfigDispatcherServletInitializer {
 	

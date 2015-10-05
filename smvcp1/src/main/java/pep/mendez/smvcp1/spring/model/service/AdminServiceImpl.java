@@ -13,6 +13,10 @@ import org.springframework.stereotype.Service;
 /* Spring automatically scans and identifies all these classes that are annotated with 
  * @Component, @Service, @Repository, @Controller  and registers BeanDefinition with ApplicationContext 
  */
+/**
+ * @author pep
+ *
+ */
 @Service
 public class AdminServiceImpl implements AdminService {
 

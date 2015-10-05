@@ -27,47 +27,43 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  * like multipart forms and GZIP compression. This typically shows when one 
  * needs to map the filter to certain content types (e.g. images), or to all requests.
  */
+/**
+ * @author pep
+ *
+ */
 public class CustomScheduleInterceptor extends HandlerInterceptorAdapter {
 
+	
+	/**
+	 * Hora de abertura de la web, segun application.properties
+	 */
 	private int startTime;
+	
+	/**
+	 * Hora de cierre, segun application.properties
+	 */
 	private int endTime;
 
 	/*
-	 * (non-Javadoc)
+	 * returns true if the execution chain should proceed with the next
+	 * interceptor or the handler itself.
 	 * 
-	 * @see
-	 * org.springframework.web.servlet.handler.HandlerInterceptorAdapter#postHandle
-	 * (javax.servlet.http.HttpServletRequest,
-	 * javax.servlet.http.HttpServletResponse, java.lang.Object,
-	 * org.springframework.web.servlet.ModelAndView)
-	 */
-	@Override
-	public void postHandle(HttpServletRequest request,
-			HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
-		// TODO Auto-generated method stub
-		super.postHandle(request, response, handler, modelAndView);
-	}
-
-	/*
-	 * Si no es horario de apertura segun configurado en application.properties
-	 * se redirige a closed
+	 * Else, DispatcherServlet assumes that this interceptor has already dealt
+	 * with the response itself. 
+	 * 
 	 */
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		
-		// return super.preHandle(request, response, handler);
+
 		boolean ret = true;
 		LocalDateTime ldt = LocalDateTime.now();
 		int hourOfDay = ldt.getHourOfDay();
 		if (hourOfDay < startTime || hourOfDay > endTime) {
 			ret = false;
 			response.sendRedirect("closed");
-			//request.getRequestDispatcher("closed").forward(request, response);
-		} 
+		}
 		return ret;
-		//return false;
 	}
 
 	public void setStartTime(int startTime) {

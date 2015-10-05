@@ -16,6 +16,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import pep.mendez.smvcp1.interceptors.CustomScheduleInterceptor;
 import pep.mendez.smvcp1.spring.SpringDef;
 
+/**
+ * @author pep
+ *
+ */
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackageClasses = { SpringDef.class })

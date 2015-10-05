@@ -6,6 +6,10 @@ import javax.validation.ConstraintValidatorContext;
 /*
  * JSR 303 custom validator implementation
  */
+/**
+ * @author pep
+ *
+ */
 public class PhoneValidator implements ConstraintValidator<Phone, String> {
 
 	@Override

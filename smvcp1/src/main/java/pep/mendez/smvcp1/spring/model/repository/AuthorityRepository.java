@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import pep.mendez.smvcp1.spring.model.entities.Authority;
 
+/**
+ * @author pep
+ *
+ */
 @Repository
 public interface AuthorityRepository extends JpaRepository<Authority, Long> {
 

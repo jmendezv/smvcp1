@@ -4,6 +4,10 @@ import java.util.List;
 
 import org.springframework.security.core.userdetails.User;
 
+/**
+ * @author pep
+ *
+ */
 public interface AdminService {
 
 	/*

@@ -12,6 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import pep.mendez.smvcp1.spring.model.entities.User;
 import pep.mendez.smvcp1.spring.model.repository.UserRepository;
 
+/**
+ * @author pep
+ *
+ */
 @Service
 @Transactional
 public class UserService {

@@ -24,6 +24,10 @@ import pep.mendez.smvcp1.spring.model.service.CustomUserDetailsService;
  * on a web application in which he/she is currently authenticated.
  * 
  */
+/**
+ * @author pep
+ *
+ */
 @Configuration
 // @EnableWebMvcSecurity
 /*

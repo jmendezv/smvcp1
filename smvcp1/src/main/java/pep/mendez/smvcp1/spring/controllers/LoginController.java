@@ -12,6 +12,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+/**
+ * @author pep
+ *
+ */
 @Controller
 @PropertySources(value = {@PropertySource(name = "props", value = {"classpath:application.properties"}, ignoreResourceNotFound = true)})
 public class LoginController {

@@ -14,6 +14,10 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
  * Spring Security relies on several servlet filters to provide different
  * security features. Those filters will be created when you enable web security
  */
+/**
+ * @author pep
+ *
+ */
 public class SecurityWebApplicationInitializer extends
 		AbstractSecurityWebApplicationInitializer {
 

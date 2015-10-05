@@ -8,6 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 import pep.mendez.smvcp1.spring.model.entities.Authority;
 import pep.mendez.smvcp1.spring.model.repository.AuthorityRepository;
 
+/**
+ * @author pep
+ *
+ */
 @Service
 @Transactional
 public class AuthorityService {

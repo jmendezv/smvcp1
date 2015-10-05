@@ -1,10 +1,8 @@
 package pep.mendez.smvcp1.spring.formbeans;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.ScriptAssert;
 
 /*
@@ -13,6 +11,10 @@ import org.hibernate.validator.constraints.ScriptAssert;
  * The script must return a boolean object.
  */
 
+/**
+ * @author pep
+ *
+ */
 @ScriptAssert(lang = "javascript", script = "_this.password.equals(_this.passwordConfirmation)", alias = "_this", message = "register.dontmatch")
 
 public class UserRegistrationBean {

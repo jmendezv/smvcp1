@@ -9,6 +9,10 @@ import pep.mendez.smvcp1.spring.formbeans.ProfileBean;
 /*
  *  Custom Validator implementation that is specific to Spring Framework
  */
+/**
+ * @author pep
+ *
+ */
 public class ProfileFormValidator implements Validator {
 
 	@Override

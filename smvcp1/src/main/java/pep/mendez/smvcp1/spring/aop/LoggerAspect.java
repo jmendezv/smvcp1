@@ -9,6 +9,10 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * @author pep
+ *
+ */
 @Aspect
 public class LoggerAspect {
 

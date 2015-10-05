@@ -24,6 +24,10 @@ import pep.mendez.smvcp1.spring.model.service.UserService;
  * should be bound to the web response body
  * 
  */
+/**
+ * @author pep
+ *
+ */
 @RestController
 @PropertySources(value = { @PropertySource(name = "props", value = { "classpath:application.properties" }, ignoreResourceNotFound = true) })
 public class UserRestController {

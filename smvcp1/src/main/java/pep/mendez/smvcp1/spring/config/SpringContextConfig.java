@@ -40,6 +40,10 @@ import pep.mendez.smvcp1.spring.aop.AdminService2IntroducerAspect;
 import pep.mendez.smvcp1.spring.aop.LoggerAspect;
 import pep.mendez.smvcp1.spring.validators.ProfileFormValidator;
 
+/**
+ * @author pep
+ *
+ */
 @Configuration
 @EnableAspectJAutoProxy(proxyTargetClass = false)
 @ComponentScan(basePackageClasses = { SpringDef.class }, excludeFilters = { @Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })

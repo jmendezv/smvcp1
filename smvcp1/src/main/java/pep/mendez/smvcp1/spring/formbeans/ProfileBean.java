@@ -7,6 +7,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import pep.mendez.smvcp1.spring.validators.Phone;
 
+/**
+ * @author pep
+ *
+ */
 public class ProfileBean implements Serializable {
 
 	/**

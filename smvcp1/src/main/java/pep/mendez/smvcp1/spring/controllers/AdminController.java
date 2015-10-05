@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import pep.mendez.smvcp1.spring.model.entities.User;
 import pep.mendez.smvcp1.spring.model.service.AdminService;
-import pep.mendez.smvcp1.spring.model.service.AdminService2;
 import pep.mendez.smvcp1.spring.model.service.UserService;
 
+/**
+ * @author pep
+ *
+ */
 @Controller
 @PropertySources(value = {@PropertySource(name = "props", value = "{classpath:application.properties}", ignoreResourceNotFound = true)})
 public class AdminController {

@@ -26,6 +26,10 @@ import pep.mendez.smvcp1.spring.model.entities.User;
 import pep.mendez.smvcp1.spring.model.service.AuthorityService;
 import pep.mendez.smvcp1.spring.model.service.UserService;
 
+/**
+ * @author pep
+ *
+ */
 @Controller
 @PropertySources(value = { @PropertySource(name = "props", value = { "classpath:application.properties" }) })
 public class EditController {

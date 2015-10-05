@@ -9,22 +9,39 @@ import pep.mendez.smvcp1.spring.model.service.AdminService2Impl;
 /*
  * This aspect introduces AdminService2 interface to AdminService.
  * 
- * Java isn't that dynamic, once a class has been compiled, there's little you can do to append new functionality to it.
+ * Java isn't that dynamic, once a class has been compiled, 
+ * there's little you can do to append new functionality to it.
  * 
- * With aspects you don't add new methods to objects, you simply add new functionality around the methods that the objects already have.
+ * With aspects you don't add new methods to objects, 
+ * you simply add new functionality around the methods that the objects already have.
  * 
- * Using an AOP concept known as introduction, aspects can attach new methods to Spring beans.
+ * Using an AOP concept known as introduction, 
+ * aspects can attach new methods to Spring beans.
  * 
- * In Spring, aspects are proxies that implement the same interfaces as the beans they wrap.
+ * In Spring, aspects are proxies that implement 
+ * the same interfaces as the beans they wrap.
  * 
- * What if, in addition to implementing those interfaces, the proxy is also exposed through some new interface?
+ * What if, in addition to implementing those interfaces, 
+ * the proxy is also exposed through some new interface?
  * 
- * Then any bean that is advised by the aspect will appear to implement the new interface, even if its underlying implementation class doesn't.
+ * Then any bean that is advised by the aspect will appear 
+ * to implement the new interface, even if its underlying 
+ * implementation class doesn't.
  * 
- * Notice that when a method on the introduced interface is called, the proxy delegates the call to some other object that provides the implementation of the new interface.
+ * Notice that when a method on the introduced interface is called, 
+ * the proxy delegates the call to some other object that 
+ * provides the implementation of the new interface.
  * 
- * Effectively, this gives you one bean whose implementation is split across multiple classes.
+ * Effectively, this gives you one bean whose 
+ * implementation is split across multiple classes.
  * 
+ */
+/**
+ * @author pep
+ * 
+ *         An example of AOP Introduction, where aspects may attach new methods
+ *         to Spring beans
+ *
  */
 @Aspect
 public class AdminService2IntroducerAspect {
