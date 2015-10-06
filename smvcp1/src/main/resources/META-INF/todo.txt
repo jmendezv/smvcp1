@@ -1,4 +1,5 @@
-EditController won't update user according to user selection:
-if you unselect one profile it won't be updated.
+TODO list
 
-Pagina anterior que seu una imagen
+* add user
+
+* Back link should be an image

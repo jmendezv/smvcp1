@@ -10,13 +10,18 @@ import org.hibernate.validator.constraints.ScriptAssert;
  * ScriptAssert is a class-level constraint, that evaluates a script expression against the annotated element.
  * This constraint can be used to implement validation routines, that depend on multiple attributes of the annotated element.
  * The script must return a boolean object.
+ * 
+ * message defaults to {org.hibernate.validator.constraints.ScriptAssert.message}
+ * 
+ * , message = "{register.passwordsdontmatch}"
+ * 
  */
 
 /**
  * @author pep
  *
  */
-@ScriptAssert(lang = "javascript", script = "_this.password.equals(_this.passwordConfirmation)", alias = "_this", message = "register.dontmatch")
+@ScriptAssert(lang = "javascript", script = "_this.password.equals(_this.passwordConfirmation)", alias = "_this")
 
 public class UserRegistrationBean {
 
