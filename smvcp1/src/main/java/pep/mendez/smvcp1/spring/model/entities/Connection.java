@@ -40,9 +40,9 @@ public class Connection implements Serializable {
 	// Ready for IPv6
 	@Column(name = "ip", length = 64)
 	private String ip;
-	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-	@JoinColumn(name = "user_id", nullable = false)
-	private User userConnection;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id", nullable = true)
+	private User user;
 
 	public Connection() {
 	}
@@ -93,14 +93,14 @@ public class Connection implements Serializable {
 	/**
 	 * @return the userConnection
 	 */
-	public User getUserConnection() {
-		return userConnection;
+	public User getUser() {
+		return user;
 	}
 
 	/**
 	 * @param userConnection the userConnection to set
 	 */
-	public void setUserConnection(User userConnection) {
-		this.userConnection = userConnection;
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

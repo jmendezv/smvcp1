@@ -1,5 +1,6 @@
 package pep.mendez.smvcp1.spring.controllers;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -64,6 +65,9 @@ public class EditController {
 		return "edit";
 	}
 
+	/*
+	 * @ModelAttribute is not strictly necessary
+	 */
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = { "action" })
 	public String editForm(
 			@Valid @ModelAttribute("userEditBean") UserEditBean userEditBean,
@@ -82,19 +86,16 @@ public class EditController {
 		String userName = userEditBean.getUserName();
 		User user = userService.findByUserName(userName);
 		user.setEnabled(userEditBean.isEnabled());
+		user.getAuthorities().clear();
 		List<String> roles = userEditBean.getRoles();
-		//if (roles != null) {
-			authorityService.deleteAllAuthorities(user.getUserName());
-//			for (String role : roles) {
-//				logger.debug(role);
-//				logger.debug(userName);
-//				Authority authority = new Authority(userName, role);
-//				logger.debug(authority.toString());
-//				authority.setUser(user);
-//				user.add(authority);
-//			}
-		//}
-		userService.save(user);
+		if (roles != null) {
+			for (String role : roles) {
+				Authority authority = new Authority(userName, role);
+				authority.setUser(user);
+				user.add(authority);
+			}
+		}
+		userService.save(user);		
 
 		return "redirect:admin";
 	}

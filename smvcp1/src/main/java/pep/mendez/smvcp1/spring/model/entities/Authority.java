@@ -36,7 +36,7 @@ public class Authority implements Serializable {
 	@Column(name = "authority", length = 64, nullable = false, unique = false)
 	private String authority;
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "user_id", nullable = false)
+	@JoinColumn(name = "user_id", nullable = true)
 	private User user;
 
 	public Authority() {

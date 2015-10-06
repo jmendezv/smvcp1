@@ -1,7 +1,6 @@
 package pep.mendez.smvcp1.spring.model.service;
 
-import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +15,7 @@ import pep.mendez.smvcp1.spring.model.repository.AuthorityRepository;
 @Transactional
 public class AuthorityService {
 
-	@Inject
+	@Autowired
 	private AuthorityRepository authorityRepository;
 
 	public void delete(Authority authority) {

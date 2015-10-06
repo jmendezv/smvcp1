@@ -46,8 +46,8 @@ public class Profile implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date", nullable = false, unique = false)
 	private Date date;
-	@OneToOne(fetch = FetchType.EAGER, optional = false)
-	@JoinColumn(name = "user_id")
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id", nullable = true)
 	private User user;
 
 	/*

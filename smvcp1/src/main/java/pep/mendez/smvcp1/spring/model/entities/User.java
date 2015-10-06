@@ -49,9 +49,9 @@ public class User implements Serializable {
 	private String password;
 	@Column(name = "enabled")
 	private boolean enabled = false;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval = true)
 	private Collection<Authority> authorities = new LinkedList<Authority>();
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userConnection", orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true)
 	private Collection<Connection> connections = new LinkedList<Connection>();
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true, mappedBy = "user")
 	private Profile profile;

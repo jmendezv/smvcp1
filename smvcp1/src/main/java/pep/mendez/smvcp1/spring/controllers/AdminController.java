@@ -67,7 +67,7 @@ public class AdminController {
 		String ip = request.getRemoteAddr();
 		Connection connection = new Connection(new Date(), ip);
 		User user = userService.findByUserName(principal.getName());
-		connection.setUserConnection(user );
+		connection.setUser(user );
 		connectionService.save(connection);
 //		adminService.performSomeAdminService1(123456);
 //		adminService.performSomeAdminService2();

@@ -15,6 +15,10 @@ import pep.mendez.smvcp1.spring.model.entities.Authority;
 @Repository
 public interface AuthorityRepository extends JpaRepository<Authority, Long> {
 
+	/*
+	 * Avoids
+	 * org.hibernate.hql.internal.QueryExecutionRequestException: Not supported for DML operations 
+	 */
 	@Modifying
 	// @Transactional
 	@Query(value = "delete from Authority a where a.userName = :userName")
