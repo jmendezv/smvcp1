@@ -1,6 +1,5 @@
 package pep.mendez.smvcp1.spring.controllers;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pep.mendez.smvcp1.spring.formbeans.UserEditBean;
 import pep.mendez.smvcp1.spring.model.entities.Authority;
 import pep.mendez.smvcp1.spring.model.entities.User;
-import pep.mendez.smvcp1.spring.model.service.AuthorityService;
 import pep.mendez.smvcp1.spring.model.service.UserService;
 
 /**
@@ -43,9 +41,6 @@ public class EditController {
 
 	@Autowired
 	MessageSource messageSource;
-
-	@Autowired
-	private AuthorityService authorityService;
 
 	@Autowired(required = true)
 	private UserService userService;
@@ -79,23 +74,32 @@ public class EditController {
 		if (action.equals("cancel")) {
 			return "redirect:admin";
 		}
+
 		if (bindingResult.hasErrors()) {
 			return "edit";
 		}
 
 		String userName = userEditBean.getUserName();
 		User user = userService.findByUserName(userName);
-		user.setEnabled(userEditBean.isEnabled());
-		user.getAuthorities().clear();
-		List<String> roles = userEditBean.getRoles();
-		if (roles != null) {
-			for (String role : roles) {
-				Authority authority = new Authority(userName, role);
-				authority.setUser(user);
-				user.add(authority);
+
+		switch (action) {
+		case "delete":
+			userService.delete(user);
+			break;
+		case "save":
+			user.setEnabled(userEditBean.isEnabled());
+			user.getAuthorities().clear();
+			List<String> roles = userEditBean.getRoles();
+			if (roles != null) {
+				for (String role : roles) {
+					Authority authority = new Authority(userName, role);
+					authority.setUser(user);
+					user.add(authority);
+				}
 			}
+			userService.save(user);
+			break;
 		}
-		userService.save(user);		
 
 		return "redirect:admin";
 	}

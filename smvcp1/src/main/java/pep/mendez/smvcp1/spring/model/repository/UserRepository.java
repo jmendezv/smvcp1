@@ -1,6 +1,9 @@
 package pep.mendez.smvcp1.spring.model.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import pep.mendez.smvcp1.spring.model.entities.User;
@@ -58,5 +61,14 @@ public interface UserRepository extends JpaRepository<User, Long>,
 	//@Cacheable(value = "usersCache", condition = "true", unless = "false")
 	//@Lock(LockModeType.READ)
 	User findByUserName(String userName);
+	
+	/*
+	 * Avoids
+	 * org.hibernate.hql.internal.QueryExecutionRequestException: Not supported for DML operations 
+	 */
+	@Modifying
+	// @Transactional
+	@Query(value = "delete from User u where u.enabled = :enabled")
+	public void deleteAllUsers(@Param("enabled") boolean enabled);
 
 }
