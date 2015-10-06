@@ -79,23 +79,32 @@ public class EditController {
 		if (action.equals("cancel")) {
 			return "redirect:admin";
 		}
+
 		if (bindingResult.hasErrors()) {
 			return "edit";
 		}
 
 		String userName = userEditBean.getUserName();
 		User user = userService.findByUserName(userName);
-		user.setEnabled(userEditBean.isEnabled());
-		user.getAuthorities().clear();
-		List<String> roles = userEditBean.getRoles();
-		if (roles != null) {
-			for (String role : roles) {
-				Authority authority = new Authority(userName, role);
-				authority.setUser(user);
-				user.add(authority);
+
+		switch (action) {
+		case "delete":
+			userService.delete(user);
+			break;
+		case "save":
+			user.setEnabled(userEditBean.isEnabled());
+			user.getAuthorities().clear();
+			List<String> roles = userEditBean.getRoles();
+			if (roles != null) {
+				for (String role : roles) {
+					Authority authority = new Authority(userName, role);
+					authority.setUser(user);
+					user.add(authority);
+				}
 			}
+			userService.save(user);
+			break;
 		}
-		userService.save(user);		
 
 		return "redirect:admin";
 	}
