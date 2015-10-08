@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.method.configuration.Globa
 /**
  * @author pep
  *
+ * TODO NOT USED???
  */
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)

@@ -47,6 +47,7 @@ public class ValidateController {
 	@Autowired
 	JavaMailSender mailSender;
 
+	// en /validate/1;d=125de32156abefde1 id=1 digest=125de32156abefde1 
 	@RequestMapping(value = "/validate/{id}", method = RequestMethod.GET)
 	public ModelAndView validate(@PathVariable(value = "id") long id,
 			@MatrixVariable(value = "d", required = true) String digest) {
@@ -59,7 +60,7 @@ public class ValidateController {
 				msgValidationError);
 		mav.addObject("user", "");
 		User user = userService.findOne(id);
-		//String encodedPassword = user.getPassword();
+		// Hash del userName + SALT
 		String md5Hex = DigestUtils.md5DigestAsHex((user.getUserName() + Utility.SALT).getBytes());
 		if (md5Hex.equals(digest)) {
 			user.setEnabled(true);
