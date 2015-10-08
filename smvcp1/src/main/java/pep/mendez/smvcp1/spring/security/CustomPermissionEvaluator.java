@@ -35,7 +35,7 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
 	@Override
 	public boolean hasPermission(Authentication authentication,
 			Object targetDomainObject, Object permission) {
-		// TODO Providec as an example
+		// TODO Provided as an example
 		if (targetDomainObject == null) {
 			return false;
 		}

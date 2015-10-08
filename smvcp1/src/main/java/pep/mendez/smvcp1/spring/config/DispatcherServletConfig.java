@@ -22,6 +22,7 @@ import pep.mendez.smvcp1.spring.SpringDef;
  */
 @Configuration
 @EnableWebMvc
+// TODO When to use ComponentScan
 @ComponentScan(basePackageClasses = { SpringDef.class })
 @PropertySources({ @PropertySource(value = "classpath:application.properties"), })
 public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
