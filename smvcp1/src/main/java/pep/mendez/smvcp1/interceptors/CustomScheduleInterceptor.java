@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.joda.time.LocalDateTime;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /*
@@ -34,12 +33,11 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  */
 public class CustomScheduleInterceptor extends HandlerInterceptorAdapter {
 
-	
 	/**
 	 * Hora de abertura de la web, segun application.properties
 	 */
 	private int startTime;
-	
+
 	/**
 	 * Hora de cierre, segun application.properties
 	 */
@@ -55,8 +53,7 @@ public class CustomScheduleInterceptor extends HandlerInterceptorAdapter {
 	 * interceptor or the handler itself.
 	 * 
 	 * Else, DispatcherServlet assumes that this interceptor has already dealt
-	 * with the response itself. 
-	 * 
+	 * with the response itself.
 	 */
 	@Override
 	public boolean preHandle(HttpServletRequest request,
