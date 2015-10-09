@@ -9,6 +9,10 @@
 </head>
 <body th:inline="text">
 	<div th:include="fragments/header :: header"></div>
+	
+	<h3 th:text="#{admin.title}"></h3>
+
+	<h4 th:text="#{admin.subtitle}"></h4>
 
 	<div sec:authorize="hasRole('ROLE_ADMIN')">
 		<span
@@ -28,6 +32,7 @@
 				<th><span th:text="#{admin.name}" /></th>
 				<th><span th:text="#{admin.enabled}" /></th>
 				<th><span th:text="#{admin.roles}" /></th>
+				<th><span th:text="#{admin.action}" /></th>
 				<th><span th:text="#{admin.action}" /></th>
 			</tr>
 		</thead>
@@ -52,6 +57,7 @@
 				</td>
 				<!-- td><a th:href="@{/edit/__${user.id}__}">[[#{admin.edit}]]</a></td -->
 				<td><a th:href="@{/edit(id=${user.id})}"><span th:text="#{admin.edit}" /></a></td>
+				<td><a th:href="@{/connections(id=${user.id})}"><span th:text="#{admin.connections}" /></a></td>
 			</tr>
 		</tbody>
 

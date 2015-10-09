@@ -40,7 +40,7 @@ public class Connection implements Serializable {
 	// Ready for IPv6
 	@Column(name = "ip", length = 64)
 	private String ip;
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = true)
 	private User user;
 

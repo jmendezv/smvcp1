@@ -15,6 +15,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 /**
  * OrphanRemoval tells the ORM that if I remove an Item object from the
  * collection of Items that belong to an Invoice object (in memory operation),
@@ -51,7 +56,12 @@ public class User implements Serializable {
 	private boolean enabled = false;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval = true)
 	private Collection<Authority> authorities = new LinkedList<Authority>();
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true)
+	// OpenSessionInViewFilter
+	// cannot simultaneously fetch multiple bags if EAGER
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
+	//@Fetch(value = FetchMode.SUBSELECT)
+	// eagerly load it
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Connection> connections = new LinkedList<Connection>();
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true, mappedBy = "user")
 	private Profile profile;
@@ -119,6 +129,20 @@ public class User implements Serializable {
 
 	public void setProfile(Profile profile) {
 		this.profile = profile;
+	}
+
+	/**
+	 * @return the connections
+	 */
+	public Collection<Connection> getConnections() {
+		return connections;
+	}
+
+	/**
+	 * @param connections the connections to set
+	 */
+	public void setConnections(Collection<Connection> connections) {
+		this.connections = connections;
 	}
 
 	@Override
