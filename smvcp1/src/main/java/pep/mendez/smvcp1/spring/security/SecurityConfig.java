@@ -49,8 +49,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 			throws Exception {
+
 		auth.jdbcAuthentication().dataSource(dataSource)
 				.passwordEncoder(passwordEncoder);
+		//.authoritiesByUsernameQuery("select username,authority from authorities where username = ?");
 	}
 
 	/*
@@ -60,17 +62,36 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
-		http.authorizeRequests()
+		
+		http
+			.csrf()
+				.disable()		
+			.authorizeRequests()
 				.antMatchers("/login", "/validate/**", "/register", "/help",
 						"/about", "/closed", "/user/**", "/resources/**",
-						"/webjars/**").permitAll().antMatchers("/home")
-				.hasAnyRole("USER", "ADMIN").antMatchers("/admin", "/edit/**", "/connections/**")
-				.hasRole("ADMIN").anyRequest().authenticated().and()
-				.formLogin().loginPage("/login").and().httpBasic().and()
-				.exceptionHandling().accessDeniedPage("/403").and()
-				.rememberMe().tokenValiditySeconds(2419200).key("smvcp1").and()
-				.sessionManagement().maximumSessions(1).and().and().csrf().disable();
+						"/webjars/**")
+					.permitAll()
+				.antMatchers("/home")
+					.hasAnyRole("USER", "ADMIN")
+				.antMatchers("/admin", "/edit/**", "/connections/**")
+					.hasRole("ADMIN")
+					.anyRequest()
+					.authenticated()
+				.and()
+					.formLogin()
+					.loginPage("/login")
+				.and()
+					.httpBasic()
+				.and()
+					.exceptionHandling()
+					.accessDeniedPage("/403")
+				.and()
+					.rememberMe()
+					.tokenValiditySeconds(Integer.MAX_VALUE)
+					.key("smvcp1")
+				.and()
+					.sessionManagement()
+					.maximumSessions(1);
 	}
 
 }
