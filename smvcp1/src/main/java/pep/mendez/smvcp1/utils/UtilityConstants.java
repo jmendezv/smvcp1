@@ -5,7 +5,9 @@ package pep.mendez.smvcp1.utils;
  *
  */
 public interface UtilityConstants {
-
 	public static final String SALT = "ZJx4uy7BEC5W";
-	
+	public static final String VALIDATE_MESSAGE_1 = "Haz click <a href='http://localhost:8080/smvcp1/validate/";
+	public static final String VALIDATE_MESSAGE_2 = "'>aqui</a> para validar tu usuario.";
+	public static final String RESET_PASSWORD_MESSAGE_1 = "Haz click <a href='http://localhost:8080/smvcp1/resetpwd/";
+	public static final String RESET_PASSWORD_MESSAGE_2 = "'>aqui</a> para resetear tu usuario.";
 }

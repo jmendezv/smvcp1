@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" th:href="@{resources/css/main.css}" />
+<title>SMVCP1</title>
+</head>
+<body th:inline="text">
+	<div th:include="fragments/header :: header"></div>
+
+	<h3 th:text="#{resetpwd.title}"></h3>
+
+	<form th:action="@{/resetpwd}" th:object="${resetPwdBean}"
+		method="post">
+		<fieldset>
+			<legend th:text="#{reset.legend}" />
+			<table th:if="${#fields.hasAnyErrors()}" class="errorMessages">
+				<tr th:each="error : ${#fields.allErrors()}">
+					<td th:text="${error}">Error
+						de entrada</td>
+				</tr>
+			</table>
+			
+				<!--  ul th:if="${#fields.hasAnyErrors()}">
+				<li th:each="error : ${#fields.allErrors()}" th:text="${error}">Error
+					de entrada</li>
+			</ul -->
+			<p>
+				<label for="username" th:text="#{resetpwd.userName}" /> <input
+						type="text" id="username" name="username" th:field="*{userName}" />
+			
+				<!--  ul th:if="${#fields.hasErrors('userName')}">
+				<li th:each="error : ${#fields.errors('userName')}"
+						th:text="${error}">Error de entrada</li>
+			</ul -->
+			</p>
+			
+			<div>
+				<button type="submit" class="btnSmall" name="action" value="reset">
+						<span th:text="#{resetpwd.action.reset}" />
+					</button>
+				<button type="submit" class="btnSmall" name="action" value="cancel">
+						<span th:text="#{resetpwd.action.cancel}" />
+					</button>
+			</div>
+			<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" />
+		</fieldset>
+	</form>
+
+	<div th:replace="fragments/footer :: footer" />
+</body>
+</html>

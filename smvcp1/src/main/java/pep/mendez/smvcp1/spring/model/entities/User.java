@@ -15,8 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -59,8 +57,9 @@ public class User implements Serializable {
 	// OpenSessionInViewFilter
 	// cannot simultaneously fetch multiple bags if EAGER
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
-	//@Fetch(value = FetchMode.SUBSELECT)
-	// eagerly load it
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private Collection<Reset> resets = new LinkedList<Reset>();
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Connection> connections = new LinkedList<Connection>();
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true, mappedBy = "user")
@@ -81,6 +80,10 @@ public class User implements Serializable {
 
 	public void add(Connection connection) {
 		connections.add(connection);
+	}
+
+	public void add(Reset reset) {
+		resets.add(reset);
 	}
 
 	public long getId() {
@@ -139,10 +142,26 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @param connections the connections to set
+	 * @param connections
+	 *            the connections to set
 	 */
 	public void setConnections(Collection<Connection> connections) {
 		this.connections = connections;
+	}
+
+	/**
+	 * @return the resets
+	 */
+	public Collection<Reset> getResets() {
+		return resets;
+	}
+
+	/**
+	 * @param resets
+	 *            the resets to set
+	 */
+	public void setResets(Collection<Reset> resets) {
+		this.resets = resets;
 	}
 
 	@Override
@@ -151,6 +170,5 @@ public class User implements Serializable {
 				"User [id=%s, userName=%s, password=%s, enabled=%s]", id,
 				userName, password, enabled);
 	}
-
 
 }

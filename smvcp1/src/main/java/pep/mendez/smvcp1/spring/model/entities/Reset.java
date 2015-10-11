@@ -19,8 +19,8 @@ import javax.persistence.TemporalType;
  *
  */
 @Entity
-@Table(name = "connection")
-public class Connection implements Serializable {
+@Table(name = "resets")
+public class Reset implements Serializable {
 
 	/**
 	 * The serialVersionUID is used as a version control in a Serializable
@@ -32,30 +32,22 @@ public class Connection implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@Column(name="resetCode")
+	private long resetCode;
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date timeIn;
-	// @Temporal(TemporalType.TIMESTAMP)
-	// private Date timeOut;
-	// Ready for IPv6
-	@Column(name = "ip", length = 64)
-	private String ip;
+	@Column(name = "dateExpiry")
+	private Date dateExpiry;
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = true)
 	private User user;
 
-	public Connection() {
+	public Reset() {
 	}
 
-	public Connection(Date timeIn, String ip) {
-		this.timeIn = timeIn;
-		this.ip = ip;
+	public Reset(long resetCode, Date dateExpriy) {
+		this.resetCode = resetCode;
+		this.dateExpiry = dateExpriy;
 	}
-
-	// public Connection(Date timeIn, Date timeOut, String ip) {
-	// this.timeIn = timeIn;
-	// this.timeOut = timeOut;
-	// this.ip = ip;
-	// }
 
 	public long getId() {
 		return id;
@@ -63,30 +55,6 @@ public class Connection implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public Date getTimeIn() {
-		return timeIn;
-	}
-
-	public void setTimeIn(Date timeIn) {
-		this.timeIn = timeIn;
-	}
-
-	// public Date getTimeOut() {
-	// return timeOut;
-	// }
-	//
-	// public void setTimeOut(Date timeOut) {
-	// this.timeOut = timeOut;
-	// }
-
-	public String getIp() {
-		return ip;
-	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
 	}
 
 	/**
@@ -102,5 +70,32 @@ public class Connection implements Serializable {
 	 */
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	/**
+	 * @return the resetCode
+	 */
+	public long getResetCode() {
+		return resetCode;
+	}
+
+	/**
+	 * @param resetCode the resetCode to set
+	 */
+	public void setResetCode(long resetCode) {
+		this.resetCode = resetCode;
+	}
+	/**
+	 * @return the dateEspiry
+	 */
+	public Date getDateExpiry() {
+		return dateExpiry;
+	}
+
+	/**
+	 * @param dateEspiry the dateEspiry to set
+	 */
+	public void setDateExpiry(Date dateExpiry) {
+		this.dateExpiry = dateExpiry;
 	}
 }

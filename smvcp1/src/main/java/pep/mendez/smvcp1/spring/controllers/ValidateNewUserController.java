@@ -27,7 +27,7 @@ import pep.mendez.smvcp1.utils.Utility;
  */
 @Controller
 @PropertySources(value = { @PropertySource(name = "props", value = { "classpath:application.properties" }) })
-public class ValidateController {
+public class ValidateNewUserController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(RegisterController.class);
@@ -56,7 +56,7 @@ public class ValidateController {
 				null, null); // env.getProperty("msg.validation.ok");
 		String msgValidationError = messageSource.getMessage(
 				"validate.controller.msg.error", null, null); // env.getProperty("msg.validation.error");
-		ModelAndView mav = new ModelAndView("validate", "message",
+		ModelAndView mav = new ModelAndView("validatetednewuser", "message",
 				msgValidationError);
 		mav.addObject("user", "");
 		User user = userService.findOne(id);
