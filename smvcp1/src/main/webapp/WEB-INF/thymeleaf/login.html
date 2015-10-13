@@ -1,61 +1,58 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html layout:decorator="layout/main">
 <head>
-<meta charset="UTF-8" />
-<!-- https://github.com/thymeleaf/thymeleaf-extras-springsecurity -->
-<link rel="stylesheet" th:href="@{resources/css/main.css}" />
-<link rel='stylesheet'
-	href='webjars/bootstrap/3.3.5/css/bootstrap.min.css' />
-<title>SMVCP1</title>
+<title>${#messages.msg('content.title')}</title>
 </head>
-<body th:inline="text">
-	<div th:include="fragments/header :: header"></div>
+<body>
 
-	<h3 th:text="#{login.title}"></h3>
+	<div layout:fragment="content">
 
-	<form name="f_login" th:action="@{/login}" method="post">
+		<h3 th:text="#{login.title}"></h3>
 
-		<fieldset>
-			<legend><span th:utext="#{login.legend}"/></legend>
-			<div th:if="${param.error}" class="alert error"><span th:text="#{login.error.validacion}" /></div>
-			<div th:if="${param.logout}" class="alert success"><span th:text="#{login.loggedout}" /></div>
-			<div class="for-input">
-				<label for="username"><span th:utext="#{login.name}"/></label> 
-				<input type="email" placeholder="Email"
-					id="username" name="username" value="pep@smvcp.com" required="required"  />
-			</div>
-			<div class="form-input">
-				<label for="password"><span th:utext="#{login.password}"/></label> <input
-					type="password"  placeholder="Clave" id="password" name="password" value="123456" /> 
-					
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" required="required" />
-			</div>
-			<p>
-				<label for="remember_me"><span th:utext="#{login.rememberme}"/></label> 
-				<input type="checkbox" id="remember_me" name="remember-me" />
-			</p>
-			<div class="form-actions">
-				<button type="submit" class="btnBig"><span th:utext="#{login.login}"/></button>
-			</div>
-		</fieldset>
+		<form name="f_login" th:action="@{/login}" method="post">
 
-	</form>
-	[
-	<a href="/register" th:href="@{/register}"><span
-		th:text="#{login.register}" /></a> ] [
-	<a href="/resetpwd" th:href="@{/resetpwd}"><span
-		th:text="#{login.resetpwd}" /></a> ] [
-	<a href="about" th:href="@{/about}"><span th:text="#{login.about}" /></a>
-	] [
-	<a href="help" th:href="@{/help}"><span th:text="#{login.help}" /></a>
-	]
-	<div th:replace="fragments/footer :: footer" />
+			<fieldset>
+				<legend>
+					<span th:utext="#{login.legend}" />
+				</legend>
+				<div th:if="${param.error}" class="alert error">
+					<span th:text="#{login.error.validacion}" />
+				</div>
+				<div th:if="${param.logout}" class="alert success">
+					<span th:text="#{login.loggedout}" />
+				</div>
+				<div class="for-input">
+					<label for="username"><span th:utext="#{login.name}" /></label> <input
+						type="email" placeholder="Email" id="username" name="username"
+						value="pep@smvcp.com" required="required" />
+				</div>
+				<div class="form-input">
+					<label for="password"><span th:utext="#{login.password}" /></label>
+					<input type="password" placeholder="Clave" id="password"
+						name="password" value="123456" /> <input type="hidden"
+						name="${_csrf.parameterName}" value="${_csrf.token}"
+						required="required" />
+				</div>
+				<p>
+					<label for="remember_me"><span
+						th:utext="#{login.rememberme}" /></label> <input type="checkbox"
+						id="remember_me" name="remember-me" />
+				</p>
+				<div class="form-actions">
+					<button type="submit" class="btnBig">
+						<span th:utext="#{login.login}" />
+					</button>
+				</div>
+			</fieldset>
 
-	<script type="text/javascript"
-		src="webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="webjars/jquery/2.1.4/jquery.min.js"></script>
+		</form>
+		[ <a href="/register" th:href="@{/register}"><span
+			th:text="#{login.register}" /></a> ] [ <a href="/resetpwd"
+			th:href="@{/resetpwd}"><span th:text="#{login.resetpwd}" /></a> ] [
+		<a href="about" th:href="@{/about}"><span th:text="#{login.about}" /></a>
+		] [ <a href="help" th:href="@{/help}"><span
+			th:text="#{login.help}" /></a> ]
+	</div>
 
 </body>
 </html>

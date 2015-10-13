@@ -1,23 +1,19 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html layout:decorator="layout/main">
 <head>
-<meta charset="UTF-8" />
-<link rel="stylesheet" th:href="@{resources/css/main.css}" />
-<title>SMVCP1</title>
+<title>${#messages.msg('validatedresetpwd.title')}</title>
 </head>
-<body th:inline="text">
+<body>
 
-	<div th:include="fragments/header :: header"></div>
+	<div layout:fragment="content">
 
-	<h3 th:text="#{validate.title}">Validacion</h3>
-	
-	<p th:text="|${user} ${message}|">usuario validado</p>
+		<h3 th:text="#{validatedresetpwd.title}">Validacion</h3>
 
-	<p th:text="#{validate.welcome}">welcome</p>
-	
-	<!-- div th:replace="fragments/footer :: footer" / -->
+		<p th:text="|${user} ${message}|">usuario validado</p>
+
+		<p th:text="#{validatedresetpwd.welcome}">welcome</p>
+
+	</div>
 
 </body>
 </html>

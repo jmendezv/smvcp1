@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "resets")
-public class Reset implements Serializable {
+public class Reset implements Serializable, Comparable<Reset> {
 
 	/**
 	 * The serialVersionUID is used as a version control in a Serializable
@@ -97,5 +97,11 @@ public class Reset implements Serializable {
 	 */
 	public void setDateExpiry(Date dateExpiry) {
 		this.dateExpiry = dateExpiry;
+	}
+
+	@Override
+	public int compareTo(Reset reset) {
+		// TODO Auto-generated method stub
+		return this.id < reset.getId() ? -1 : this.id == 0 ? 0 : 1;
 	}
 }

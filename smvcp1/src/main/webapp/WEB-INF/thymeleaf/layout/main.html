@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xmlns:pages="http://pagesdialect.sourceforge.net">
+<head>
+<meta charset=" UTF-8" />
+<link rel="stylesheet" th:href="@{resources/css/main.css}" />
+<link rel='stylesheet'
+	href='webjars/bootstrap/3.3.5/css/bootstrap.min.css' />
+<script type="text/javascript"
+	src="webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="webjars/jquery/2.1.4/jquery.min.js"></script>
+<!--/*  Each token will be replaced by their respective titles in the resulting page. */-->
+<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">SMVCP1</title>
+</head>
+<body th:inline="text">
+	<!--/* Standard layout can be mixed with Layout Dialect */-->
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<div layout:fragment="content"></div>
+	</div>
+	<div th:replace="fragments/footer :: footer">&copy; Mendez Corp.</div>
+</body>
+</html>

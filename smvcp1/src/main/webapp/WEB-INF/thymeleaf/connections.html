@@ -1,50 +1,51 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html layout:decorator="layout/main">
 <head>
-<meta charset="UTF-8" />
-<link rel="stylesheet" th:href="@{resources/css/main.css}" />
-<title>SMVCP1</title>
+<title>${#messages.msg('connections.title')}</title>
 </head>
-<body th:inline="text">
-	<div th:include="fragments/header :: header"></div>
+<body>
+	<div layout:fragment="content">
 
-	<h3 th:text="#{connections.title}"></h3>
+		<h3 th:text="#{connections.title}"></h3>
 
-	<div  th:if="${connections.size() eq 0}">
-		<span th:text="#{connections.noconnections}" />
+		<div th:if="${connections.size() eq 0}">
+			<span th:text="#{connections.noconnections}" />
+		</div>
+
+		<div th:if="${connections.size() gt 0}">
+
+			<table>
+				<caption>
+					<span th:text="#{connections.caption}" />
+				</caption>
+				<thead>
+					<tr>
+						<th pages:sort="id"><span th:text="#{connections.id}" /></th>
+						<th pages:sort="ip"><span th:text="#{connections.ip}" /></th>
+						<th pages:sort="timeIn"><span th:text="#{connections.timeIn}" /></th>
+					</tr>
+				</thead>
+				<tbody th:remove="all-but-first">
+					<tr th:each="connection : ${connections}" pages:paginate="5"
+						th:class="${connectionStat.even} ? 'even' : 'odd'">
+						<!-- td th:text="${connectionStat.count}">xx</td -->
+						<td th:text="${connection.id}">xx</td>
+						<td style="text-align: left;" th:text="${connection.ip}">xxx</td>
+						<td style="text-align: left;"
+							th:text="${#calendars.format(connection.timeIn, 'dd MMMM yyyy hh:mm:ss')}">xxx</td>
+					</tr>
+				</tbody>
+
+			</table>
+
+		</div>
+		<p />
+
+		<div>
+			<a href="../smvcp1" th:href="@{../smvcp1}"><span
+				th:text="#{connections.back}"></span></a>
+		</div>
+
 	</div>
-
-	<div  th:if="${connections.size() gt 0}">
-
-		<table>
-			<thead>
-				<tr>
-					<th><span th:text="#{connections.order}" /></th>
-					<th><span th:text="#{connections.ip}" /></th>
-					<th><span th:text="#{connections.timeIn}" /></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="connection : ${connections}"
-					th:class="${connectionStat.even} ? 'even' : 'odd'">
-					<td th:text="${connectionStat.count}">xx</td>
-					<td style="text-align: left;" th:text="${connection.ip}">xxx</td>
-					<td style="text-align: left;" th:text="${#calendars.format(connection.timeIn, 'dd MMMM yyyy hh:mm:ss')}">xxx</td>
-				</tr>
-			</tbody>
-
-		</table>
-
-	</div>
-	<p />
-
-	<div>
-		<a href="../smvcp1" th:href="@{../smvcp1}"><span
-			th:text="#{connections.back}"></span></a>
-	</div>
-
-	<div th:replace="fragments/footer :: footer" />
 </body>
 </html>
