@@ -1,6 +1,7 @@
 package pep.mendez.smvcp1.spring.controllers;
 
 import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 import javax.validation.Valid;
@@ -36,7 +37,7 @@ import pep.mendez.smvcp1.utils.UtilityConstants;
 /**
  * @author pep
  * 
- * This controller send an email with encrypted user name and a code 
+ *         This controller send an email with encrypted user name and a code
  *
  */
 @Controller
@@ -63,7 +64,7 @@ public class ResetPwdController {
 
 	@RequestMapping(value = "/resetpwd", method = RequestMethod.GET)
 	public String resetPwdPage(ResetPwdBean resetPwdBean) {
-		//userRegistrationBean is added to the model automatically
+		// userRegistrationBean is added to the model automatically
 		return "resetpwd";
 	}
 
@@ -87,30 +88,47 @@ public class ResetPwdController {
 
 		User user = userService.findByUserName(userName);
 
-		// Error user no existeix 
+		// not enabled means discarded
+		if (user != null && !user.isEnabled()) {
+			user = null;
+		}
+
+		// Error user no existeix
 		// TODO show message como si nada!!!
 		if (user == null) {
-//			bindingResult.addError(new ObjectError("register.error.duplicated",
-//					messageSource.getMessage("register.error.duplicated", null,
-//							null)));
+			bindingResult.addError(new ObjectError(
+					"resetpwd.error.doesnotexist", messageSource.getMessage(
+							"resetpwd.error.doesnotexist",
+							new String[] { userName }, null)));
 			return "resetpwd";
 		}
-		
-		Reset reset = new Reset(new Random().nextLong(), new Date(System.currentTimeMillis() + DateTimeConstants.MILLIS_PER_DAY));
+
+		int hours = Integer.valueOf(messageSource.getMessage(
+				"resetpwdcontroller.expiryhours", null, Locale.getDefault()));
+		Reset reset = new Reset(new Random().nextLong(), new Date(
+				System.currentTimeMillis() + DateTimeConstants.MILLIS_PER_HOUR
+						* hours));
 		reset.setUser(user);
 		user.add(reset);
-		
-		String userNameMd5Hex = DigestUtils.md5DigestAsHex((userName + Utility.SALT).getBytes());
-		
-		// http://localhost:8080/smvcp1/resetpwd/1;d=AB32CE198C;c=3453456786656
-		StringBuilder body = new StringBuilder(UtilityConstants.RESET_PASSWORD_MESSAGE_1);
-		body.append(user.getId()).append(";d=").append(userNameMd5Hex).append(";c=").append(reset.getResetCode())
+		userService.save(user);
+
+		String userNameMd5Hex = DigestUtils
+				.md5DigestAsHex((userName + Utility.SALT).getBytes());
+
+		// http://localhost:8080/smvcp1/resetpwd/1;d=<username_digest>;c=<resert_code>
+		// http://localhost:8080/smvcp1/resetpwd/1;d=AB468EDAB33D49032CE198C;c=3453456786656
+		StringBuilder body = new StringBuilder(
+				UtilityConstants.RESET_PASSWORD_MESSAGE_1);
+		body.append(user.getId()).append(";d=").append(userNameMd5Hex)
+				.append(";c=").append(reset.getResetCode())
 				.append(UtilityConstants.RESET_PASSWORD_MESSAGE_2);
 
 		String from = env.getProperty("mailserver.replyTo");
 
-		Utility.sendEmail(mailSender, from, userName, "Registro",
-				body.toString());
+		String subject = messageSource.getMessage("resetpwdcontroller.subject",
+				null, Locale.getDefault());
+
+		Utility.sendEmail(mailSender, from, userName, subject, body.toString());
 
 		return "login";
 	}

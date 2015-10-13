@@ -15,7 +15,7 @@
 	<form th:action="@{/resetpwd}" th:object="${resetPwdBean}"
 		method="post">
 		<fieldset>
-			<legend th:text="#{reset.legend}" />
+			<legend th:text="#{resetpwd.legend}" />
 			<table th:if="${#fields.hasAnyErrors()}" class="errorMessages">
 				<tr th:each="error : ${#fields.allErrors()}">
 					<td th:text="${error}">Error
