@@ -56,7 +56,7 @@ public class ValidateNewUserController {
 				null, null); // env.getProperty("msg.validation.ok");
 		String msgValidationError = messageSource.getMessage(
 				"validate.controller.msg.error", null, null); // env.getProperty("msg.validation.error");
-		ModelAndView mav = new ModelAndView("validatetednewuser", "message",
+		ModelAndView mav = new ModelAndView("validatednewuser", "message",
 				msgValidationError);
 		mav.addObject("user", "");
 		User user = userService.findOne(id);

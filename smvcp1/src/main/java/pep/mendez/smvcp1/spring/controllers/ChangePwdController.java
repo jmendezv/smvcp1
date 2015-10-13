@@ -17,6 +17,7 @@ import org.springframework.util.DigestUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,14 +29,9 @@ import pep.mendez.smvcp1.spring.model.service.UserService;
 import pep.mendez.smvcp1.utils.Utility;
 import pep.mendez.smvcp1.utils.UtilityConstants;
 
-/**
- * @author pep
- *
- */
 @Controller
 @PropertySources(value = { @PropertySource(name = "props", value = { "classpath:application.properties" }) })
-public class RegisterController {
-
+public class ChangePwdController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(RegisterController.class);
 
@@ -54,75 +50,61 @@ public class RegisterController {
 	@Autowired
 	JavaMailSender mailSender;
 
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String registerPage(UserRegistrationBean userRegistrationBean) {
+	@RequestMapping(value = "/changepwd", method = RequestMethod.GET, params = { "username" })
+	public String registerPage(UserRegistrationBean userRegistrationBean,
+			@RequestParam(value = "username", required = true) String userName) {
 		// userRegistrationBean is added to de model automatically
-		return "register";
+		userRegistrationBean.setUserName(userName);
+		return "changepwd";
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@RequestMapping(value = "/changepwd", method = RequestMethod.POST, params = { "action" })
 	public String registerForm(
 			@Valid @ModelAttribute("userRegistrationBean") UserRegistrationBean userRegistrationBean,
 			BindingResult bindingResult,
-			@RequestParam(value = "action", required = true) String action) {
+			@RequestParam(value = "action", required = true) String action,
+			ModelMap model) {
 
 		logger.debug(userRegistrationBean.toString());
 
 		if (action.equals("cancel")) {
-			return "login";
+			return "home";
 		}
 
 		if (bindingResult.hasErrors()) {
-			return "register";
+			return "changepwd";
 		}
 
 		String userName = userRegistrationBean.getUserName();
 
 		User user = userService.findByUserName(userName);
 
-		// Error user ja existeix
-		if (user != null && !user.isEnabled()) {
-			bindingResult.addError(new ObjectError("register.error.duplicated",
-					messageSource.getMessage("register.error.duplicated", null,
-							null)));
+		// Error user no existeix
+		if (user == null) {
+//			bindingResult.addError(new ObjectError("register.error.duplicated",
+//					messageSource.getMessage("register.error.duplicated", null,
+//							null)));
+			
+			return "register";
+		}
+		
+		if (!user.isEnabled()) {
+//			bindingResult.addError(new ObjectError("register.error.duplicated",
+//					messageSource.getMessage("register.error.duplicated", null,
+//							null)));
+			
 			return "register";
 		}
 
 		String encodedPassword = passwordEncoder.encode(userRegistrationBean
 				.getPassword());
-
-		// new user
-		if (user == null) {
-			user = new User(userName, encodedPassword);
-		}
-		// existing user, assign new password
-		else {
-			user.setPassword(encodedPassword);
-		}
-		
-		// assign user role if no authority granted
-		if(user.getAuthorities().size() == 0) {
-			Authority authority = new Authority(userName, "ROLE_USER");
-			authority.setUser(user);
-			user.add(authority);
-		}
+		user.setPassword(encodedPassword);
 
 		userService.save(user);
 
-		String md5Hex = DigestUtils.md5DigestAsHex((userName + Utility.SALT)
-				.getBytes());
-
-		StringBuilder body = new StringBuilder(
-				UtilityConstants.VALIDATE_MESSAGE_1);
-		body.append(user.getId()).append(";d=").append(md5Hex)
-				.append(UtilityConstants.VALIDATE_MESSAGE_2);
-
-		String from = env.getProperty("mailserver.replyTo");
-
-		Utility.sendEmail(mailSender, from, userName, "Registro",
-				body.toString());
-
-		return "login";
+		model.addAttribute("user", user);
+		
+		return "home";
 	}
 
 }
