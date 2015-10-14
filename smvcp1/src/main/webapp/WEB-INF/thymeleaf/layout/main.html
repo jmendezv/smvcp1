@@ -5,9 +5,11 @@
 	xmlns:pages="http://pagesdialect.sourceforge.net">
 <head>
 <meta charset=" UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <link rel="stylesheet" th:href="@{resources/css/main.css}" />
+<!-- If you don't want to download and host Bootstrap yourself, you can include it from a CDN (Content Delivery Network). -->
 <link rel='stylesheet'
-	href='webjars/bootstrap/3.3.5/css/bootstrap.min.css' />
+	th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}" />
 <script type="text/javascript"
 	src="webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="webjars/jquery/2.1.4/jquery.min.js"></script>

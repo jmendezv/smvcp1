@@ -7,7 +7,7 @@
 
 	<div layout:fragment="content">
 
-		<h3 th:text="#{profile.title}"></h3>
+		<h3 class="text-center" th:text="#{profile.title}"></h3>
 
 		<form action="#" th:action="@{/profile}" th:object="${profileBean}"
 			method="post">
@@ -65,11 +65,11 @@
 			</ul -->
 				</p>
 
-				<div>
-					<button type="submit" class="btnSmall" name="action" value="save">
+				<div class="btn-group btn-group-lg">
+					<button type="submit" class="btn btn-primary" name="action" value="save">
 						<span th:text="#{register.action.save}" />
 					</button>
-					<button type="submit" class="btnSmall" name="action" value="cancel">
+					<button type="submit" class="btn btn-primary" name="action" value="cancel">
 						<span th:text="#{register.action.cancel}" />
 					</button>
 				</div>

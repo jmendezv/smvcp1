@@ -21,50 +21,51 @@
 				<span th:text="|#{admin.sessionId} *{id}|"></span>
 			</p>
 		</div>
+		<div class="table-responsive">
+			<table class="table">
+				<caption>
+					<span th:text="#{admin.caption}" />
+				</caption>
+				<thead>
+					<tr>
+						<th pages:sort="id"><span th:text="#{admin.id}" /></th>
+						<th pages:sort="userName"><span th:text="#{admin.name}" /></th>
+						<th pages:sort="enabled"><span th:text="#{admin.enabled}" /></th>
+						<th><span th:text="#{admin.roles}" /></th>
+						<th><span th:text="#{admin.action}" /></th>
+						<th><span th:text="#{admin.action}" /></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="user : ${users}" pages:paginate="3"
+						th:class="${userStat.even} ? 'even' : 'odd'">
+						<td th:text="${user.id}">xx</td>
+						<td style="text-align: left;"
+							th:text="${user.userName} +  (${user.userName eq principal} ? ' *')">xxx</td>
+						<td><img th:if="${user.enabled}" alt="Si"
+							scr="../../resources/images/check.png"
+							th:src="@{resources/images/check.png}" /> <img
+							th:if="${not user.enabled}" alt="Si"
+							scr="../../resources/images/cross.png"
+							th:src="@{resources/images/cross.png}" /></td>
+						<td>
+							<table th:object="${user}">
+								<tr th:each="auth : *{authorities}">
+									<td th:text="${#strings.substringAfter(auth.authority, '_')}"></td>
+								</tr>
+							</table>
+						</td>
+						<!-- td><a th:href="@{/edit/__${user.id}__}">[[#{admin.edit}]]</a></td -->
+						<td><a th:href="@{/edit(id=${user.id})}"><span
+								th:text="#{admin.edit}" /></a></td>
+						<td><a th:href="@{/connections(id=${user.id})}"><span
+								th:text="#{admin.connections}" /></a></td>
+					</tr>
+				</tbody>
 
-		<table>
-			<caption>
-				<span th:text="#{admin.caption}" />
-			</caption>
-			<thead>
-				<tr>
-					<th pages:sort="id"><span th:text="#{admin.id}" /></th>
-					<th pages:sort="userName"><span th:text="#{admin.name}" /></th>
-					<th pages:sort="enabled"><span th:text="#{admin.enabled}" /></th>
-					<th><span th:text="#{admin.roles}" /></th>
-					<th><span th:text="#{admin.action}" /></th>
-					<th><span th:text="#{admin.action}" /></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="user : ${users}" pages:paginate="3"
-					th:class="${userStat.even} ? 'even' : 'odd'">
-					<td th:text="${user.id}">xx</td>
-					<td style="text-align: left;"
-						th:text="${user.userName} +  (${user.userName eq principal} ? ' *')">xxx</td>
-					<td><img th:if="${user.enabled}" alt="Si"
-						scr="../../resources/images/check.png"
-						th:src="@{resources/images/check.png}" /> <img
-						th:if="${not user.enabled}" alt="Si"
-						scr="../../resources/images/cross.png"
-						th:src="@{resources/images/cross.png}" /></td>
-					<td>
-						<table th:object="${user}">
-							<tr th:each="auth : *{authorities}">
-								<td th:text="${#strings.substringAfter(auth.authority, '_')}"></td>
-							</tr>
-						</table>
-					</td>
-					<!-- td><a th:href="@{/edit/__${user.id}__}">[[#{admin.edit}]]</a></td -->
-					<td><a th:href="@{/edit(id=${user.id})}"><span
-							th:text="#{admin.edit}" /></a></td>
-					<td><a th:href="@{/connections(id=${user.id})}"><span
-							th:text="#{admin.connections}" /></a></td>
-				</tr>
-			</tbody>
-
-		</table>
-
+			</table>
+		</div>
+		
 		<div>
 			[ <a href="#" th:href="@{/adminService}"
 				onclick="alert('registrado')"><span
