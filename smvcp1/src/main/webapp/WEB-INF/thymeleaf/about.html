@@ -5,12 +5,14 @@
 </head>
 <body>
 
-	<div layout:fragment="content">
+	<div layout:fragment="content" class="container">
 
-		<h3 th:text="#{about.title}"></h3>
+		<h3 class="text-center" th:text="#{about.title}"></h3>
 
 		<!-- h4 th:text="#{about.subtitle}"></h4 -->
 
+<a href="#"><span class="glyphicon glyphicon-envelope"></span></a>
+<h3>Example <span class="label label-default">New</span></h3>
 		<div id="outer">
 			<div id="inner" class="rcorners3">
 				<ul>

@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html>
 
 <body>
-	<div th:fragment="header">
-		<h1>
+	<div th:fragment="header" class="page-header">
+		<h1 class="text-center">
 			<span th:utext="#{application.title}">Default application
 				title</span>
 		</h1>

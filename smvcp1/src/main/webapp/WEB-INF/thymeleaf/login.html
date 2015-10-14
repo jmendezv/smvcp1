@@ -5,11 +5,12 @@
 </head>
 <body>
 
-	<div layout:fragment="content">
+	<div layout:fragment="content" class="container">
 
-		<h3 th:text="#{login.title}"></h3>
+		<h3 class="text-center" th:text="#{login.title}"></h3>
 
-		<form name="f_login" th:action="@{/login}" method="post">
+		<form name="f_login" th:action="@{/login}" method="post"
+			class="form-horizontal" role="form">
 
 			<fieldset>
 				<legend>
@@ -21,38 +22,56 @@
 				<div th:if="${param.logout}" class="alert success">
 					<span th:text="#{login.loggedout}" />
 				</div>
-				<div class="for-input">
-					<label for="username"><span th:utext="#{login.name}" /></label> <input
-						type="email" placeholder="Email" id="username" name="username"
-						value="pep@smvcp.com" required="required" />
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="username"> <span
+						th:utext="#{login.name}" />
+					</label>
+					<div class="col-sm-10">
+						<input type="email" placeholder="Email" id="username"
+							name="username" value="pep@smvcp.com" required="required"
+							class="form-control" />
+					</div>
 				</div>
-				<div class="form-input">
-					<label for="password"><span th:utext="#{login.password}" /></label>
-					<input type="password" placeholder="Clave" id="password"
-						name="password" value="123456" /> <input type="hidden"
-						name="${_csrf.parameterName}" value="${_csrf.token}"
-						required="required" />
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="password"><span
+						th:utext="#{login.password}" /></label>
+					<div class="col-sm-10">
+						<input type="password" placeholder="Clave" id="password"
+							name="password" value="123456" class="form-control" /> <input
+							type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" required="required" />
+					</div>
 				</div>
-				<p>
-					<label for="remember_me"><span
-						th:utext="#{login.rememberme}" /></label> <input type="checkbox"
-						id="remember_me" name="remember-me" />
-				</p>
-				<div class="form-actions">
-					<button type="submit" class="btnBig">
-						<span th:utext="#{login.login}" />
-					</button>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							<label for="remember_me"> <input type="checkbox"
+								id="remember_me" name="remember-me" /> <span
+								th:utext="#{login.rememberme}" /></label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-default btn-lg">
+							<span th:utext="#{login.login}" />
+						</button>
+					</div>
 				</div>
 			</fieldset>
 
 		</form>
-		[ <a href="/register" th:href="@{/register}"><span
-			th:text="#{login.register}" /></a> ] [ <a href="/resetpwd"
-			th:href="@{/resetpwd}"><span th:text="#{login.resetpwd}" /></a> ] [
-		<a href="about" th:href="@{/about}"><span th:text="#{login.about}" /></a>
-		] [ <a href="help" th:href="@{/help}"><span
-			th:text="#{login.help}" /></a> ]
-	</div>
 
+		<ul class="pager">
+			<li><a href="/register" th:href="@{/register}"><span
+					th:text="#{login.register}" /></a></li>
+			<li><a href="/resetpwd" th:href="@{/resetpwd}"><span
+					th:text="#{login.resetpwd}" /></a></li>
+			<li><a href="about" th:href="@{/about}"><span
+					th:text="#{login.about}" /></a></li>
+			<li><a href="help" th:href="@{/help}"><span
+					th:text="#{login.help}" /></a></li>
+		</ul>
+	</div>
 </body>
 </html>

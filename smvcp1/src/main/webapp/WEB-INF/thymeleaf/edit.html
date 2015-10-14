@@ -7,7 +7,7 @@
 
 	<div layout:fragment="content">
 
-		<h3 th:text="#{edit.title}"></h3>
+		<h3 class="text-center" th:text="#{edit.title}"></h3>
 
 		<form action="#" th:action="@{/edit}" th:object="${userEditBean}"
 			method="post">

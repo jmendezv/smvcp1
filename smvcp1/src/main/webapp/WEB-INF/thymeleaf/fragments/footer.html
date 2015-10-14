@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html>
 
 <body>
 	<div th:fragment="footer">
-		<h6>
-			<span th:utext="#{footer.title}">xx</span>
-		</h6>
+		<div class="panel panel-default">
+			<div class="panel-footer">
+				<span class="text-center" th:utext="#{footer.title}">xx</span>
+			</div>
+		</div>
+
 		<img alt="Spring"
 			src="../../../resources/images/spring-by-pivotal.png"
 			th:src="@{resources/images/spring_logo.png}" />
