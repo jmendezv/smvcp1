@@ -104,8 +104,7 @@ public class ChangePwdController {
 
 		userService.save(user);
 
-		
-		
+
 		return "home";
 	}
 

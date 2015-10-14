@@ -45,10 +45,9 @@
 				th:text="#{home.profile}" /></a> ] [ <a href="#"
 				th:href="@{/changepwd(username=${#httpServletRequest.userPrincipal.name})}"><span
 				th:text="#{home.changepwd}" /></a> ] [ <a href="#"
-				th:href="@{/unsubscribe(username=${#httpServletRequest.userPrincipal.name})}"><span
-				th:text="#{home.unsubscribe}" /></a> ] <span sec:authorize-url="/admin">
-				[ <a href="admin" th:href="@{/admin}"><span
-					th:text="#{home.adminArea}" /></a> ]
+				th:href="@{/unsubscribe}"><span th:text="#{home.unsubscribe}" /></a>
+			] <span sec:authorize-url="/admin"> [ <a href="admin"
+				th:href="@{/admin}"><span th:text="#{home.adminArea}" /></a> ]
 			</span>
 		</div>
 
@@ -62,7 +61,6 @@
 					value="${_csrf.token}" />
 			</div>
 		</form>
-
 	</div>
 
 </body>
