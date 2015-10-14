@@ -1,77 +1,31 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html layout:decorator="layout/main">
 <head>
-<meta charset="UTF-8" />
-<!-- https://github.com/thymeleaf/thymeleaf-extras-springsecurity -->
-<link rel="stylesheet" th:href="@{resources/css/main.css}" />
-<link rel='stylesheet'
-	href='webjars/bootstrap/3.3.5/css/bootstrap.min.css' />
-<style>
-#outer {
-	position: relative;
-}
-
-#inner {
-	width: 30%;
-	margin: 0 auto;
-}
-
-.rcorners1 {
-	border-radius: 25px;
-	background: #8AC007;
-	padding: 20px;
-	width: 200px;
-	height: 275px;
-}
-
-.rcorners2 {
-	border-radius: 25px;
-	border: 2px solid #8AC007;
-	padding: 20px;
-	width: 200px;
-	height: 275px;
-}
-
-.rcorners3 {
-	border-radius: 25px;
-	background: url(resources/images/paper.gif);
-	background-position: left top;
-	background-repeat: repeat;
-	padding: 20px;
-	width: 200px;
-	height: 275px;
-}
-</style>
-<title>SMVCP1</title>
+<title>${#messages.msg('403.title')}</title>
 </head>
-<body th:inline="text">
-	<div th:include="fragments/header :: header"></div>
+<body>
 
-	<h3 th:text="#{403.title}"></h3>
+	<div layout:fragment="content">
 
-	<h4 th:text="#{403.subtitle}"></h4>
+		<h3 th:text="#{403.title}"></h3>
 
-	<div id="outer" style="width: 100%">
-		<div id="inner" class="rcorners3">
-			<ul>
-				<li th:text="${errorMessage}" />
-				<li th:text="${remoteAddress}" />
-			</ul>
+		<h4 th:text="#{403.subtitle}"></h4>
+
+		<div id="outer" style="width: 100%">
+			<div id="inner" class="rcorners3">
+				<ul>
+					<li th:text="${errorMessage}" />
+					<li th:text="${remoteAddress}" />
+				</ul>
+			</div>
 		</div>
+
+		<div>
+			<a href="../smvcp1" th:href="@{../smvcp1}"><span
+				th:text="#{403.back}"></span></a>
+		</div>
+
 	</div>
 
-
-	<div>
-		<a href="../smvcp1" th:href="@{../smvcp1}"><span
-			th:text="#{403.back}"></span></a>
-	</div>
-
-	<div th:replace="fragments/footer :: footer" />
-
-	<script type="text/javascript"
-		src="webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="webjars/jquery/2.1.4/jquery.min.js"></script>
 </body>
 </html>
