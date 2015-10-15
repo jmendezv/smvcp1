@@ -5,14 +5,14 @@
 <body>
 	<div th:fragment="footer">
 		<div class="panel panel-default">
-			<div class="panel-footer">
-				<span class="text-center" th:utext="#{footer.title}">xx</span>
+			<div class="panel-body text-center">
+				<span th:utext="#{footer.title}">xx</span>
 			</div>
 		</div>
 
 		<img alt="Spring"
 			src="../../../resources/images/spring-by-pivotal.png"
-			th:src="@{resources/images/spring_logo.png}" />
+			th:src="@{resources/images/spring_logo.png}" class="img-responsive center-block" />
 	</div>
 
 </body>

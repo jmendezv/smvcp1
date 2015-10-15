@@ -11,11 +11,10 @@
 
 		<form name="f_login" th:action="@{/login}" method="post"
 			class="form-horizontal" role="form">
-
+			<legend>
+				<span th:utext="#{login.legend}" />
+			</legend>
 			<fieldset>
-				<legend>
-					<span th:utext="#{login.legend}" />
-				</legend>
 				<div th:if="${param.error}" class="alert error">
 					<span th:text="#{login.error.validacion}" />
 				</div>

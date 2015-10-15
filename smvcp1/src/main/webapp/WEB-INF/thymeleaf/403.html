@@ -5,14 +5,14 @@
 </head>
 <body>
 
-	<div layout:fragment="content">
+	<div layout:fragment="content" class="container">
 
 		<h3 class="text-center" th:text="#{403.title}"></h3>
 
-		<h4 th:text="#{403.subtitle}"></h4>
+		<h4 class="text-center" th:text="#{403.subtitle}"></h4>
 
-		<div id="outer" style="width: 100%">
-			<div id="inner" class="rcorners3">
+		<div>
+			<div>
 				<ul>
 					<li th:text="${errorMessage}" />
 					<li th:text="${remoteAddress}" />
