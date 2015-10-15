@@ -7,7 +7,7 @@
 
 	<div layout:fragment="content">
 
-		<h3 th:text="#{admin.title}"></h3>
+		<h3 class="text-center" th:text="#{admin.title}"></h3>
 
 		<!-- h4 th:text="#{admin.subtitle}"></h4 -->
 
@@ -65,19 +65,15 @@
 
 			</table>
 		</div>
-		
-		<div>
-			[ <a href="#" th:href="@{/adminService}"
+
+		<ul class="pager">
+			<li><a href="#" th:href="@{/adminService}"
 				onclick="alert('registrado')"><span
-				th:text="#{admin.adminService}" /></a> ]
-		</div>
+					th:text="#{admin.adminService}" /></a></li>
 
-		<p />
-
-		<div>
-			<a href="../smvcp1" th:href="@{../smvcp1}"><span
-				th:text="#{admin.back}"></span></a>
-		</div>
+			<li><a href="../smvcp1" th:href="@{../smvcp1}"><span
+					th:text="#{help.back}"></span></a></li>
+		</ul>
 
 	</div>
 </body>

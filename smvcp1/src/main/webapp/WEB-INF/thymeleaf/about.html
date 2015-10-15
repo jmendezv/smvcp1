@@ -11,27 +11,37 @@
 
 		<!-- h4 th:text="#{about.subtitle}"></h4 -->
 
-<a href="#"><span class="glyphicon glyphicon-envelope"></span></a>
-<h3>Example <span class="label label-default">New</span></h3>
-		<div id="outer">
-			<div id="inner" class="rcorners3">
-				<ul>
-					<li><span th:text="#{about.item1}" /></li>
-					<li><span th:text="#{about.item2}" /></li>
-					<li><span th:text="#{about.item3}" /></li>
-					<li><span th:text="#{about.item4}" /></li>
-					<li><span th:text="#{about.item5}" /></li>
-					<li><span th:text="#{about.item6}" /></li>
-					<li><span th:text="#{about.item7}" /></li>
+		<dl class="dl-horizontal">
+			<dt><span th:text="#{about.formation}" /></dt>
+			<dd>
+				<ul class="list-unstyled">
+					<li><span th:text="#{about.formation.item1}" /></li>
+					<li><span th:text="#{about.formation.item2}" /></li>
+					<li><span th:text="#{about.formation.item3}" /></li>
 				</ul>
-			</div>
-		</div>
+			</dd>
+			<dt><span th:text="#{about.other}" /></dt>
+			<dd>
+				<ul class="list-unstyled">
+					<li><span th:text="#{about.other.item1}" /></li>
+					<li><span th:text="#{about.other.item2}" /></li>
+					<li><span th:text="#{about.other.item3}" /></li>
+				</ul>
+			</dd>
+			<dt><span th:text="#{about.work}" /></dt>
+			<dd>
+				<ul class="list-unstyled">
+					<li><span th:text="#{about.work.item1}" /></li>
+					<li><span th:text="#{about.work.item2}" /></li>
+					<li><span th:text="#{about.work.item3}" /></li>
+				</ul>
+			</dd>
+		</dl>
 
-		<div>
-			<a href="../smvcp1" th:href="@{../smvcp1}"><span
-				th:text="#{about.back}"></span></a>
-		</div>
-
+		<ul class="pager">
+			<li><a href="../smvcp1" th:href="@{../smvcp1}"><span
+					th:text="#{help.back}"></span></a></li>
+		</ul>
 	</div>
 </body>
 </html>
