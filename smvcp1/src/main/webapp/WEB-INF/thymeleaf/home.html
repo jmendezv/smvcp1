@@ -26,7 +26,7 @@
 						<li sec:authorize-url="/admin"><a href="admin"
 							th:href="@{/admin}"><span th:text="#{home.adminArea}" /></a></li>
 					</ul>
-				
+
 				</div>
 			</div>
 		</nav>
@@ -66,7 +66,6 @@
 
 		<form action="logout" th:action="@{/logout}" method="post"
 			class="form-horizontal" role="form">
-
 			<div class="form-actions text-center">
 				<button type="submit" class="btn btn-danger btn-lg">
 					<span th:text="#{home.logout}" />
