@@ -13,38 +13,39 @@
 		</div>
 
 		<div th:if="${connections.size() gt 0}">
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<caption>
+						<span th:text="#{connections.caption}" />
+					</caption>
+					<thead>
+						<tr>
+							<th pages:sort="id"><span th:text="#{connections.id}" /></th>
+							<th pages:sort="ip"><span th:text="#{connections.ip}" /></th>
+							<th pages:sort="timeIn"><span
+								th:text="#{connections.timeIn}" /></th>
+						</tr>
+					</thead>
+					<tbody th:remove="all-but-first">
+						<tr th:each="connection : ${connections}" pages:paginate="5"
+							th:class="${connectionStat.even} ? 'even' : 'odd'">
+							<!-- td th:text="${connectionStat.count}">xx</td -->
+							<td th:text="${connection.id}">xx</td>
+							<td style="text-align: left;" th:text="${connection.ip}">xxx</td>
+							<td style="text-align: left;"
+								th:text="${#calendars.format(connection.timeIn, 'dd MMMM yyyy hh:mm:ss')}">xxx</td>
+						</tr>
+					</tbody>
 
-			<table  class="table">
-				<caption>
-					<span th:text="#{connections.caption}" />
-				</caption>
-				<thead>
-					<tr>
-						<th pages:sort="id"><span th:text="#{connections.id}" /></th>
-						<th pages:sort="ip"><span th:text="#{connections.ip}" /></th>
-						<th pages:sort="timeIn"><span th:text="#{connections.timeIn}" /></th>
-					</tr>
-				</thead>
-				<tbody th:remove="all-but-first">
-					<tr th:each="connection : ${connections}" pages:paginate="5"
-						th:class="${connectionStat.even} ? 'even' : 'odd'">
-						<!-- td th:text="${connectionStat.count}">xx</td -->
-						<td th:text="${connection.id}">xx</td>
-						<td style="text-align: left;" th:text="${connection.ip}">xxx</td>
-						<td style="text-align: left;"
-							th:text="${#calendars.format(connection.timeIn, 'dd MMMM yyyy hh:mm:ss')}">xxx</td>
-					</tr>
-				</tbody>
-
-			</table>
-
+				</table>
+			</div>
 		</div>
 		<p />
 
-		<div>
-			<a href="../smvcp1" th:href="@{../smvcp1}"><span
-				th:text="#{connections.back}"></span></a>
-		</div>
+		<ul class="pager">
+			<li><a href="../smvcp1" th:href="@{../smvcp1}"><span
+					th:text="#{connections.back}"></span></a></li>
+		</ul>
 
 	</div>
 </body>

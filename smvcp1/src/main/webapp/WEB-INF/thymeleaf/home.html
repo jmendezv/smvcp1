@@ -47,7 +47,7 @@
 			<li><a href="#"
 				th:href="@{/changepwd(username=${#httpServletRequest.userPrincipal.name})}"><span
 					th:text="#{home.changepwd}" /></a></li>
-			<li><a href="#" th:href="@{/unsubscribe}"><span
+			<li><a href="#" th:href="@{/unsubscribe(username=${#httpServletRequest.userPrincipal.name})}"><span
 					th:text="#{home.unsubscribe}" /></a></li>
 			<span sec:authorize-url="/admin">
 				<li><a href="admin" th:href="@{/admin}"><span
