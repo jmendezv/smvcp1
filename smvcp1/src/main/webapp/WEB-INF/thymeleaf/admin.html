@@ -41,7 +41,7 @@
 						th:class="${userStat.even} ? 'even' : 'odd'">
 						<td th:text="${user.id}">xx</td>
 						<td style="text-align: left;"
-							th:text="${user.userName} +  (${user.userName eq principal} ? ' *')">xxx</td>
+							th:text="${user.userName} +  (${user.userName eq principal} ? ' *' : '')">xxx</td>
 						<td><img th:if="${user.enabled}" alt="Si"
 							scr="../../resources/images/check.png"
 							th:src="@{resources/images/check.png}" /> <img
