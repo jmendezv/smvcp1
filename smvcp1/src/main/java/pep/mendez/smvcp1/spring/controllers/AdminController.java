@@ -13,9 +13,12 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import pep.mendez.smvcp1.spring.model.entities.Connection;
 import pep.mendez.smvcp1.spring.model.entities.User;
@@ -63,7 +66,9 @@ public class AdminController {
 	 * Registra el acceso en la base de datos
 	 */
 	@RequestMapping(value = "/adminService")
-	public String adminService(ModelMap model, Principal principal, HttpServletRequest request) {
+	@ResponseStatus(value = HttpStatus.CONTINUE)
+	//@ResponseBody
+	public void adminService(ModelMap model, Principal principal, HttpServletRequest request) {
 		String ip = request.getRemoteAddr();
 		Connection connection = new Connection(new Date(), ip);
 		User user = userService.findByUserName(principal.getName());
@@ -75,6 +80,6 @@ public class AdminController {
 		// java.lang.ClassCastException porque hay un proxy por medio
 		//((AdminService2) adminService).performNewService();
 		//model.addAttribute("principal", principal.getName());
-		return "redirect:admin";
+		//return "redirect:admin";
 	}
 }

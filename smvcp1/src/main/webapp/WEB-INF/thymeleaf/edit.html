@@ -53,16 +53,15 @@
 					<div class="col-sm-offset-2 col-sm-10">
 						<div class="checkbox">
 							<label th:for="${#ids.next('roles')}"
-								class="control-label col-sm-2" > 
-								<input type="checkbox"
-								th:field="*{roles}" th:value="${role}" />
-								<span th:text="#{${'edit.role.' + role}}" /></label>
+								class="control-label col-sm-4"><input type="checkbox"
+								th:field="*{roles}" th:value="${role}"> </input><span
+								th:text="#{${'edit.role.' + role}}" /> </label>
 
 						</div>
 					</div>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group text-center">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-default btn-lg" name="action"
 							value="save">

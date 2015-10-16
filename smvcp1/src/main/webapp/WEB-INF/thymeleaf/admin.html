@@ -7,24 +7,77 @@
 
 	<div layout:fragment="content">
 
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#"><span th:text="#{application.acronym}"/></a>
+				</div>
+				<div>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#"> <span
+								th:text="#{admin.home}" />
+						</a></li>
+
+						<li><a href="../smvcp1" th:href="@{../smvcp1}"> <span
+								class="glyphicon glyphicon-home" /> <span
+								th:text="#{admin.back}"></span></a></li>
+
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+
+						<li><a id="admin_service" href="#" th:href="@{/adminService}"> <span
+								class="glyphicon glyphicon-share" /> <span
+								th:text="#{admin.adminService}" /></a></li>
+
+						<li><a href="/logout" th:href="@{/logout}"><span
+								class="glyphicon glyphicon-off"></span> <span
+								th:text="#{home.logout}" /></a></li>
+
+
+					</ul>
+				</div>
+			</div>
+		</nav>
+
 		<h3 class="text-center" th:text="#{admin.title}"></h3>
 
 		<!-- h4 th:text="#{admin.subtitle}"></h4 -->
 
-		<div sec:authorize="hasRole('ROLE_ADMIN')">
-			<span
-				th:text="|*{#strings.capitalize(#strings.substringBefore(principal, '@'))} (Administrador)|" />
+		<div class="row">
+			<div class="col-md-3">
+				<div class="text-info" sec:authorize="hasRole('ROLE_ADMIN')">
+					<span
+						th:text="|*{#strings.capitalize(#strings.substringBefore(principal, '@'))} (${#calendars.format(#calendars.createNow(), 'dd/MMM/yyyy HH:mm ')})|" />
+				</div>
+			</div>
+			<div class="col-md-7">
+				<div class="text-info" th:object="${#httpServletRequest.session}">
+					<p>
+						<span th:text="|#{admin.sessionId} *{id}|"></span>
+					</p>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="text-info" th:object="${#httpServletRequest.session.servletContext}">
+					<p>
+						<span th:text="|#{admin.path} *{contextPath}|"></span>
+					</p>
+				</div>
+			</div>
 		</div>
 
-		<div th:object="${#httpServletRequest.session}">
-			<p>
-				<span th:text="|#{admin.sessionId} *{id}|"></span>
-			</p>
-		</div>
+<div id="admin_service_dialog" th:title="#{admin.title}">
+  <p>
+    <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+    <span th:text="#{admin.serviceBody}" />
+  </p>
+</div>
+
+
 		<div class="table-responsive">
 			<table class="table">
-				<caption>
-					<span th:text="#{admin.caption}" />
+				<caption class="text-center">
+					<span  th:text="#{admin.caption}" />
 				</caption>
 				<thead>
 					<tr>
@@ -62,18 +115,12 @@
 								th:text="#{admin.connections}" /></a></td>
 					</tr>
 				</tbody>
+				<tfoot>
+				
+				</tfoot>
 
 			</table>
 		</div>
-
-		<ul class="pager">
-			<li><a href="#" th:href="@{/adminService}"
-				onclick="alert('registrado')"><span
-					th:text="#{admin.adminService}" /></a></li>
-
-			<li><a href="../smvcp1" th:href="@{../smvcp1}"><span
-					th:text="#{help.back}"></span></a></li>
-		</ul>
 
 	</div>
 </body>

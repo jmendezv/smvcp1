@@ -50,20 +50,40 @@ $(function() {
 	});
 });
 
-$(".confirmLink").click(function(e) {
-    e.preventDefault();
-    var targetUrl = $(this).attr("href");
+$(function() {
+	$("#unsubscribe").click(function(e) {
+		e.preventDefault();
+		var targetUrl = $(this).attr("href");
 
-    $("#dialog").dialog({
-      buttons : {
-        "Confirm" : function() {
-          window.location.href = targetUrl;
-        },
-        "Cancel" : function() {
-          $(this).dialog("close");
-        }
-      }
-    });
+		$("#confirm_dialog").dialog({
+			buttons : {
+				"Confirm" : function() {
+					window.location.href = targetUrl;
+				},
+				"Cancel" : function() {
+					$(this).dialog("close");
+				}
+			}
+		});
 
-    $("#dialog").dialog("open");
-  });
+		$("#confirm_dialog").dialog("open");
+	});
+});
+
+$(function() {
+	$("#admin_service_dialog").dialog({
+		
+		autoOpen: false,
+		modal : true,
+		buttons : {
+			Ok : function() {
+				$(this).dialog("close");
+			}
+		}
+	});
+	
+
+	$("#admin_service").click(function(e) {
+		$("#admin_service_dialog").delay(100).dialog("open");
+	});
+});
