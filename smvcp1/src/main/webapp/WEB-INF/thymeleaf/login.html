@@ -5,7 +5,6 @@
 </head>
 <body>
 
-
 	<div layout:fragment="content">
 
 		<nav class="navbar navbar-inverse">
@@ -18,18 +17,22 @@
 						<li class="active"><a href="#">Home</a></li>
 						<li><a href="/resetpwd" th:href="@{/resetpwd}"><span
 								th:text="#{login.resetpwd}" /></a></li>
-						
+
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
+					
 						<li><a href="/register" th:href="@{/register}"><span
 								class="glyphicon glyphicon-user"></span> <span
 								th:text="#{login.register}" /></a></li>
-						<li><a href="about" th:href="@{/about}"><span
-								class="glyphicon glyphicon-education"></span> <span
+
+						<li><a href="#" id="about_opener"><span
+								class="glyphicon glyphicon-education" /> <span
 								th:text="#{login.about}" /></a></li>
-						<li><a href="help" th:href="@{/help}"><span
-								class="glyphicon glyphicon-question-sign"></span> <span
+
+						<li><a href="#" id="help_opener"><span
+								class="glyphicon glyphicon-question-sign" /> <span
 								th:text="#{login.help}" /></a></li>
+
 					</ul>
 				</div>
 			</div>
@@ -88,6 +91,60 @@
 			</fieldset>
 
 		</form>
+
+		<div id="help_dialog" th:title="#{login.help}">
+			<ul class="list-group">
+				<!-- li class="list-group-item"><span th:text="#{help.item1}" /></li -->
+				<li class="list-group-item"><span th:text="#{help.item2}" /></li>
+				<li class="list-group-item"><span th:text="#{help.item3}" /></li>
+				<li class="list-group-item"><span th:text="#{help.item4}" /></li>
+				<li class="list-group-item"><span th:text="#{help.item5}" /></li>
+				<li class="list-group-item"><span th:text="#{help.item6}" /></li>
+				<!-- li class="list-group-item"><span th:text="#{help.item7}" /></li -->
+				<li class="list-group-item"><span th:text="#{help.item8}" /></li>
+				<!-- li class="list-group-item"><span th:text="#{help.item9}" /></li -->
+				<!-- li class="list-group-item"><span th:text="#{help.item10}" /></li -->
+				<!-- li class="list-group-item"><span th:text="#{help.item11}" /></li -->
+				<!-- li><span th:text="#{help.item12}" /></li -->
+			</ul>
+		</div>
+
+		<div id="about_dialog" th:title="#{login.about}">
+			<dl class="dl-horizontal">
+				<dt>
+					<span th:text="#{about.formation}" />
+				</dt>
+				<dd>
+					<ul class="list-unstyled">
+						<li><span th:text="#{about.formation.item1}" /></li>
+						<li><span th:text="#{about.formation.item2}" /></li>
+						<li><span th:text="#{about.formation.item3}" /></li>
+					</ul>
+				</dd>
+				<dt>
+					<span th:text="#{about.other}" />
+				</dt>
+				<dd>
+					<ul class="list-unstyled">
+						<li><span th:text="#{about.other.item1}" /></li>
+						<li><span th:text="#{about.other.item2}" /></li>
+						<li><span th:text="#{about.other.item3}" /></li>
+					</ul>
+				</dd>
+				<dt>
+					<span th:text="#{about.work}" />
+				</dt>
+				<dd>
+					<ul class="list-unstyled">
+						<li><span th:text="#{about.work.item1}" /></li>
+						<li><span th:text="#{about.work.item2}" /></li>
+						<li><span th:text="#{about.work.item3}" /></li>
+					</ul>
+				</dd>
+			</dl>
+		</div>
+
+
 
 	</div>
 </body>
