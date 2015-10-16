@@ -50,20 +50,22 @@ $(function() {
 	});
 });
 
-$(".confirmLink").click(function(e) {
-    e.preventDefault();
-    var targetUrl = $(this).attr("href");
+$(function() {
+	$("#unsubscribe").click(function(e) {
+		e.preventDefault();
+		var targetUrl = $(this).attr("href");
 
-    $("#dialog").dialog({
-      buttons : {
-        "Confirm" : function() {
-          window.location.href = targetUrl;
-        },
-        "Cancel" : function() {
-          $(this).dialog("close");
-        }
-      }
-    });
+		$("#confirm-dialog").dialog( {
+			buttons : {
+				"Confirm" : function() {
+					window.location.href = targetUrl;
+				},
+				"Cancel" : function() {
+					$(this).dialog("close");
+				}
+			}
+		});
 
-    $("#dialog").dialog("open");
-  });
+		$("#confirm-dialog").dialog("open");
+	});
+});
