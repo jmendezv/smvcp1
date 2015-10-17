@@ -72,7 +72,6 @@ $(function() {
 
 $(function() {
 	$("#admin_service_dialog").dialog({
-		
 		autoOpen: false,
 		modal : true,
 		buttons : {
@@ -82,7 +81,6 @@ $(function() {
 		}
 	});
 	
-
 	$("#admin_service").click(function(e) {
 		$("#admin_service_dialog").delay(100).dialog("open");
 	});
