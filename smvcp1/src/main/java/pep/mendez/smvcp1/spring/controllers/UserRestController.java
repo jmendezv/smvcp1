@@ -50,7 +50,7 @@ public class UserRestController {
 	 * Marks a method or exception class with the status code() and reason()
 	 * that should be returned.
 	 */
-	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+	@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Usuario desconocido")
 	public Error userNotFoundHandler(UserNotFoundException e) {
 		return new Error(e.getMessage());
 	}

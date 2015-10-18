@@ -272,5 +272,6 @@ public class SpringContextConfig {
 		ehCacheManagerFactroryBean.setShared(true);
 		return ehCacheManagerFactroryBean;
 	}
+
 	
 }

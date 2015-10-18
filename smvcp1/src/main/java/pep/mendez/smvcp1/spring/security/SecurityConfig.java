@@ -68,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.disable()		
 			.authorizeRequests()
 				.antMatchers("/login", "/validated*/**", "/register", "/help",
-						"/about", "/closed", "/user/**", "/resources/**", 
+						"/about", "/closed", "/user/**", "/resources/**", "/exception", "/error",
 						"/resetpwd/**", "/pwdreseted/**",
 						"/changepwd/**", "/webjars/**")
 					.permitAll()

@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
  *
  */
 @Entity
-@Table(name = "profile")
+@Table(name = "profiles")
 public class Profile implements Serializable {
 
 	/**

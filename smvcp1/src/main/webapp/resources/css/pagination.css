@@ -1,6 +1,6 @@
 
 /* Style for pagination*/
-
+@CHARSET "UTF-8";
 span.paginate-count {
     display: block;
     margin: 0.5em 0em 0.5em 0em;
@@ -36,4 +36,3 @@ a.paginate-last:after { content: ' >>'; font-weight: bolder; }
 
 a.sort-asc:after { content: ' a-z'; font-weight: bolder; }
 a.sort-desc:after { content: ' z-a'; font-weight: bolder; }
-@CHARSET "UTF-8";
