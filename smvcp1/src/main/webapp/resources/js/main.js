@@ -72,7 +72,7 @@ $(function() {
 
 $(function() {
 	$("#admin_service_dialog").dialog({
-		autoOpen: false,
+		autoOpen : false,
 		modal : true,
 		buttons : {
 			Ok : function() {
@@ -80,15 +80,29 @@ $(function() {
 			}
 		}
 	});
-	
+
 	$("#admin_service").click(function(e) {
 		$("#admin_service_dialog").delay(100).dialog("open");
 	});
 });
+
+
+
+
+
 /*
-$('#map_canvas').gmap().bind('init', function(ev, map) {
-	$('#map_canvas').gmap('addMarker', {'position': '57.7973333,12.0502107', 'bounds': true}).click(function() {
-		$('#map_canvas').gmap('openInfoWindow', {'content': 'Hello World!'}, this);
-	});
+ * $('#map_canvas').gmap().bind('init', function(ev, map) {
+ * $('#map_canvas').gmap('addMarker', {'position': '57.7973333,12.0502107',
+ * 'bounds': true}).click(function() { $('#map_canvas').gmap('openInfoWindow',
+ * {'content': 'Hello World!'}, this); }); });
+ */
+/*
+$('#map_canvas').gmap('addMarker', {
+	'position' : '57.7973333,12.0502107',
+	'bounds' : true
+}).click(function() {
+	$('#map_canvas').gmap('openInfoWindow', {
+		'content' : 'Hello World!'
+	}, this);
 });
 */

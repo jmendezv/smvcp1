@@ -31,10 +31,12 @@
 						th:text="#{contact.userName}" />
 					</label>
 					<div class="col-sm-10">
-						<input th:if="${!#fields.hasErrors('userName')}" type="text" id="username" name="username"
-							th:field="*{userName}" class="form-control" th:placeholder="#{contact.userName.tip}" />
-						 <input th:placeholder="#{Email.contactBean.userName}" th:if="${#fields.hasErrors('userName')}"
-							type="text" id="username" name="username" th:field="*{userName}"
+						<input th:if="${!#fields.hasErrors('userName')}" type="text"
+							id="username" name="username" th:field="*{userName}"
+							class="form-control" th:placeholder="#{contact.userName.tip}" />
+						<input th:placeholder="#{Email.contactBean.userName}"
+							th:if="${#fields.hasErrors('userName')}" type="text"
+							id="username" name="username" th:field="*{userName}"
 							class="form-control" />
 					</div>
 					<!--  ul th:if="${#fields.hasErrors('userName')}">
@@ -47,14 +49,13 @@
 						th:text="#{contact.subject}" />
 					</label>
 					<div class="col-sm-10">
-					<input th:if="${!#fields.hasErrors('subject')}" 
-						th:placeholder="#{contact.subject.tip}"
-						type="text" id="subject" name="subject"
-							th:field="*{subject}" class="form-control" />
-						<input th:if="${#fields.hasErrors('subject')}" 
-						th:placeholder="#{NotBlank.contactBean.subject}"
-						type="text" id="subject" name="subject"
-							th:field="*{subject}" class="form-control" />
+						<input th:if="${!#fields.hasErrors('subject')}"
+							th:placeholder="#{contact.subject.tip}" type="text" id="subject"
+							name="subject" th:field="*{subject}" class="form-control" /> <input
+							th:if="${#fields.hasErrors('subject')}"
+							th:placeholder="#{NotBlank.contactBean.subject}" type="text"
+							id="subject" name="subject" th:field="*{subject}"
+							class="form-control" />
 					</div>
 					<!-- ul th:if="${#fields.hasErrors('password')}">
 				<li th:each="error : ${#fields.errors('password')}"
@@ -66,14 +67,14 @@
 						th:text="#{contact.comments}" />
 					</label>
 					<div class="col-sm-10">
-						<input th:if="${!#fields.hasErrors('comments')}" 
-						th:placeholder="#{contact.comments.tip}" 
-						type="text" id="comments" name="comments"
-							th:field="*{comments}" class="form-control" />
-						<input th:if="${#fields.hasErrors('comments')}" 
-						th:placeholder="#{NotBlank.contactBean.comments}" 
-						type="text" id="comments" name="comments"
-							th:field="*{comments}" class="form-control" />
+						<input th:if="${!#fields.hasErrors('comments')}"
+							th:placeholder="#{contact.comments.tip}" type="text"
+							id="comments" name="comments" th:field="*{comments}"
+							class="form-control" /> <input
+							th:if="${#fields.hasErrors('comments')}"
+							th:placeholder="#{NotBlank.contactBean.comments}" type="text"
+							id="comments" name="comments" th:field="*{comments}"
+							class="form-control" />
 					</div>
 					<!-- ul th:if="${#fields.hasErrors('passwordConfirmation')}">
 				<li th:each="error : ${#fields.errors('passwordConfirmation')}"
@@ -96,6 +97,8 @@
 					value="${_csrf.token}" />
 			</fieldset>
 		</form>
+		
+		<span id="map_canvas"></span>
 
 	</div>
 </body>
