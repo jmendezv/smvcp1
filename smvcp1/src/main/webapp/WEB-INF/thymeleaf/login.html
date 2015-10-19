@@ -10,26 +10,31 @@
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#"><span th:text="#{application.acronym}"/></a>
+					<a class="navbar-brand" href="#"><span
+						th:text="#{application.acronym}" /></a>
 				</div>
 				<div>
 					<ul class="nav navbar-nav">
-						
-						<li class="active"><a href="#">
-						<span class="glyphicon glyphicon-home" />
-						<span th:text="#{login.home}" />
+
+						<li class="active"><a href="#"> <span
+								class="glyphicon glyphicon-home" /> <span
+								th:text="#{login.home}" />
 						</a></li>
-						
-						<li><a href="/resetpwd" th:href="@{/resetpwd}">
-						<span class="glyphicon glyphicon-send" />
-						<span th:text="#{login.resetpwd}" /></a></li>
+
+						<li><a href="/resetpwd" th:href="@{/resetpwd}"> <span
+								class="glyphicon glyphicon-link" /> <span
+								th:text="#{login.resetpwd}" /></a></li>
 
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-					
+
 						<li><a href="/register" th:href="@{/register}"><span
 								class="glyphicon glyphicon-user"></span> <span
 								th:text="#{login.register}" /></a></li>
+
+						<li><a href="/contact" th:href="@{/contact}"><span
+								class="glyphicon glyphicon-envelope"></span> <span
+								th:text="#{login.contact}" /></a></li>
 
 						<li><a href="#" id="about_opener"><span
 								class="glyphicon glyphicon-education" /> <span

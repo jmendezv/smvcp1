@@ -1,7 +1,12 @@
 TODO list
 
-* add user
+* contact
 
-* Back link should be an image
+* calendar
 
-* Forgot password
+sudo apt-get install mysql-server amarok
+create database amarokdb;
+grant usage on *.* to amarokuser@localhost identified by 'amarokpasswd';
+grant all privileges on amarokdb.* to amarokuser@localhost ;
+ # running sql script 	
+ \. setup.sql
