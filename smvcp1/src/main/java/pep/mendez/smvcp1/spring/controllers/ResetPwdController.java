@@ -103,8 +103,8 @@ public class ResetPwdController {
 			return "resetpwd";
 		}
 
-		int hours = Integer.valueOf(messageSource.getMessage(
-				"resetpwdcontroller.expiryhours", null, Locale.getDefault()));
+		int hours = Integer.valueOf(env.getProperty("resetpwdcontroller.expiryhours", "24"));
+		
 		Reset reset = new Reset(new Random().nextLong(), new Date(
 				System.currentTimeMillis() + DateTimeConstants.MILLIS_PER_HOUR
 						* hours));

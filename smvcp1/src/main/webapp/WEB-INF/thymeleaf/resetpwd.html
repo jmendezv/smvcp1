@@ -13,11 +13,11 @@
 			method="post" class="form-horizontal" role="form">
 			<fieldset>
 				<legend th:text="#{resetpwd.legend}" />
-				<table th:if="${#fields.hasAnyErrors()}" class="errorMessages">
+				<!-- table th:if="${#fields.hasAnyErrors()}" class="errorMessages">
 					<tr th:each="error : ${#fields.allErrors()}">
 						<td th:text="${error}">Error de entrada</td>
 					</tr>
-				</table>
+				</table -->
 
 				<!--  ul th:if="${#fields.hasAnyErrors()}">
 				<li th:each="error : ${#fields.allErrors()}" th:text="${error}">Error
@@ -28,8 +28,13 @@
 						th:text="#{resetpwd.userName}" />
 					</label>
 					<div class="col-sm-10">
-						<input type="text" id="username" name="username"
-							th:field="*{userName}" class="form-control" />
+						<input th:if="${!#fields.hasErrors('userName')}" type="text"
+							id="username" name="username" th:field="*{userName}"
+							class="form-control" th:placeholder="#{resetpwd.userName.tip}" />
+						<input th:if="${#fields.hasErrors('userName')}" type="text"
+							id="username" name="username" th:field="*{userName}"
+							class="form-control"
+							th:placeholder="#{Email.resetPwdBean.userName}" />
 					</div>
 					<!--  ul th:if="${#fields.hasErrors('userName')}">
 				<li th:each="error : ${#fields.errors('userName')}"

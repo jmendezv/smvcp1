@@ -32,7 +32,7 @@
 					<div class="col-sm-10">
 						<input type="text" id="name" name="name" th:field="*{name}"
 							th:errorclass="fieldError" 
-							th:placeholder="#{profile.name}" class="form-control" />
+							th:placeholder="#{profile.name.tip}" class="form-control" />
 					</div>
 				</div>
 				<!--  p th:if="${#fields.hasErrors('name')}" class="errorMessage" th:errors="*{name}">Error
@@ -51,7 +51,7 @@
 					<div class="col-sm-10">
 						<input type="text" id="city" name="city" th:field="*{city}"
 							th:errorclass="fieldError"
-							th:placeholder="#{profile.city}" class="form-control" />
+							th:placeholder="#{profile.city.tip}" class="form-control" />
 					</div>
 					<!--  ul th:if="${#fields.hasErrors('city')}">
 				<li th:each="error : ${#fields.errors('city')}" class="fieldError"
@@ -65,7 +65,7 @@
 					<div class="col-sm-10">
 						<input type="text" id="profession" name="profession"
 							th:field="*{profession}" th:errorclass="fieldError"
-							 th:placeholder="#{profile.profession}" class="form-control" />
+							 th:placeholder="#{profile.profession.tip}" class="form-control" />
 					</div>
 					<!-- ul th:if="${#fields.hasErrors('profession')}">
 				<li th:each="error : ${#fields.errors('profession')}"
@@ -79,7 +79,7 @@
 					<div class="col-sm-10">
 						<input type="text" id="phone" name="phone" th:field="*{phone}"
 							th:errorclass="fieldError" 
-							th:placeholder="#{profile.phone}" class="form-control" />
+							th:placeholder="#{profile.phone.tip}" class="form-control" />
 					</div>
 					<!-- ul th:if="${#fields.hasErrors('phone')}">
 				<li th:each="error : ${#fields.errors('phone')}" class="fieldError"
