@@ -3,11 +3,9 @@ package pep.mendez.smvcp1.spring.controllers;
 import java.security.Principal;
 import java.util.Collection;
 import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,9 +83,6 @@ public class ConnectionsController {
 		// connections.stream().limit(5).sorted(comparator);
 		// Connection[] aconnections = (Connection[]) stream.toArray();
 		// Collection<Connection> c = Arrays.asList(aconnections);
-
-//		 throw new RuntimeException("provoked exception from " +
-//		 this.getClass().getName());
 
 		model.addAttribute("connections", connections);
 		return "connections";
