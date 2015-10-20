@@ -1,14 +1,13 @@
 package pep.mendez.smvcp1.spring.controllers;
 
-import java.util.Arrays;
+import java.security.Principal;
 import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
+import java.util.Date;
 
-import javax.validation.Valid;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.hibernate.Hibernate;
-import org.hibernate.engine.internal.Collections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +17,12 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
-import pep.mendez.smvcp1.spring.formbeans.UserEditBean;
-import pep.mendez.smvcp1.spring.model.entities.Authority;
 import pep.mendez.smvcp1.spring.model.entities.Connection;
 import pep.mendez.smvcp1.spring.model.entities.User;
 import pep.mendez.smvcp1.spring.model.service.UserService;
@@ -38,6 +35,8 @@ import pep.mendez.smvcp1.spring.model.service.UserService;
 @PropertySources(value = { @PropertySource(name = "props", value = { "classpath:application.properties" }) })
 public class ConnectionsController {
 
+	public static final String DEFAULT_ERROR_VIEW = "exception";
+
 	private static final Logger logger = LoggerFactory
 			.getLogger(ConnectionsController.class);
 
@@ -49,6 +48,26 @@ public class ConnectionsController {
 
 	@Autowired(required = true)
 	private UserService userService;
+
+	/*
+	 * This exception handler will have priority over a global exception handler
+	 */
+	@ExceptionHandler(value = Throwable.class)
+	public ModelAndView handleExceptions(HttpServletRequest request,
+			HttpServletResponse response, Principal principal,
+			Exception exception, HttpSession session) {
+
+		ModelAndView mav = new ModelAndView(DEFAULT_ERROR_VIEW);
+		mav.addObject("timestamp", new Date());
+		mav.addObject("request", request);
+		mav.addObject("response", response);
+		mav.addObject("principal", principal);
+		mav.addObject("exception", exception);
+		mav.addObject("error", exception.getMessage() + "!!!!");
+		mav.addObject("url", request.getRequestURL().toString());
+
+		return mav;
+	}
 
 	@RequestMapping(value = "/connections", method = RequestMethod.GET, params = { "id" })
 	public String editPage(@RequestParam(value = "id") long id, ModelMap model) {
@@ -66,6 +85,9 @@ public class ConnectionsController {
 		// connections.stream().limit(5).sorted(comparator);
 		// Connection[] aconnections = (Connection[]) stream.toArray();
 		// Collection<Connection> c = Arrays.asList(aconnections);
+
+//		 throw new RuntimeException("provoked exception from " +
+//		 this.getClass().getName());
 
 		model.addAttribute("connections", connections);
 		return "connections";
