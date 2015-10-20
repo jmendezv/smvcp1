@@ -1,11 +1,15 @@
 package pep.mendez.smvcp1.exceptions;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 /**
  * @author pep
  * 
  * Referenced by UserRestController
  *
  */
+@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Usuario no existe")
 public class UserNotFoundException extends RuntimeException {
 
 	/**

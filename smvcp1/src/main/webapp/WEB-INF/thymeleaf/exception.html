@@ -17,6 +17,11 @@
 	      ${#httpServletRequest.requestURL}. But that returns the path
 	      to this error page.  Hence we explicitly add the url to the
 	      Model in some of the example code. -->
+				<div class="alert alert-success" th:if="${principal}">
+					<span th:text="#{exception.principal}" /> <span th:text="${principal.name}">Page
+						URL</span>
+				</div>
+
 				<div class="alert alert-success" th:if="${url}">
 					<span th:text="#{exception.url}" /> <span th:text="${url}">Page
 						URL</span>
@@ -24,7 +29,7 @@
 
 				<div class="alert alert-warning" th:if="${timestamp}" id='created'>
 					<span th:text="#{exception.timestamp}" /> <span
-						th:text="${#dates.format(timestamp, 'dd/MMM/yyyy HH:mm')}">Timestamp</span>
+						th:text="${#dates.format(timestamp, 'dd/MM/yyyy HH:mm')}">Timestamp</span>
 				</div>
 
 				<div class="alert alert-danger" th:if="${error}">

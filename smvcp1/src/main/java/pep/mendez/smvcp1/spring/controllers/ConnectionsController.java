@@ -1,14 +1,7 @@
 package pep.mendez.smvcp1.spring.controllers;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
 
-import javax.validation.Valid;
-
-import org.hibernate.Hibernate;
-import org.hibernate.engine.internal.Collections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +11,10 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import pep.mendez.smvcp1.spring.formbeans.UserEditBean;
-import pep.mendez.smvcp1.spring.model.entities.Authority;
 import pep.mendez.smvcp1.spring.model.entities.Connection;
 import pep.mendez.smvcp1.spring.model.entities.User;
 import pep.mendez.smvcp1.spring.model.service.UserService;
@@ -66,6 +55,9 @@ public class ConnectionsController {
 		// connections.stream().limit(5).sorted(comparator);
 		// Connection[] aconnections = (Connection[]) stream.toArray();
 		// Collection<Connection> c = Arrays.asList(aconnections);
+
+		// throw new RuntimeException("provoked exception from " +
+		// this.getClass().getName());
 
 		model.addAttribute("connections", connections);
 		return "connections";

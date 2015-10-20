@@ -103,6 +103,7 @@ public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
 			@Override
 			protected ModelAndView getModelAndView(String viewName,
 					Exception ex, HttpServletRequest request) {
+				
 				ModelAndView mav = new ModelAndView("exception");
 				mav.addObject("url", request.getRequestURL());
 				mav.addObject("timestamp", new Date());
@@ -127,6 +128,7 @@ public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
 		 */
 		exceptionResolver.setExceptionMappings(mappings); // None by default
 		exceptionResolver.setDefaultErrorView("exception"); // No default
+		exceptionResolver.setOrder(Integer.MAX_VALUE);
 		// exceptionResolver.setExceptionAttribute("exception"); // Default is
 		// "exception"
 		// exceptionResolver.setWarnLogCategory("smvcp1.resolver"); // TODO No
