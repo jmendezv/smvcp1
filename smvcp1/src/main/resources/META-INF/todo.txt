@@ -1,8 +1,8 @@
 TODO list
 
-* contact
-
 * calendar
+
+* application's browser icon 
 
 sudo apt-get install mysql-server amarok
 create database amarokdb;

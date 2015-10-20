@@ -32,7 +32,8 @@
 					</label>
 					<div class="col-sm-10">
 						<input type="text" id="username" name="username"
-							th:field="*{userName}" class="form-control" />
+							th:field="*{userName}" class="form-control" 
+							th:placeholder="#{register.userName.tip}"/>
 					</div>
 					<!--  ul th:if="${#fields.hasErrors('userName')}">
 				<li th:each="error : ${#fields.errors('userName')}"
@@ -45,7 +46,8 @@
 					</label>
 					<div class="col-sm-10">
 						<input type="password" id="password" name="password"
-							th:field="*{password}" class="form-control" />
+							th:field="*{password}" class="form-control" 
+							th:placeholder="#{register.password.tip}"/>
 					</div>
 					<!-- ul th:if="${#fields.hasErrors('password')}">
 				<li th:each="error : ${#fields.errors('password')}"
@@ -59,7 +61,7 @@
 					<div class="col-sm-10">
 						<input type="password" id="passwordConfirmation"
 							name="passwordConfirmation" th:field="*{passwordConfirmation}"
-							class="form-control" />
+							class="form-control" th:placeholder="#{register.passwordConfirmation.tip}"/>
 					</div>
 					<!-- ul th:if="${#fields.hasErrors('passwordConfirmation')}">
 				<li th:each="error : ${#fields.errors('passwordConfirmation')}"

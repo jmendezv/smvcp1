@@ -57,10 +57,10 @@ $(function() {
 
 		$("#confirm_dialog").dialog({
 			buttons : {
-				"Confirm" : function() {
+				"Confirma" : function() {
 					window.location.href = targetUrl;
 				},
-				"Cancel" : function() {
+				"Cancela" : function() {
 					$(this).dialog("close");
 				}
 			}
