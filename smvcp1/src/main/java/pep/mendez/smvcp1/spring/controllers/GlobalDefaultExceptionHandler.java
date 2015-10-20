@@ -14,12 +14,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class GlobalDefaultExceptionHandler {
 	
 	public static final String DEFAULT_ERROR_VIEW = "exception";
-	
+
+	/*
+	 * @ExceptionHandlers don't have access to neither Exception non Model objects
+	 */
 	@ExceptionHandler(value = Exception.class)
-	public ModelAndView defaultErrorHandler(HttpServletRequest request, HttpServletResponse response, Principal principal, Exception exception) {
+	public ModelAndView defaultErrorHandler(HttpServletRequest request, HttpServletResponse response, Principal principal) {
 		ModelAndView mav = new ModelAndView(DEFAULT_ERROR_VIEW);
 		mav.addObject("timestamp", new Date());
-		mav.addObject("error", exception.getMessage());
 		mav.addObject("request", request);
 		mav.addObject("response", response);
 		mav.addObject("principal", principal);
