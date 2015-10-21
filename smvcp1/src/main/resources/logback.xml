@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- debug = true dump status data, even in the absence of errors provided 
 	the config files is found and the config file is well-formed XML TRACE < 
 	DEBUG < INFO < WARN < ERROR Except root INHERETED | NULL | OFF -->
@@ -16,7 +17,7 @@
 	</appender>
 
 	<appender name="file" class="ch.qos.logback.core.FileAppender">
-		<file>${USER.HOME}/smvcp1.log</file>
+		<file>smvcp1.log</file>
 		<encoder>
 			<pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n
 			</pattern>

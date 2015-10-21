@@ -34,7 +34,11 @@ import pep.mendez.smvcp1.utils.UtilityConstants;
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory
+<<<<<<< HEAD
 			.getLogger(HomeController.class.getPackage().getName());
+=======
+			.getLogger(UtilityConstants.PACKAGE);
+>>>>>>> branch 'master' of https://jmendezv@bitbucket.org/jmendezv/smvcp1.git
 
 	@Autowired
 	Environment env;
