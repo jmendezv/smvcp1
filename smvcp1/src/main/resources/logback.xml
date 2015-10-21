@@ -1,39 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- debug = true dump status data, even in the absence of errors provided 
 	the config files is found and the config file is well-formed XML TRACE < 
 	DEBUG < INFO < WARN < ERROR Except root INHERETED | NULL | OFF -->
+
 <configuration debug="true" scan="true" sacanPeriod="3 minutes">
 
-	<!-- property resource="logback_res.properties" / -->
+	<property name="CONSOLE_PATTERN"
+		value="%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} -	%msg%n" />
 
-	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
-		<encoder>
-			<Pattern>
-				%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} -
-				%msg%n
-			</Pattern>
-		</encoder>
-	</appender>
+	<property name="FILE_PATTERN"
+	value="%date %level [%thread] %logger{10} [%file:%line] %msg%n" />
 
-	<appender name="file" class="ch.qos.logback.core.FileAppender">
-		<file>${USER.HOME}/smvcp1.log</file>
-		<encoder>
-			<pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n
-			</pattern>
-		</encoder>
-	</appender>
+	<!-- property resource="logback_res.properties" 
+			/ -->
 
-	<!-- additivity means that the output of a log statement of logger L will 
-		go to all appenders in L and its ancestors. If an ancestor of logger L, say 
-		P, has the additivity flag set to false, then L's output will be redirected 
-		to all the appenders in L and its ancestor up to and including P but not 
-		the appenders if any of the ancestors of P. -->
-	<logger name="pep.mendez.smvcp1" level="debug" additivity="false">
-		<appender-ref ref="stdout" />
-	</logger>
+		<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+			<encoder>
+				<Pattern>
+					${CONSOLE_PATTERN}
+				</Pattern>
+			</encoder>
+		</appender>
 
-	<root level="error">
-		<appender-ref ref="file" />
-	</root>
+		<appender name="file" class="ch.qos.logback.core.FileAppender">
+			<file>smvcp1.log</file>
+			<encoder>
+				<pattern>
+					${FILE_PATTERNS}
+				</pattern>
+			</encoder>
+		</appender>
+
+		<!-- additivity means that the output of a log statement of logger L will 
+			go to all appenders in L and its ancestors. If an ancestor of logger L, say 
+			P, has the additivity flag set to false, then L's output will be redirected 
+			to all the appenders in L and its ancestor up to and including P but not 
+			the appenders if any of the ancestors of P. -->
+		<logger name="pep.mendez.smvcp1" level="debug" additivity="false">
+			<appender-ref ref="stdout" />
+		</logger>
+
+		<root level="error">
+			<appender-ref ref="file" />
+		</root>
 
 </configuration>
