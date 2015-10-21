@@ -26,8 +26,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pep.mendez.smvcp1.spring.formbeans.ResetPwdBean;
-import pep.mendez.smvcp1.spring.formbeans.UserRegistrationBean;
-import pep.mendez.smvcp1.spring.model.entities.Authority;
 import pep.mendez.smvcp1.spring.model.entities.Reset;
 import pep.mendez.smvcp1.spring.model.entities.User;
 import pep.mendez.smvcp1.spring.model.service.UserService;
@@ -45,7 +43,7 @@ import pep.mendez.smvcp1.utils.UtilityConstants;
 public class ResetPwdController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(RegisterController.class);
+			.getLogger(UtilityConstants.PACKAGE);
 
 	@Autowired
 	Environment env;
@@ -103,8 +101,9 @@ public class ResetPwdController {
 			return "resetpwd";
 		}
 
-		int hours = Integer.valueOf(env.getProperty("resetpwdcontroller.expiryhours", "24"));
-		
+		int hours = Integer.valueOf(env.getProperty(
+				"resetpwdcontroller.expiryhours", "24"));
+
 		Reset reset = new Reset(new Random().nextLong(), new Date(
 				System.currentTimeMillis() + DateTimeConstants.MILLIS_PER_HOUR
 						* hours));

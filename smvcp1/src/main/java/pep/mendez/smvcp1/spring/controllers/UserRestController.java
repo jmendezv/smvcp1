@@ -1,6 +1,7 @@
 package pep.mendez.smvcp1.spring.controllers;
 
-import org.hibernate.cfg.Environment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.PropertySource;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pep.mendez.smvcp1.exceptions.UserNotFoundException;
 import pep.mendez.smvcp1.spring.model.entities.User;
 import pep.mendez.smvcp1.spring.model.service.UserService;
+import pep.mendez.smvcp1.utils.UtilityConstants;
 
 /*
  * A convenience annotation that is itself annotated with @Controller and @ResponseBody.
@@ -32,12 +34,15 @@ import pep.mendez.smvcp1.spring.model.service.UserService;
 @PropertySources(value = { @PropertySource(name = "props", value = { "classpath:application.properties" }, ignoreResourceNotFound = true) })
 public class UserRestController {
 
-//	@Autowired
-//	private Environment env;
-	
+	// @Autowired
+	// private Environment env;
+
+	private static final Logger logger = LoggerFactory
+			.getLogger(UtilityConstants.PACKAGE);
+
 	@Autowired
 	MessageSource messageSource;
-	
+
 	@Autowired
 	private UserService userService;
 

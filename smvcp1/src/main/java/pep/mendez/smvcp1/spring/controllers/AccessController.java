@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import pep.mendez.smvcp1.utils.UtilityConstants;
+
 /**
  * @author pep
  *
@@ -25,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AccessController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(EditController.class);
+			.getLogger(UtilityConstants.PACKAGE);
 
 	@Autowired
 	Environment env;
@@ -41,14 +43,16 @@ public class AccessController {
 		String warning = "";
 		if (principal == null) {
 			msg = messageSource.getMessage("403.errorMessage",
-					new String[] { messageSource.getMessage("accesscontroller.anonymous", null, Locale.getDefault()) }, Locale.getDefault());
+					new String[] { messageSource.getMessage(
+							"accesscontroller.anonymous", null,
+							Locale.getDefault()) }, Locale.getDefault());
 		} else {
 			msg = messageSource.getMessage("403.errorMessage",
 					new String[] { principal.getName() }, Locale.getDefault());
 		}
 		warning = messageSource.getMessage("403.warning",
 				new String[] { request.getRemoteAddr() }, Locale.getDefault());
-		
+
 		model.addAttribute("errorMessage", msg);
 		model.addAttribute("remoteAddress", warning);
 

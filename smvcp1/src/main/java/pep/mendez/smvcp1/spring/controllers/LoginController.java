@@ -12,26 +12,28 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import pep.mendez.smvcp1.utils.UtilityConstants;
+
 /**
  * @author pep
  *
  */
 @Controller
-@PropertySources(value = {@PropertySource(name = "props", value = {"classpath:application.properties"}, ignoreResourceNotFound = true)})
+@PropertySources(value = { @PropertySource(name = "props", value = { "classpath:application.properties" }, ignoreResourceNotFound = true) })
 public class LoginController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(EditController.class);
+			.getLogger(UtilityConstants.PACKAGE);
 
 	@Autowired
 	Environment env;
 
 	@Autowired
 	MessageSource messageSource;
-	
-	@RequestMapping(value = "/login", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage(ModelMap model) {
 		return "login";
 	}
-	
+
 }

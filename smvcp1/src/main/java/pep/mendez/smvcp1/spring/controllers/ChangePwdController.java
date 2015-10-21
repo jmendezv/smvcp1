@@ -13,27 +13,23 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.DigestUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pep.mendez.smvcp1.spring.formbeans.UserRegistrationBean;
-import pep.mendez.smvcp1.spring.model.entities.Authority;
 import pep.mendez.smvcp1.spring.model.entities.User;
 import pep.mendez.smvcp1.spring.model.service.UserService;
-import pep.mendez.smvcp1.utils.Utility;
 import pep.mendez.smvcp1.utils.UtilityConstants;
 
 @Controller
 @PropertySources(value = { @PropertySource(name = "props", value = { "classpath:application.properties" }) })
 public class ChangePwdController {
+
 	private static final Logger logger = LoggerFactory
-			.getLogger(RegisterController.class);
+			.getLogger(UtilityConstants.PACKAGE);
 
 	@Autowired
 	Environment env;
@@ -66,11 +62,11 @@ public class ChangePwdController {
 			ModelMap model) {
 
 		logger.debug(userRegistrationBean.toString());
-		
+
 		String userName = userRegistrationBean.getUserName();
 
 		User user = userService.findByUserName(userName);
-		
+
 		model.addAttribute("user", user);
 
 		if (action.equals("cancel")) {
@@ -83,18 +79,20 @@ public class ChangePwdController {
 
 		// Error user no existeix
 		if (user == null) {
-//			bindingResult.addError(new ObjectError("register.error.duplicated",
-//					messageSource.getMessage("register.error.duplicated", null,
-//							null)));
-			
+			// bindingResult.addError(new
+			// ObjectError("register.error.duplicated",
+			// messageSource.getMessage("register.error.duplicated", null,
+			// null)));
+
 			return "register";
 		}
-		
+
 		if (!user.isEnabled()) {
-//			bindingResult.addError(new ObjectError("register.error.duplicated",
-//					messageSource.getMessage("register.error.duplicated", null,
-//							null)));
-			
+			// bindingResult.addError(new
+			// ObjectError("register.error.duplicated",
+			// messageSource.getMessage("register.error.duplicated", null,
+			// null)));
+
 			return "register";
 		}
 
@@ -103,7 +101,6 @@ public class ChangePwdController {
 		user.setPassword(encodedPassword);
 
 		userService.save(user);
-
 
 		return "home";
 	}

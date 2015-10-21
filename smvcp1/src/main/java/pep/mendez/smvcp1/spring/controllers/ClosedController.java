@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import pep.mendez.smvcp1.utils.UtilityConstants;
+
 /**
  * @author pep
  *
@@ -22,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ClosedController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(EditController.class);
+			.getLogger(UtilityConstants.PACKAGE);
 
 	@Autowired
 	Environment env;
@@ -32,7 +34,10 @@ public class ClosedController {
 
 	@RequestMapping(value = "/closed")
 	public String closed(ModelMap model) {
-		model.addAttribute("errorMessage", messageSource.getMessage("closed.errorMessage", null, Locale.getDefault()));
+		model.addAttribute(
+				"errorMessage",
+				messageSource.getMessage("closed.errorMessage", null,
+						Locale.getDefault()));
 		return "closed";
 	}
 

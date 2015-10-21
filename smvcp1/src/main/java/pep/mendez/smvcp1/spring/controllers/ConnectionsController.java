@@ -3,9 +3,11 @@ package pep.mendez.smvcp1.spring.controllers;
 import java.security.Principal;
 import java.util.Collection;
 import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import pep.mendez.smvcp1.spring.model.entities.Connection;
 import pep.mendez.smvcp1.spring.model.entities.User;
 import pep.mendez.smvcp1.spring.model.service.UserService;
+import pep.mendez.smvcp1.utils.UtilityConstants;
 
 /**
  * @author pep
@@ -36,7 +39,7 @@ public class ConnectionsController {
 	public static final String DEFAULT_ERROR_VIEW = "exception";
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(ConnectionsController.class);
+			.getLogger(UtilityConstants.PACKAGE);
 
 	@Autowired
 	Environment env;

@@ -1,7 +1,6 @@
 package pep.mendez.smvcp1.spring.controllers;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -20,7 +19,6 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import pep.mendez.smvcp1.spring.model.entities.Reset;
@@ -41,8 +39,9 @@ import pep.mendez.smvcp1.utils.UtilityConstants;
 @Controller
 @PropertySources(value = { @PropertySource(name = "props", value = { "classpath:application.properties" }) })
 public class ValidateResetPwdController {
+
 	private static final Logger logger = LoggerFactory
-			.getLogger(RegisterController.class);
+			.getLogger(UtilityConstants.PACKAGE);
 
 	@Autowired
 	Environment env;
@@ -88,10 +87,11 @@ public class ValidateResetPwdController {
 			// userName from email match this userName
 			if (userNameHash.equals(md5Hex)) {
 				// get last
-//				List<Reset> resets = ((List<Reset>) user.getResets());
-//				Reset reset = resets.get(resets.size() - 1);
+				// List<Reset> resets = ((List<Reset>) user.getResets());
+				// Reset reset = resets.get(resets.size() - 1);
 				// get last streams
-				Optional<Reset> optReset = user.getResets().stream().reduce((a, b) -> b);
+				Optional<Reset> optReset = user.getResets().stream()
+						.reduce((a, b) -> b);
 				Reset reset = optReset.get();
 				// second level of security
 				// not expired yet

@@ -15,7 +15,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.DigestUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pep.mendez.smvcp1.spring.formbeans.ContactBean;
 import pep.mendez.smvcp1.spring.model.entities.Contact;
 import pep.mendez.smvcp1.spring.model.service.ContactService;
-import pep.mendez.smvcp1.utils.Utility;
 import pep.mendez.smvcp1.utils.UtilityConstants;
 
 /**
@@ -37,7 +35,7 @@ import pep.mendez.smvcp1.utils.UtilityConstants;
 public class ContactController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(RegisterController.class);
+			.getLogger(UtilityConstants.PACKAGE);
 
 	@Autowired
 	Environment env;
@@ -64,7 +62,8 @@ public class ContactController {
 	public String registerForm(
 			@Valid @ModelAttribute("contactBean") ContactBean contactBean,
 			BindingResult bindingResult,
-			@RequestParam(value = "action", required = true) String action) throws IllegalAccessException, InvocationTargetException {
+			@RequestParam(value = "action", required = true) String action)
+			throws IllegalAccessException, InvocationTargetException {
 
 		logger.debug(contactBean.toString());
 
@@ -79,31 +78,31 @@ public class ContactController {
 		String userName = contactBean.getUserName();
 
 		Contact contact = contactService.findByuserName(userName);
-		
-		if(contact == null) {
-			
+
+		if (contact == null) {
+
 			contact = new Contact();
-			
+
 			BeanUtils.copyProperties(contact, contactBean);
-			
+
 			contactService.save(contact);
-			
-//			String md5Hex = DigestUtils.md5DigestAsHex((userName + Utility.SALT)
-//					.getBytes());
-//
-//			StringBuilder body = new StringBuilder(
-//					UtilityConstants.VALIDATE_MESSAGE_1);
-//			body.append(userName).append(";d=").append(md5Hex)
-//					.append(UtilityConstants.VALIDATE_MESSAGE_2);
-//
-//			String from = env.getProperty("mailserver.replyTo");
-//
-//			Utility.sendEmail(mailSender, from, userName, "Registro",
-//					body.toString());
+
+			// String md5Hex = DigestUtils.md5DigestAsHex((userName +
+			// Utility.SALT)
+			// .getBytes());
+			//
+			// StringBuilder body = new StringBuilder(
+			// UtilityConstants.VALIDATE_MESSAGE_1);
+			// body.append(userName).append(";d=").append(md5Hex)
+			// .append(UtilityConstants.VALIDATE_MESSAGE_2);
+			//
+			// String from = env.getProperty("mailserver.replyTo");
+			//
+			// Utility.sendEmail(mailSender, from, userName, "Registro",
+			// body.toString());
 
 		}
-		
-		
+
 		return "login";
 	}
 

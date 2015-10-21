@@ -12,7 +12,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.util.DigestUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -37,7 +36,7 @@ import pep.mendez.smvcp1.utils.UtilityConstants;
 public class RegisterController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(RegisterController.class);
+			.getLogger(UtilityConstants.PACKAGE);
 
 	@Autowired
 	Environment env;
@@ -99,9 +98,9 @@ public class RegisterController {
 		else {
 			user.setPassword(encodedPassword);
 		}
-		
+
 		// assign user role if no authority granted
-		if(user.getAuthorities().size() == 0) {
+		if (user.getAuthorities().size() == 0) {
 			Authority authority = new Authority(userName, "ROLE_USER");
 			authority.setUser(user);
 			user.add(authority);

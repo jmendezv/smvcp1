@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import pep.mendez.smvcp1.spring.model.entities.User;
 import pep.mendez.smvcp1.spring.model.service.UserService;
+import pep.mendez.smvcp1.utils.UtilityConstants;
 
 // '123456' $2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje
 /**
@@ -33,7 +34,7 @@ import pep.mendez.smvcp1.spring.model.service.UserService;
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(RegisterController.class);
+			.getLogger(UtilityConstants.PACKAGE);
 
 	@Autowired
 	Environment env;
@@ -53,7 +54,11 @@ public class HomeController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String homePage(ModelMap model, Principal principal,
 			HttpServletRequest request, HttpSession session) {
+
 		User user = userService.findByUserName(principal.getName());
+
+		logger.info(user.toString());
+
 		model.addAttribute("user", user);
 		// Connection connection = new Connection();
 		// connection.setTimeIn(new Date());
