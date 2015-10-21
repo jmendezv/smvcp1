@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import pep.mendez.smvcp1.spring.model.entities.User;
 import pep.mendez.smvcp1.spring.model.service.UserService;
 import pep.mendez.smvcp1.utils.Utility;
+import pep.mendez.smvcp1.utils.UtilityConstants;
 
 /**
  * @author pep
@@ -30,7 +31,7 @@ import pep.mendez.smvcp1.utils.Utility;
 public class ValidateNewUserController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(RegisterController.class);
+			.getLogger(UtilityConstants.PACKAGE);
 
 	@Autowired
 	Environment env;
@@ -47,13 +48,13 @@ public class ValidateNewUserController {
 	@Autowired
 	JavaMailSender mailSender;
 
-	// en /validate/1;d=125de32156abefde1 id=1 digest=125de32156abefde1 
+	// en /validate/1;d=125de32156abefde1 id=1 digest=125de32156abefde1
 	@RequestMapping(value = "/validate/{id}", method = RequestMethod.GET)
 	public ModelAndView validate(@PathVariable(value = "id") long id,
 			@MatrixVariable(value = "d", required = true) String digest) {
 
-		String msgValidated = messageSource.getMessage("validate.controller.msg.ok",
-				null, null); // env.getProperty("msg.validation.ok");
+		String msgValidated = messageSource.getMessage(
+				"validate.controller.msg.ok", null, null); // env.getProperty("msg.validation.ok");
 		String msgValidationError = messageSource.getMessage(
 				"validate.controller.msg.error", null, null); // env.getProperty("msg.validation.error");
 		ModelAndView mav = new ModelAndView("validatednewuser", "message",
@@ -61,7 +62,8 @@ public class ValidateNewUserController {
 		mav.addObject("user", "");
 		User user = userService.findOne(id);
 		// Hash del userName + SALT
-		String md5Hex = DigestUtils.md5DigestAsHex((user.getUserName() + Utility.SALT).getBytes());
+		String md5Hex = DigestUtils
+				.md5DigestAsHex((user.getUserName() + Utility.SALT).getBytes());
 		if (md5Hex.equals(digest)) {
 			user.setEnabled(true);
 			userService.save(user);

@@ -12,23 +12,28 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
+import pep.mendez.smvcp1.utils.UtilityConstants;
+
 @ControllerAdvice
 public class GlobalDefaultExceptionHandler {
-	
+
 	public static final String DEFAULT_ERROR_VIEW = "exception";
-	
+
 	private static final Logger logger = LoggerFactory
-			.getLogger(EditController.class);
+			.getLogger(UtilityConstants.PACKAGE);
 
 	/*
-	 * @ExceptionHandlers don't have access to neither Exception non Model objects
-	 * however, Exceptions object are available to @ControlAdvice annotated controller
+	 * @ExceptionHandlers don't have access to neither Exception non Model
+	 * objects however, Exceptions object are available to @ControlAdvice
+	 * annotated controller
 	 */
 	@ExceptionHandler(value = Exception.class)
-	public ModelAndView defaultErrorHandler(HttpServletRequest request, HttpServletResponse response, Principal principal, Exception exception) {
-		
+	public ModelAndView defaultErrorHandler(HttpServletRequest request,
+			HttpServletResponse response, Principal principal,
+			Exception exception) {
+
 		logger.error(exception.getMessage());
-		
+
 		ModelAndView mav = new ModelAndView(DEFAULT_ERROR_VIEW);
 		mav.addObject("timestamp", new Date());
 		mav.addObject("request", request);
@@ -37,7 +42,7 @@ public class GlobalDefaultExceptionHandler {
 		mav.addObject("exception", exception);
 		mav.addObject("error", exception.getMessage());
 		mav.addObject("url", request.getRequestURL().toString());
-		
+
 		return mav;
 	}
 

@@ -9,7 +9,6 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
@@ -19,8 +18,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +27,7 @@ import pep.mendez.smvcp1.spring.formbeans.ProfileBean;
 import pep.mendez.smvcp1.spring.model.entities.Profile;
 import pep.mendez.smvcp1.spring.model.entities.User;
 import pep.mendez.smvcp1.spring.model.service.UserService;
+import pep.mendez.smvcp1.utils.UtilityConstants;
 
 /*
  * We can create our custom validator implementations by two ways:
@@ -48,7 +46,7 @@ import pep.mendez.smvcp1.spring.model.service.UserService;
 public class ProfileController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(RegisterController.class);
+			.getLogger(UtilityConstants.PACKAGE);
 
 	@Autowired
 	Environment env;
@@ -65,9 +63,9 @@ public class ProfileController {
 	@Autowired
 	JavaMailSender mailSender;
 
-//	@Autowired
-//	@Qualifier("profileValidator")
-//	private Validator validator;
+	// @Autowired
+	// @Qualifier("profileValidator")
+	// private Validator validator;
 
 	/*
 	 * Annotation that identifies methods which initialize the WebDataBinder
@@ -81,7 +79,7 @@ public class ProfileController {
 
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String registerPage(Principal principal, ModelMap model) {
-		
+
 		User user = userService.findByUserName(principal.getName());
 		Profile profile = user.getProfile();
 		ProfileBean profileBean = new ProfileBean();

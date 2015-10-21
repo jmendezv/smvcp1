@@ -24,6 +24,7 @@ import pep.mendez.smvcp1.spring.formbeans.UserEditBean;
 import pep.mendez.smvcp1.spring.model.entities.Authority;
 import pep.mendez.smvcp1.spring.model.entities.User;
 import pep.mendez.smvcp1.spring.model.service.UserService;
+import pep.mendez.smvcp1.utils.UtilityConstants;
 
 /**
  * @author pep
@@ -34,7 +35,7 @@ import pep.mendez.smvcp1.spring.model.service.UserService;
 public class EditController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(EditController.class);
+			.getLogger(UtilityConstants.PACKAGE);
 
 	@Autowired
 	Environment env;

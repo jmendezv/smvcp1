@@ -17,7 +17,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import pep.mendez.smvcp1.spring.model.entities.Connection;
@@ -25,29 +24,30 @@ import pep.mendez.smvcp1.spring.model.entities.User;
 import pep.mendez.smvcp1.spring.model.service.AdminService;
 import pep.mendez.smvcp1.spring.model.service.ConnectionService;
 import pep.mendez.smvcp1.spring.model.service.UserService;
+import pep.mendez.smvcp1.utils.UtilityConstants;
 
 /**
  * @author pep
  *
  */
 @Controller
-@PropertySources(value = {@PropertySource(name = "props", value = "{classpath:application.properties}", ignoreResourceNotFound = true)})
+@PropertySources(value = { @PropertySource(name = "props", value = "{classpath:application.properties}", ignoreResourceNotFound = true) })
 public class AdminController {
 
 	private static final int SIZE = 5;
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(EditController.class);
+			.getLogger(UtilityConstants.PACKAGE);
 
 	@Autowired
 	Environment env;
-	
+
 	@Autowired
 	MessageSource messageSource;
-	
+
 	@Autowired
 	private AdminService adminService;
-	
+
 	@Autowired
 	private ConnectionService connectionService;
 
@@ -67,19 +67,20 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/adminService")
 	@ResponseStatus(value = HttpStatus.CONTINUE)
-	//@ResponseBody
-	public void adminService(ModelMap model, Principal principal, HttpServletRequest request) {
+	// @ResponseBody
+	public void adminService(ModelMap model, Principal principal,
+			HttpServletRequest request) {
 		String ip = request.getRemoteAddr();
 		Connection connection = new Connection(new Date(), ip);
 		User user = userService.findByUserName(principal.getName());
-		connection.setUser(user );
+		connection.setUser(user);
 		connectionService.save(connection);
-//		adminService.performSomeAdminService1(123456);
-//		adminService.performSomeAdminService2();
-//		adminService.performSomeAdminService3(1);
+		// adminService.performSomeAdminService1(123456);
+		// adminService.performSomeAdminService2();
+		// adminService.performSomeAdminService3(1);
 		// java.lang.ClassCastException porque hay un proxy por medio
-		//((AdminService2) adminService).performNewService();
-		//model.addAttribute("principal", principal.getName());
-		//return "redirect:admin";
+		// ((AdminService2) adminService).performNewService();
+		// model.addAttribute("principal", principal.getName());
+		// return "redirect:admin";
 	}
 }
