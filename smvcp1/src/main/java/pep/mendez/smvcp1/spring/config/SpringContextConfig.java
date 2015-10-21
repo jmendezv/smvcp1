@@ -51,7 +51,7 @@ import pep.mendez.smvcp1.spring.validators.ProfileFormValidator;
 @EnableAspectJAutoProxy(proxyTargetClass = false)
 @ComponentScan(basePackageClasses = { SpringDef.class }, excludeFilters = { @Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })
 @PropertySources({ @PropertySource(value = "classpath:application.properties"), })
-//@Profile("production")
+@Profile("production")
 // database config from xml
 //@ImportResource("classpath:/config/database-config.xml")
 @EnableCaching
