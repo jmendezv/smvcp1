@@ -20,6 +20,9 @@ import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
@@ -48,6 +51,9 @@ import pep.mendez.smvcp1.spring.validators.ProfileFormValidator;
 @EnableAspectJAutoProxy(proxyTargetClass = false)
 @ComponentScan(basePackageClasses = { SpringDef.class }, excludeFilters = { @Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })
 @PropertySources({ @PropertySource(value = "classpath:application.properties"), })
+//@Profile("production")
+// database config from xml
+//@ImportResource("classpath:/config/database-config.xml")
 @EnableCaching
 public class SpringContextConfig {
 

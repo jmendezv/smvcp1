@@ -103,7 +103,7 @@ public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
 			@Override
 			protected ModelAndView getModelAndView(String viewName,
 					Exception ex, HttpServletRequest request) {
-				
+
 				ModelAndView mav = new ModelAndView("exception");
 				mav.addObject("url", request.getRequestURL());
 				mav.addObject("timestamp", new Date());
