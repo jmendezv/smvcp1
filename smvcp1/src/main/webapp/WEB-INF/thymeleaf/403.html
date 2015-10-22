@@ -16,7 +16,7 @@
 			<div class="panel-body">
 
 				<div class="alert alert-danger" th:if="${errorMessage}">
-					<span th:text="${remoteAddress}" />
+					<span th:text="${errorMessage}" />
 				</div>
 
 				<div class="alert alert-info" th:if="${remoteAddress}">
@@ -25,19 +25,19 @@
 				
 			</div>
 
-			<div class="panel-footer">
-				<span th:text="#{403.footer}" />
-			</div>
+			<!-- div class="panel-footer">
+				<span th:text="#{403.footer}">
+			</div-->
 		</div>
 
 		<div class="well well-sm text-center">
 			<span th:text="#{exception.thanks}" />
 		</div>
 
-		<div>
-			<a href="../smvcp1" th:href="@{../smvcp1}"><span
-				th:text="#{403.back}"></span></a>
-		</div>
+		<ul class="pager">
+			<li><a href="../smvcp1" th:href="@{../smvcp1}"><span
+				th:text="#{403.back}"></span></a></li>
+		</ul>
 
 	</div>
 </body>

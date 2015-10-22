@@ -90,7 +90,10 @@
 						th:src="@{resources/images/admin.png}" /> <img
 						th:if="${#strings.substringAfter(auth.authority,'_') eq 'USER'}"
 						alt="user" src="../../resources/images/user.png"
-						th:src="@{resources/images/user.png}" /></td>
+						th:src="@{resources/images/user.png}" /><img
+						th:if="${#strings.substringAfter(auth.authority,'_') eq 'ROOT'}"
+						alt="root" src="../../resources/images/root.png"
+						th:src="@{resources/images/root.png}" /></td>
 					<td th:text="${#strings.substringAfter(auth.authority,'_')}">x</td>
 				</tr>
 			</tbody>
