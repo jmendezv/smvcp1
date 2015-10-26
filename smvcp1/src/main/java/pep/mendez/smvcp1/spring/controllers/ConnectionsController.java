@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import pep.mendez.smvcp1.spring.model.entities.Connection;
-import pep.mendez.smvcp1.spring.model.entities.User;
+import pep.mendez.smvcp1.spring.model.entities.ConnectionEntity;
+import pep.mendez.smvcp1.spring.model.entities.UserEntity;
 import pep.mendez.smvcp1.spring.model.service.UserService;
 import pep.mendez.smvcp1.utils.UtilityConstants;
 
@@ -72,13 +72,13 @@ public class ConnectionsController {
 
 	@RequestMapping(value = "/connections", method = RequestMethod.GET, params = { "id" })
 	public String editPage(@RequestParam(value = "id") long id, ModelMap model) {
-		User user = userService.findOne(id);
+		UserEntity user = userService.findOne(id);
 		// org.hibernate.LazyInitializationException: failed to lazily
 		// initialize a collection
 		// could not initialize proxy - no Session
 		// Hibernate.initialize(user.getConnections());
 
-		Collection<Connection> connections = user.getConnections();
+		Collection<ConnectionEntity> connections = user.getConnections();
 
 		// Comparator<Connection> comparator = (Connection c1, Connection c2) ->
 		// c2.getTimeIn().compareTo(c1.getTimeIn());

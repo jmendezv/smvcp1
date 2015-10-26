@@ -19,7 +19,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import pep.mendez.smvcp1.spring.model.entities.User;
+import pep.mendez.smvcp1.spring.model.entities.UserEntity;
 import pep.mendez.smvcp1.spring.model.service.UserService;
 import pep.mendez.smvcp1.utils.UtilityConstants;
 
@@ -55,7 +55,7 @@ public class HomeController {
 	public String homePage(ModelMap model, Principal principal,
 			HttpServletRequest request, HttpSession session) {
 
-		User user = userService.findByUserName(principal.getName());
+		UserEntity user = userService.findByUserName(principal.getName());
 
 		logger.info(user.toString());
 

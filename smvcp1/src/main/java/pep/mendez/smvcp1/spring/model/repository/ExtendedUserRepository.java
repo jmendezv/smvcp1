@@ -1,8 +1,5 @@
 package pep.mendez.smvcp1.spring.model.repository;
 
-import org.springframework.data.domain.Page;
-
-import pep.mendez.smvcp1.spring.model.entities.User;
 
 /**
  * Spring Data Repositories can be extended

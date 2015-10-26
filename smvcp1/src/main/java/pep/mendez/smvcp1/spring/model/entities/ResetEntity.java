@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "resets")
-public class Reset implements Serializable, Comparable<Reset> {
+public class ResetEntity extends BaseEntity implements Comparable<ResetEntity> {
 
 	/**
 	 * The serialVersionUID is used as a version control in a Serializable
@@ -29,9 +29,7 @@ public class Reset implements Serializable, Comparable<Reset> {
 	 * class,
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	
 	@Column(name="resetCode")
 	private long resetCode;
 	@Temporal(TemporalType.TIMESTAMP)
@@ -39,28 +37,20 @@ public class Reset implements Serializable, Comparable<Reset> {
 	private Date dateExpiry;
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = true)
-	private User user;
+	private UserEntity user;
 
-	public Reset() {
+	public ResetEntity() {
 	}
 
-	public Reset(long resetCode, Date dateExpriy) {
+	public ResetEntity(long resetCode, Date dateExpriy) {
 		this.resetCode = resetCode;
 		this.dateExpiry = dateExpriy;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	/**
 	 * @return the userConnection
 	 */
-	public User getUser() {
+	public UserEntity getUser() {
 		return user;
 	}
 
@@ -68,7 +58,7 @@ public class Reset implements Serializable, Comparable<Reset> {
 	 * @param userConnection
 	 *            the userConnection to set
 	 */
-	public void setUser(User user) {
+	public void setUser(UserEntity user) {
 		this.user = user;
 	}
 	
@@ -100,8 +90,8 @@ public class Reset implements Serializable, Comparable<Reset> {
 	}
 
 	@Override
-	public int compareTo(Reset reset) {
+	public int compareTo(ResetEntity reset) {
 		// TODO Auto-generated method stub
-		return this.id < reset.getId() ? -1 : this.id == 0 ? 0 : 1;
+		return id < reset.getId() ? -1 : id == 0 ? 0 : 1;
 	}
 }

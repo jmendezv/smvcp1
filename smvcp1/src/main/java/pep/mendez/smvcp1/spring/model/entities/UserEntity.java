@@ -8,9 +8,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -33,19 +30,16 @@ import org.hibernate.annotations.LazyCollectionOption;
  */
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
+public class UserEntity extends BaseEntity {
 
-	private static final long serialVersionUID = 1L;
 	/**
 	 * The serialVersionUID is used as a version control in a Serializable
 	 * class. If you do not explicitly declare a serialVersionUID, JVM will do
 	 * it for you automatically, based on various aspects of your Serializable
 	 * class,
 	 */
+	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
 	@Column(name = "username", length = 128, unique = true, nullable = false)
 	private String userName;
 	@Column(name = "password", length = 255, unique = false, nullable = false)
@@ -53,45 +47,37 @@ public class User implements Serializable {
 	@Column(name = "enabled")
 	private boolean enabled = false;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval = true)
-	private Collection<Authority> authorities = new LinkedList<Authority>();
+	private Collection<AuthorityEntity> authorities = new LinkedList<AuthorityEntity>();
 	// OpenSessionInViewFilter
 	// cannot simultaneously fetch multiple bags if EAGER
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
 	@LazyCollection(LazyCollectionOption.FALSE)
-	private Collection<Reset> resets = new LinkedList<Reset>();
+	private Collection<ResetEntity> resets = new LinkedList<ResetEntity>();
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
 	@LazyCollection(LazyCollectionOption.FALSE)
-	private Collection<Connection> connections = new LinkedList<Connection>();
+	private Collection<ConnectionEntity> connections = new LinkedList<ConnectionEntity>();
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true, mappedBy = "user")
-	private Profile profile;
+	private ProfileEntity profile;
 
-	public User() {
+	public UserEntity() {
 	}
 
-	public User(String userName, String password) {
+	public UserEntity(String userName, String password) {
 		this.userName = userName;
 		this.password = password;
 	}
 
-	public void add(Authority authority) {
+	public void add(AuthorityEntity authority) {
 		if (!authorities.contains(authority))
 			authorities.add(authority);
 	}
 
-	public void add(Connection connection) {
+	public void add(ConnectionEntity connection) {
 		connections.add(connection);
 	}
 
-	public void add(Reset reset) {
+	public void add(ResetEntity reset) {
 		resets.add(reset);
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public String getUserName() {
@@ -118,26 +104,26 @@ public class User implements Serializable {
 		this.enabled = enabled;
 	}
 
-	public Collection<Authority> getAuthorities() {
+	public Collection<AuthorityEntity> getAuthorities() {
 		return authorities;
 	}
 
-	public void setAuthorities(Collection<Authority> authorities) {
+	public void setAuthorities(Collection<AuthorityEntity> authorities) {
 		this.authorities = authorities;
 	}
 
-	public Profile getProfile() {
+	public ProfileEntity getProfile() {
 		return profile;
 	}
 
-	public void setProfile(Profile profile) {
+	public void setProfile(ProfileEntity profile) {
 		this.profile = profile;
 	}
 
 	/**
 	 * @return the connections
 	 */
-	public Collection<Connection> getConnections() {
+	public Collection<ConnectionEntity> getConnections() {
 		return connections;
 	}
 
@@ -145,14 +131,14 @@ public class User implements Serializable {
 	 * @param connections
 	 *            the connections to set
 	 */
-	public void setConnections(Collection<Connection> connections) {
+	public void setConnections(Collection<ConnectionEntity> connections) {
 		this.connections = connections;
 	}
 
 	/**
 	 * @return the resets
 	 */
-	public Collection<Reset> getResets() {
+	public Collection<ResetEntity> getResets() {
 		return resets;
 	}
 
@@ -160,7 +146,7 @@ public class User implements Serializable {
 	 * @param resets
 	 *            the resets to set
 	 */
-	public void setResets(Collection<Reset> resets) {
+	public void setResets(Collection<ResetEntity> resets) {
 		this.resets = resets;
 	}
 

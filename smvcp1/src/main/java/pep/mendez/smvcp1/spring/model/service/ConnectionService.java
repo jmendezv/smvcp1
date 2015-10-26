@@ -5,7 +5,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pep.mendez.smvcp1.spring.model.entities.Connection;
+import pep.mendez.smvcp1.spring.model.entities.ConnectionEntity;
 import pep.mendez.smvcp1.spring.model.repository.ConnectionRepository;
 
 @Service
@@ -16,7 +16,7 @@ public class ConnectionService {
 	private ConnectionRepository connectionRepository;
 	
 	@Secured({ "ROLE_ADMIN" })
-	public void save(Connection connection) {
+	public void save(ConnectionEntity connection) {
 		connectionRepository.save(connection);
 	}
 

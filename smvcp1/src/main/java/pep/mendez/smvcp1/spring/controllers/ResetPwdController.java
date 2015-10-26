@@ -26,8 +26,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pep.mendez.smvcp1.spring.formbeans.ResetPwdBean;
-import pep.mendez.smvcp1.spring.model.entities.Reset;
-import pep.mendez.smvcp1.spring.model.entities.User;
+import pep.mendez.smvcp1.spring.model.entities.ResetEntity;
+import pep.mendez.smvcp1.spring.model.entities.UserEntity;
 import pep.mendez.smvcp1.spring.model.service.UserService;
 import pep.mendez.smvcp1.utils.Utility;
 import pep.mendez.smvcp1.utils.UtilityConstants;
@@ -84,7 +84,7 @@ public class ResetPwdController {
 
 		String userName = resetPwdBean.getUserName();
 
-		User user = userService.findByUserName(userName);
+		UserEntity user = userService.findByUserName(userName);
 
 		// not enabled means discarded
 		if (user != null && !user.isEnabled()) {
@@ -104,7 +104,7 @@ public class ResetPwdController {
 		int hours = Integer.valueOf(env.getProperty(
 				"resetpwdcontroller.expiryhours", "24"));
 
-		Reset reset = new Reset(new Random().nextLong(), new Date(
+		ResetEntity reset = new ResetEntity(new Random().nextLong(), new Date(
 				System.currentTimeMillis() + DateTimeConstants.MILLIS_PER_HOUR
 						* hours));
 		reset.setUser(user);

@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pep.mendez.smvcp1.spring.formbeans.UserRegistrationBean;
-import pep.mendez.smvcp1.spring.model.entities.Authority;
-import pep.mendez.smvcp1.spring.model.entities.User;
+import pep.mendez.smvcp1.spring.model.entities.AuthorityEntity;
+import pep.mendez.smvcp1.spring.model.entities.UserEntity;
 import pep.mendez.smvcp1.spring.model.service.UserService;
 import pep.mendez.smvcp1.utils.Utility;
 import pep.mendez.smvcp1.utils.UtilityConstants;
@@ -77,7 +77,7 @@ public class RegisterController {
 
 		String userName = userRegistrationBean.getUserName();
 
-		User user = userService.findByUserName(userName);
+		UserEntity user = userService.findByUserName(userName);
 
 		// Error user ja existeix
 		if (user != null && !user.isEnabled()) {
@@ -92,7 +92,7 @@ public class RegisterController {
 
 		// new user
 		if (user == null) {
-			user = new User(userName, encodedPassword);
+			user = new UserEntity(userName, encodedPassword);
 		}
 		// existing user, assign new password
 		else {
@@ -101,7 +101,7 @@ public class RegisterController {
 
 		// assign user role if no authority granted
 		if (user.getAuthorities().size() == 0) {
-			Authority authority = new Authority(userName, "ROLE_USER");
+			AuthorityEntity authority = new AuthorityEntity(userName, "ROLE_USER");
 			authority.setUser(user);
 			user.add(authority);
 		}

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pep.mendez.smvcp1.spring.formbeans.UserRegistrationBean;
-import pep.mendez.smvcp1.spring.model.entities.User;
+import pep.mendez.smvcp1.spring.model.entities.UserEntity;
 import pep.mendez.smvcp1.spring.model.service.UserService;
 import pep.mendez.smvcp1.utils.UtilityConstants;
 
@@ -65,7 +65,7 @@ public class ChangePwdController {
 
 		String userName = userRegistrationBean.getUserName();
 
-		User user = userService.findByUserName(userName);
+		UserEntity user = userService.findByUserName(userName);
 
 		model.addAttribute("user", user);
 

@@ -11,8 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
-import pep.mendez.smvcp1.spring.model.entities.Authority;
-import pep.mendez.smvcp1.spring.model.entities.User;
+import pep.mendez.smvcp1.spring.model.entities.AuthorityEntity;
+import pep.mendez.smvcp1.spring.model.entities.UserEntity;
 import pep.mendez.smvcp1.spring.model.repository.UserRepository;
 
 /**
@@ -34,10 +34,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
-		User user = userRepository.findByUserName(username);
+		UserEntity user = userRepository.findByUserName(username);
 		String password = user.getPassword();
 		Collection<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-		for (Authority authority : user.getAuthorities()) {
+		for (AuthorityEntity authority : user.getAuthorities()) {
 			SimpleGrantedAuthority sga = new SimpleGrantedAuthority(
 					authority.getAuthority());
 			authorities.add(sga);

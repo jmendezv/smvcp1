@@ -19,8 +19,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import pep.mendez.smvcp1.spring.model.entities.Connection;
-import pep.mendez.smvcp1.spring.model.entities.User;
+import pep.mendez.smvcp1.spring.model.entities.ConnectionEntity;
+import pep.mendez.smvcp1.spring.model.entities.UserEntity;
 import pep.mendez.smvcp1.spring.model.service.AdminService;
 import pep.mendez.smvcp1.spring.model.service.ConnectionService;
 import pep.mendez.smvcp1.spring.model.service.UserService;
@@ -56,7 +56,7 @@ public class AdminController {
 
 	@RequestMapping(value = "/admin")
 	public String adminPage(ModelMap model, Principal principal) {
-		Collection<User> users = userService.findAll();
+		Collection<UserEntity> users = userService.findAll();
 		model.addAttribute("principal", principal.getName());
 		model.addAttribute("users", users);
 		return "admin";
@@ -71,8 +71,8 @@ public class AdminController {
 	public void adminService(ModelMap model, Principal principal,
 			HttpServletRequest request) {
 		String ip = request.getRemoteAddr();
-		Connection connection = new Connection(new Date(), ip);
-		User user = userService.findByUserName(principal.getName());
+		ConnectionEntity connection = new ConnectionEntity(new Date(), ip);
+		UserEntity user = userService.findByUserName(principal.getName());
 		connection.setUser(user);
 		connectionService.save(connection);
 		// adminService.performSomeAdminService1(123456);

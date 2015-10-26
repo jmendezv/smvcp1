@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pep.mendez.smvcp1.spring.formbeans.UserEditBean;
-import pep.mendez.smvcp1.spring.model.entities.Authority;
-import pep.mendez.smvcp1.spring.model.entities.User;
+import pep.mendez.smvcp1.spring.model.entities.AuthorityEntity;
+import pep.mendez.smvcp1.spring.model.entities.UserEntity;
 import pep.mendez.smvcp1.spring.model.service.UserService;
 import pep.mendez.smvcp1.utils.UtilityConstants;
 
@@ -48,10 +48,10 @@ public class EditController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET, params = { "id" })
 	public String editPage(@RequestParam(value = "id") long id, ModelMap model) {
-		User user = userService.findOne(id);
+		UserEntity user = userService.findOne(id);
 		UserEditBean userEditBean = new UserEditBean(user.getUserName(),
 				user.isEnabled());
-		for (Authority authority : user.getAuthorities()) {
+		for (AuthorityEntity authority : user.getAuthorities()) {
 			userEditBean.addRole(authority.getAuthority());
 		}
 		List<String> allRoles = Arrays.asList("ROLE_USER", "ROLE_ADMIN",
@@ -81,7 +81,7 @@ public class EditController {
 		}
 
 		String userName = userEditBean.getUserName();
-		User user = userService.findByUserName(userName);
+		UserEntity user = userService.findByUserName(userName);
 
 		switch (action) {
 		case "delete":
@@ -93,7 +93,7 @@ public class EditController {
 			List<String> roles = userEditBean.getRoles();
 			if (roles != null) {
 				for (String role : roles) {
-					Authority authority = new Authority(userName, role);
+					AuthorityEntity authority = new AuthorityEntity(userName, role);
 					authority.setUser(user);
 					user.add(authority);
 				}

@@ -7,8 +7,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pep.mendez.smvcp1.spring.model.entities.Contact;
-import pep.mendez.smvcp1.spring.model.entities.User;
+import pep.mendez.smvcp1.spring.model.entities.ContactEntity;
+import pep.mendez.smvcp1.spring.model.entities.UserEntity;
 import pep.mendez.smvcp1.spring.model.repository.ContactRepository;
 
 @Service
@@ -18,23 +18,23 @@ public class ContactService {
 	@Autowired
 	private ContactRepository contactRepository;
 
-	public Contact findByuserName(String userName) {
+	public ContactEntity findByuserName(String userName) {
 		return contactRepository.findByUserName(userName);
 	}
 
-	public Collection<Contact> findAll() {
+	public Collection<ContactEntity> findAll() {
 		return contactRepository.findAll();
 	}
 
-	public Contact save(Contact contact) {
+	public ContactEntity save(ContactEntity contact) {
 		return contactRepository.save(contact);
 	}
 
-	public Contact findOne(long id) {
+	public ContactEntity findOne(long id) {
 		return contactRepository.findOne(id);
 	}
 
-	public void delete(Contact contact) {
+	public void delete(ContactEntity contact) {
 		contactRepository.delete(contact);
 	}
 

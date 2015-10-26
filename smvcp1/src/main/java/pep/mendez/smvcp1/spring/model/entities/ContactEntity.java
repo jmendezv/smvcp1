@@ -4,20 +4,22 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "contacts")
-public class Contact {
+public class ContactEntity extends BaseEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	/**
+	 * The serialVersionUID is used as a version control in a Serializable
+	 * class. If you do not explicitly declare a serialVersionUID, JVM will do
+	 * it for you automatically, based on various aspects of your Serializable
+	 * class,
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "username", length = 128, unique = true, nullable = false)
 	private String userName;
 	@Temporal(TemporalType.TIMESTAMP)
@@ -28,31 +30,16 @@ public class Contact {
 	@Column(name = "comments")
 	private String comments;
 
-	public Contact() {
+	public ContactEntity() {
 	}
 
-	public Contact(long id, String userName, Date dateContact, String subject, String comments) {
+	public ContactEntity(String userName, Date dateContact, String subject,
+			String comments) {
 
-		this.id = id;
 		this.dateContact = dateContact;
 		this.userName = userName;
 		this.subject = subject;
 		this.comments = comments;
-	}
-
-	/**
-	 * @return the id
-	 */
-	public long getId() {
-		return id;
-	}
-
-	/**
-	 * @param id
-	 *            the id to set
-	 */
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	/**
@@ -153,10 +140,10 @@ public class Contact {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof Contact)) {
+		if (!(obj instanceof ContactEntity)) {
 			return false;
 		}
-		Contact other = (Contact) obj;
+		ContactEntity other = (ContactEntity) obj;
 		if (id != other.id) {
 			return false;
 		}

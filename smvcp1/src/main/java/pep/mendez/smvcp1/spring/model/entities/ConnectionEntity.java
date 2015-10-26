@@ -1,13 +1,9 @@
 package pep.mendez.smvcp1.spring.model.entities;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -20,7 +16,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "connections")
-public class Connection implements Serializable {
+public class ConnectionEntity extends BaseEntity {
 
 	/**
 	 * The serialVersionUID is used as a version control in a Serializable
@@ -29,10 +25,10 @@ public class Connection implements Serializable {
 	 * class,
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+
 	@Temporal(TemporalType.TIMESTAMP)
+	// @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	// @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date timeIn;
 	// @Temporal(TemporalType.TIMESTAMP)
 	// private Date timeOut;
@@ -41,28 +37,14 @@ public class Connection implements Serializable {
 	private String ip;
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = true)
-	private User user;
+	private UserEntity user;
 
-	public Connection() {
+	public ConnectionEntity() {
 	}
 
-	public Connection(Date timeIn, String ip) {
+	public ConnectionEntity(Date timeIn, String ip) {
 		this.timeIn = timeIn;
 		this.ip = ip;
-	}
-
-	// public Connection(Date timeIn, Date timeOut, String ip) {
-	// this.timeIn = timeIn;
-	// this.timeOut = timeOut;
-	// this.ip = ip;
-	// }
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public Date getTimeIn() {
@@ -72,14 +54,6 @@ public class Connection implements Serializable {
 	public void setTimeIn(Date timeIn) {
 		this.timeIn = timeIn;
 	}
-
-	// public Date getTimeOut() {
-	// return timeOut;
-	// }
-	//
-	// public void setTimeOut(Date timeOut) {
-	// this.timeOut = timeOut;
-	// }
 
 	public String getIp() {
 		return ip;
@@ -92,7 +66,7 @@ public class Connection implements Serializable {
 	/**
 	 * @return the userConnection
 	 */
-	public User getUser() {
+	public UserEntity getUser() {
 		return user;
 	}
 
@@ -100,7 +74,7 @@ public class Connection implements Serializable {
 	 * @param userConnection
 	 *            the userConnection to set
 	 */
-	public void setUser(User user) {
+	public void setUser(UserEntity user) {
 		this.user = user;
 	}
 }
