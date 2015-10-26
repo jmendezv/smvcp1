@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import pep.mendez.smvcp1.spring.model.entities.Reset;
-import pep.mendez.smvcp1.spring.model.entities.User;
+import pep.mendez.smvcp1.spring.model.entities.ResetEntity;
+import pep.mendez.smvcp1.spring.model.entities.UserEntity;
 import pep.mendez.smvcp1.spring.model.service.UserService;
 import pep.mendez.smvcp1.utils.Utility;
 import pep.mendez.smvcp1.utils.UtilityConstants;
@@ -72,7 +72,7 @@ public class ValidateResetPwdController {
 		ModelAndView mav = new ModelAndView("validatedresetpwd", "message",
 				msgValidationError);
 
-		User user = userService.findOne(id);
+		UserEntity user = userService.findOne(id);
 
 		// no resets registered
 		if (user.getAuthorities().isEmpty()) {
@@ -90,9 +90,9 @@ public class ValidateResetPwdController {
 				// List<Reset> resets = ((List<Reset>) user.getResets());
 				// Reset reset = resets.get(resets.size() - 1);
 				// get last streams
-				Optional<Reset> optReset = user.getResets().stream()
+				Optional<ResetEntity> optReset = user.getResets().stream()
 						.reduce((a, b) -> b);
-				Reset reset = optReset.get();
+				ResetEntity reset = optReset.get();
 				// second level of security
 				// not expired yet
 				if (new Date().before(reset.getDateExpiry())) {

@@ -1,14 +1,10 @@
 package pep.mendez.smvcp1.spring.model.entities;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -21,7 +17,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "profiles")
-public class Profile implements Serializable {
+public class ProfileEntity extends BaseEntity {
 
 	/**
 	 * The serialVersionUID is used as a version control in a Serializable
@@ -30,9 +26,7 @@ public class Profile implements Serializable {
 	 * class,
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+
 	@Column(name = "name", length = 32, nullable = false, unique = false)
 	private String name;
 	@Column(name = "city", length = 32, nullable = false, unique = false)
@@ -48,23 +42,7 @@ public class Profile implements Serializable {
 	private Date date;
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", nullable = true)
-	private User user;
-
-	/*
-	 * Every time a record gets updated, hibernate will increment the counter
-	 * with 1. it decreases the chance that your clients are working with stale
-	 * data.
-	 */
-	// @Version
-	// private long version;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
+	private UserEntity user;
 
 	public String getName() {
 		return name;
@@ -98,11 +76,11 @@ public class Profile implements Serializable {
 		this.phone = phone;
 	}
 
-	public User getUser() {
+	public UserEntity getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserEntity user) {
 		this.user = user;
 	}
 

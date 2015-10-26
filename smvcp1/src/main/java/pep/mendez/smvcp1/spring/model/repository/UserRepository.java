@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import pep.mendez.smvcp1.spring.model.entities.User;
+import pep.mendez.smvcp1.spring.model.entities.UserEntity;
 
 /**
  * 
@@ -33,7 +33,7 @@ import pep.mendez.smvcp1.spring.model.entities.User;
  */
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>,
+public interface UserRepository extends JpaRepository<UserEntity, Long>,
 		ExtendedUserRepository {
 
 	/*
@@ -60,7 +60,7 @@ public interface UserRepository extends JpaRepository<User, Long>,
 	 */
 	//@Cacheable(value = "usersCache", condition = "true", unless = "false")
 	//@Lock(LockModeType.READ)
-	User findByUserName(String userName);
+	UserEntity findByUserName(String userName);
 	
 	/*
 	 * Avoids
@@ -68,7 +68,7 @@ public interface UserRepository extends JpaRepository<User, Long>,
 	 */
 	@Modifying
 	// @Transactional
-	@Query(value = "delete from User u where u.enabled = :enabled")
+	@Query(value = "delete from UserEntity u where u.enabled = :enabled")
 	public void deleteAllUsers(@Param("enabled") boolean enabled);
 
 }

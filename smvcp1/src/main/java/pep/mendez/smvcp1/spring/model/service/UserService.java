@@ -9,7 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pep.mendez.smvcp1.spring.model.entities.User;
+import pep.mendez.smvcp1.spring.model.entities.UserEntity;
 import pep.mendez.smvcp1.spring.model.repository.UserRepository;
 
 /**
@@ -17,6 +17,7 @@ import pep.mendez.smvcp1.spring.model.repository.UserRepository;
  *
  */
 @Service
+// readOnly defaults to false
 @Transactional
 public class UserService {
 	private static final int PAGE_SIZE = 5;
@@ -24,32 +25,35 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public User findByUserName(String userName) {
+	@Transactional(readOnly = true)
+	public UserEntity findByUserName(String userName) {
 		return userRepository.findByUserName(userName);
 	}
 
-	public Collection<User> findAll() {
+	@Transactional(readOnly = true)
+	public Collection<UserEntity> findAll() {
 		return userRepository.findAll();
 	}
 
 	/*
 	 * PageRequest is a basic implementation of Pageable
 	 */
-	public Page<User> findAll(final int pageNumber) {
+	public Page<UserEntity> findAll(final int pageNumber) {
 		PageRequest pageRequest = new PageRequest(pageNumber, PAGE_SIZE,
 				Sort.Direction.ASC, "id");
 		return userRepository.findAll(pageRequest);
 	}
 
-	public User save(User user) {
+	public UserEntity save(UserEntity user) {
 		return userRepository.save(user);
 	}
 
-	public User findOne(long id) {
+	@Transactional(readOnly = true)
+	public UserEntity findOne(long id) {
 		return userRepository.findOne(id);
 	}
 	
-	public void delete(User user) {
+	public void delete(UserEntity user) {
 		userRepository.delete(user);
 	}
 	

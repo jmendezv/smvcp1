@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import pep.mendez.smvcp1.spring.model.entities.User;
+import pep.mendez.smvcp1.spring.model.entities.UserEntity;
 import pep.mendez.smvcp1.spring.model.service.UserService;
 import pep.mendez.smvcp1.utils.Utility;
 import pep.mendez.smvcp1.utils.UtilityConstants;
@@ -60,7 +60,7 @@ public class ValidateNewUserController {
 		ModelAndView mav = new ModelAndView("validatednewuser", "message",
 				msgValidationError);
 		mav.addObject("user", "");
-		User user = userService.findOne(id);
+		UserEntity user = userService.findOne(id);
 		// Hash del userName + SALT
 		String md5Hex = DigestUtils
 				.md5DigestAsHex((user.getUserName() + Utility.SALT).getBytes());

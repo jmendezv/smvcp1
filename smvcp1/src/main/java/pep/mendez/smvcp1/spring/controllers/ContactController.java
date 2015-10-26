@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pep.mendez.smvcp1.spring.formbeans.ContactBean;
-import pep.mendez.smvcp1.spring.model.entities.Contact;
+import pep.mendez.smvcp1.spring.model.entities.ContactEntity;
 import pep.mendez.smvcp1.spring.model.service.ContactService;
 import pep.mendez.smvcp1.utils.UtilityConstants;
 
@@ -77,11 +77,11 @@ public class ContactController {
 
 		String userName = contactBean.getUserName();
 
-		Contact contact = contactService.findByuserName(userName);
+		ContactEntity contact = contactService.findByuserName(userName);
 
 		if (contact == null) {
 
-			contact = new Contact();
+			contact = new ContactEntity();
 
 			BeanUtils.copyProperties(contact, contactBean);
 

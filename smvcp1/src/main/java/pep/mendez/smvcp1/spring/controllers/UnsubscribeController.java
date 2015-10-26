@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import pep.mendez.smvcp1.spring.model.entities.User;
+import pep.mendez.smvcp1.spring.model.entities.UserEntity;
 import pep.mendez.smvcp1.spring.model.service.UserService;
 import pep.mendez.smvcp1.utils.UtilityConstants;
 
@@ -51,7 +51,7 @@ public class UnsubscribeController {
 			@RequestParam(value = "username", required = true) String userName,
 			HttpServletRequest request, HttpServletResponse response) {
 
-		User user = userService.findByUserName(userName);
+		UserEntity user = userService.findByUserName(userName);
 		user.setEnabled(false);
 		userService.save(user);
 

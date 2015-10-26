@@ -1,24 +1,20 @@
 package pep.mendez.smvcp1.spring.model.entities;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
+ * 
  * @author pep
  *
  */
 @Entity
 @Table(name = "authorities")
-public class Authority implements Serializable {
+public class AuthorityEntity extends BaseEntity {
 
 	
 	/**
@@ -28,38 +24,28 @@ public class Authority implements Serializable {
 	 * class,
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	
 	@Column(name = "username", length = 64, nullable = false, unique = false)
 	private String userName;
 	@Column(name = "authority", length = 64, nullable = false, unique = false)
 	private String authority;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", nullable = true)
-	private User user;
+	private UserEntity user;
 
-	public Authority() {
+	public AuthorityEntity() {
 	}
 
-	public Authority(String userName, String authority) {
+	public AuthorityEntity(String userName, String authority) {
 		this.userName = userName;
 		this.authority = authority;
 	}
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public User getUser() {
+	public UserEntity getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserEntity user) {
 		this.user = user;
 	}
 
@@ -104,10 +90,10 @@ public class Authority implements Serializable {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof Authority)) {
+		if (!(obj instanceof AuthorityEntity)) {
 			return false;
 		}
-		Authority other = (Authority) obj;
+		AuthorityEntity other = (AuthorityEntity) obj;
 		if (authority == null) {
 			if (other.authority != null) {
 				return false;

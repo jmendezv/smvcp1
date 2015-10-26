@@ -24,8 +24,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pep.mendez.smvcp1.spring.formbeans.ProfileBean;
-import pep.mendez.smvcp1.spring.model.entities.Profile;
-import pep.mendez.smvcp1.spring.model.entities.User;
+import pep.mendez.smvcp1.spring.model.entities.ProfileEntity;
+import pep.mendez.smvcp1.spring.model.entities.UserEntity;
 import pep.mendez.smvcp1.spring.model.service.UserService;
 import pep.mendez.smvcp1.utils.UtilityConstants;
 
@@ -80,8 +80,8 @@ public class ProfileController {
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String registerPage(Principal principal, ModelMap model) {
 
-		User user = userService.findByUserName(principal.getName());
-		Profile profile = user.getProfile();
+		UserEntity user = userService.findByUserName(principal.getName());
+		ProfileEntity profile = user.getProfile();
 		ProfileBean profileBean = new ProfileBean();
 		if (profile != null) {
 			profileBean.setCity(profile.getCity());
@@ -112,7 +112,7 @@ public class ProfileController {
 			@RequestParam(value = "action", required = true) String action,
 			ModelMap model) {
 
-		User user = userService.findByUserName(principal.getName());
+		UserEntity user = userService.findByUserName(principal.getName());
 		// home need this attribute
 		model.addAttribute("user", user);
 
@@ -127,9 +127,9 @@ public class ProfileController {
 		String ip = request.getRemoteAddr();
 
 		// guardar profile
-		Profile profile = user.getProfile();
+		ProfileEntity profile = user.getProfile();
 		if (profile == null) {
-			profile = new Profile();
+			profile = new ProfileEntity();
 			user.setProfile(profile);
 			profile.setUser(user);
 		}

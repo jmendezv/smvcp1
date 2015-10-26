@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import pep.mendez.smvcp1.exceptions.UserNotFoundException;
-import pep.mendez.smvcp1.spring.model.entities.User;
+import pep.mendez.smvcp1.spring.model.entities.UserEntity;
 import pep.mendez.smvcp1.spring.model.service.UserService;
 import pep.mendez.smvcp1.utils.UtilityConstants;
 
@@ -65,8 +65,8 @@ public class UserRestController {
 	 * email thus containing one or more dots
 	 */
 	@RequestMapping(value = "/user/{name:.+}", method = RequestMethod.GET)
-	public User userByName(@PathVariable("name") String name) {
-		User user = userService.findByUserName(name);
+	public UserEntity userByName(@PathVariable("name") String name) {
+		UserEntity user = userService.findByUserName(name);
 		if (user == null) {
 			throw new UserNotFoundException(name);
 		}

@@ -2,39 +2,41 @@ package pep.mendez.smvcp1.spring.model.service;
 
 import java.util.Collection;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import pep.mendez.smvcp1.spring.model.entities.Contact;
-import pep.mendez.smvcp1.spring.model.entities.User;
+import pep.mendez.smvcp1.spring.model.entities.ContactEntity;
 import pep.mendez.smvcp1.spring.model.repository.ContactRepository;
 
 @Service
+// readOnly defaults to false
 @Transactional
 public class ContactService {
 
 	@Autowired
 	private ContactRepository contactRepository;
 
-	public Contact findByuserName(String userName) {
+	@Transactional(readOnly = true)
+	public ContactEntity findByuserName(String userName) {
 		return contactRepository.findByUserName(userName);
 	}
 
-	public Collection<Contact> findAll() {
+	@Transactional(readOnly = true)
+	public Collection<ContactEntity> findAll() {
 		return contactRepository.findAll();
 	}
 
-	public Contact save(Contact contact) {
+	public ContactEntity save(ContactEntity contact) {
 		return contactRepository.save(contact);
 	}
 
-	public Contact findOne(long id) {
+	@Transactional(readOnly = true)
+	public ContactEntity findOne(long id) {
 		return contactRepository.findOne(id);
 	}
 
-	public void delete(Contact contact) {
+	public void delete(ContactEntity contact) {
 		contactRepository.delete(contact);
 	}
 

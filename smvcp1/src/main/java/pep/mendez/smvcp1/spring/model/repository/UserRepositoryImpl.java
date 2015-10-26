@@ -29,7 +29,7 @@ public class UserRepositoryImpl implements ExtendedUserRepository {
 
 	@Override
 	public void enableAll() {
-		entityManager.createQuery("UPDATE User user SET user.enabled = 1 WHERE user.enabled = 0")
+		entityManager.createQuery("UPDATE UserEntity user SET user.enabled = 1 WHERE user.enabled = 0")
 				.executeUpdate();
 	}
 
