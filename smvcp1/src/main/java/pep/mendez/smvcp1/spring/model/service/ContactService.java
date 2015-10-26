@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pep.mendez.smvcp1.spring.model.entities.ContactEntity;
+<<<<<<< HEAD
+=======
+import pep.mendez.smvcp1.spring.model.entities.UserEntity;
+>>>>>>> branch 'master' of https://jmendezv@bitbucket.org/jmendezv/smvcp1.git
 import pep.mendez.smvcp1.spring.model.repository.ContactRepository;
 
 @Service
@@ -22,6 +26,7 @@ public class ContactService {
 		return contactRepository.findByUserName(userName);
 	}
 
+
 	@Transactional(readOnly = true)
 	public Collection<ContactEntity> findAll() {
 		return contactRepository.findAll();
@@ -30,6 +35,7 @@ public class ContactService {
 	public ContactEntity save(ContactEntity contact) {
 		return contactRepository.save(contact);
 	}
+
 
 	@Transactional(readOnly = true)
 	public ContactEntity findOne(long id) {

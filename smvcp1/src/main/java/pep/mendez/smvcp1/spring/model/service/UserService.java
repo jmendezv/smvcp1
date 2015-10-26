@@ -25,6 +25,7 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
+
 	@Transactional(readOnly = true)
 	public UserEntity findByUserName(String userName) {
 		return userRepository.findByUserName(userName);
