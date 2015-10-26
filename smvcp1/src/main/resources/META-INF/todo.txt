@@ -2,7 +2,7 @@ TODO list
 
 * calendar
 
-* application's browser icon 
+* captcha en login
 
 sudo apt-get install mysql-server amarok
 create database amarokdb;
