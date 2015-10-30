@@ -2,6 +2,8 @@ package pep.mendez.smvcp1.spring.config;
 
 import java.util.Properties;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 
 import net.sf.ehcache.CacheManager;
@@ -51,7 +53,7 @@ import pep.mendez.smvcp1.spring.validators.ProfileFormValidator;
 @EnableAspectJAutoProxy(proxyTargetClass = false)
 @ComponentScan(basePackageClasses = { SpringDef.class }, excludeFilters = { @Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })
 @PropertySources({ @PropertySource(value = "classpath:application.properties"), })
-@Profile("production")
+// @Profile("production")
 // database config from xml
 //@ImportResource("classpath:/config/database-config.xml")
 @EnableCaching
@@ -134,6 +136,11 @@ public class SpringContextConfig {
 	 */
 
 	/**
+	 * EntityManagerFactory used to inject an EntityManager via
+	 * 
+	 * @PersistenceContext
+	 * private EntityManager entityManager;
+	 * 
 	 * This is the most powerful way to set up a shared JPA EntityManagerFactory
 	 * in a Spring application context; the EntityManagerFactory can then be
 	 * passed to JPA-based DAOs via dependency injection.

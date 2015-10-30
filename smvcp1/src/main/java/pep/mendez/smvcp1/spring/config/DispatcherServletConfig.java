@@ -14,6 +14,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -30,10 +32,21 @@ import pep.mendez.smvcp1.spring.SpringDef;
  *
  */
 @Configuration
+/*
+ * 
+ * 
+ * To customize the imported configuration, implement the interface
+ * WebMvcConfigurer or more likely extend the empty method base class
+ * WebMvcConfigurerAdapter and override individual methods.
+ */
 @EnableWebMvc
 // TODO When to use ComponentScan
 @ComponentScan(basePackageClasses = { SpringDef.class })
 @PropertySources({ @PropertySource(value = "classpath:application.properties"), })
+/*
+ * An implementation of WebMvcConfigurer with empty methods allowing sub-classes
+ * to override only the methods they're interested in.
+ */
 public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
 
 	@Autowired
@@ -74,6 +87,12 @@ public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
 	}
 
 	/*
+	 * Globally manages application scope Exceptions
+	 * 
+	 * HandlerExceptionResolver implementation that allows for mapping exception
+	 * class names to view names, either for a set of given handlers or for all
+	 * handlers in the DispatcherPortlet.
+	 * 
 	 * Interface to be implemented by objects than can resolve exceptions thrown
 	 * during handler mapping or execution, in the typical case to error views.
 	 * Implementors are typically registered as beans in the application
@@ -83,28 +102,20 @@ public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
 	public SimpleMappingExceptionResolver createSimpleMappingExceptionResolver() {
 
 		SimpleMappingExceptionResolver exceptionResolver = new SimpleMappingExceptionResolver() {
+
+			/*
+			 * Actually resolve the given exception that got thrown during on
+			 * handler execution, returning a ModelAndView that represents a
+			 * specific error page if appropriate.
+			 */
 			@Override
 			protected ModelAndView doResolveException(
 					HttpServletRequest request, HttpServletResponse response,
 					Object handler, Exception ex) {
+				
 				ModelAndView mav = super.doResolveException(request, response,
 						handler, ex);
 
-				mav.addObject("url", request.getRequestURL());
-				mav.addObject("timestamp", new Date());
-				mav.addObject("error", ex.getMessage());
-				mav.addObject(
-						SimpleMappingExceptionResolver.DEFAULT_EXCEPTION_ATTRIBUTE,
-						ex);
-
-				return mav;
-			}
-
-			@Override
-			protected ModelAndView getModelAndView(String viewName,
-					Exception ex, HttpServletRequest request) {
-
-				ModelAndView mav = new ModelAndView("exception");
 				mav.addObject("url", request.getRequestURL());
 				mav.addObject("timestamp", new Date());
 				mav.addObject("error", ex.getMessage());

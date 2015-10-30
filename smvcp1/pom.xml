@@ -434,6 +434,22 @@
 			<version>${joda-time.version}</version>
 		</dependency>
 
+		<!-- recaptcha4j -->
+		<!-- dependency>
+			<groupId>net.tanesha.recaptcha4j</groupId>
+			<artifactId>recaptcha4j</artifactId>
+			<version>0.0.7</version>
+		</dependency -->
+
+		<!-- SimpleCaptcha -->
+		<!-- dependency>
+			<groupId>com.google.code.maven-play-plugin.org.playframework</groupId>
+			<artifactId>jj-simplecaptcha</artifactId>
+			<version>1.1</version>
+		</dependency -->
+
+
+
 	</dependencies>
 
 	<build>

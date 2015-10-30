@@ -4,6 +4,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.orm.jpa.EntityManagerFactoryUtils;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -20,6 +22,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserRepositoryImpl implements ExtendedUserRepository {
 
+	/*
+	 * Injects the entityManagerFactory bean of type
+	 * LocalContainerEntityManagerFactoryBean
+	 */
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -29,7 +35,9 @@ public class UserRepositoryImpl implements ExtendedUserRepository {
 
 	@Override
 	public void enableAll() {
-		entityManager.createQuery("UPDATE UserEntity user SET user.enabled = 1 WHERE user.enabled = 0")
+		entityManager
+				.createQuery(
+						"UPDATE UserEntity user SET user.enabled = 1 WHERE user.enabled = 0")
 				.executeUpdate();
 	}
 
