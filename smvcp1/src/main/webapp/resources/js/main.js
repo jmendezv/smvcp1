@@ -2,6 +2,10 @@ $(document).ready(function() {
 
 });
 
+$(document).ready(function() {
+    $(".dropdown-toggle").dropdown();
+});
+
 $(function() {
 	$("#about_dialog").dialog({
 		autoOpen : false,
@@ -97,12 +101,7 @@ $(function() {
  * {'content': 'Hello World!'}, this); }); });
  */
 /*
-$('#map_canvas').gmap('addMarker', {
-	'position' : '57.7973333,12.0502107',
-	'bounds' : true
-}).click(function() {
-	$('#map_canvas').gmap('openInfoWindow', {
-		'content' : 'Hello World!'
-	}, this);
-});
-*/
+ * $('#map_canvas').gmap('addMarker', { 'position' : '57.7973333,12.0502107',
+ * 'bounds' : true }).click(function() { $('#map_canvas').gmap('openInfoWindow', {
+ * 'content' : 'Hello World!' }, this); });
+ */

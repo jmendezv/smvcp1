@@ -10,46 +10,48 @@
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#"><span th:text="#{application.acronym}"/></a>
+					<a class="navbar-brand" href="#"><span th:text="#{application.acronym}"/>
+					<img class="brand"
+						th:src="@{resources/images/icon.png}" />
+					</a>
 				</div>
 				<div>
 					<ul class="nav navbar-nav">
 
 						<li class="active"><a href="#">
 						<span class="glyphicon glyphicon-home" />
-						<span th:text="#{home.home}" />
+						<span th:text="#{navbar.home}" />
 						</a></li>
 
 						<li><a href="#" th:href="@{/profile}">
 						<span class="glyphicon glyphicon-pencil" />
-						<span th:text="#{home.profile}" /></a></li>
+						<span th:text="#{navbar.profile}" /></a></li>
 
 						<li><a href="#"
 							th:href="@{/changepwd(username=${#httpServletRequest.userPrincipal.name})}">
 							<span class="glyphicon glyphicon-lock"></span>
-							<span th:text="#{home.changepwd}" class="text-default" /></a></li>
+							<span th:text="#{navbar.changepwd}" class="text-default" /></a></li>
 
 						<li><a id="unsubscribe" href="#"
 							th:href="@{/unsubscribe(username=${#httpServletRequest.userPrincipal.name})}">
 							<span class="glyphicon glyphicon-remove" />
 
-								<span th:text="#{home.unsubscribe}" class="text-danger" />
+								<span th:text="#{navbar.unsubscribe}" class="text-danger" />
 						</a></li>
 
 						<li sec:authorize-url="/admin"><a href="admin"
 
 							th:href="@{/admin}">
 							<span class="glyphicon glyphicon-exclamation-sign"/>
-							<span th:text="#{home.adminArea}" /></a></li>
+							<span th:text="#{navbar.admin}" /></a></li>
 
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 
 						<li><a href="/logout" th:href="@{/logout}"><span
 								class="glyphicon glyphicon-off"></span> <span
-								th:text="#{home.logout}" /></a></li>
-								
-
+								th:text="#{navbar.logout}" /></a></li>
+		
 					</ul>
 
 				</div>
@@ -84,16 +86,77 @@
 			<tbody>
 				<tr th:each="auth : *{authorities}"
 					th:class="${authStat.even} ? 'even' : 'odd'">
-					<td><img
-						th:if="${#strings.substringAfter(auth.authority,'_') eq 'ADMIN'}"
+					<td>
+					<a href="#" data-toggle="modal" data-target="#admin-dialog">
+					<img th:if="${#strings.substringAfter(auth.authority,'_') eq 'ADMIN'}"
 						alt="admin" src="../../resources/images/admin.png"
-						th:src="@{resources/images/admin.png}" /> <img
-						th:if="${#strings.substringAfter(auth.authority,'_') eq 'USER'}"
+						th:src="@{resources/images/admin.png}" data-toggle="tooltip" data-placement="below" th:title="#{home.clickme}" /></a> 
+						
+						<div class="modal fade" role="dialog" aria-hidden="true" id="admin-dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close float-right"
+											data-dismiss="modal">X</button>
+										<h3 class="modal-title"><span th:text="#{home.admin-dialog.title}" /></h3>
+									</div>
+									<div class="modal-body">
+										<span th:text="#{home.admin-dialog.body}" />
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success" data-dismiss="modal"><span th:text="#{home.admin-dialog.ok}" /></button>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<a href="#" data-toggle="modal" data-target="#user-dialog">
+						<img th:if="${#strings.substringAfter(auth.authority,'_') eq 'USER'}"
 						alt="user" src="../../resources/images/user.png"
-						th:src="@{resources/images/user.png}" /><img
-						th:if="${#strings.substringAfter(auth.authority,'_') eq 'ROOT'}"
+						th:src="@{resources/images/user.png}" data-toggle="tooltip" data-placement="below" th:title="#{home.clickme}"  /></a>
+						
+						<div class="modal fade" role="dialog" aria-hidden="true" id="user-dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close float-right"
+											data-dismiss="modal">X</button>
+										<h3 class="modal-title"><span th:text="#{home.user-dialog.title}" /></h3>
+									</div>
+									<div class="modal-body">
+										<span th:text="#{home.user-dialog.body}" />
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success" data-dismiss="modal"><span th:text="#{home.user-dialog.ok}" /></button>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<a href="#" data-toggle="modal" data-target="#root-dialog">
+						<img th:if="${#strings.substringAfter(auth.authority,'_') eq 'ROOT'}"
 						alt="root" src="../../resources/images/root.png"
-						th:src="@{resources/images/root.png}" /></td>
+						th:src="@{resources/images/root.png}" data-toggle="tooltip" data-placement="below" th:title="#{home.clickme}" /></a>
+						
+						<div class="modal fade" role="dialog" aria-hidden="true" id="root-dialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close float-right"
+											data-dismiss="modal">X</button>
+										<h3 class="modal-title"><span th:text="#{home.root-dialog.body}" /></h3>
+									</div>
+									<div class="modal-body">
+										<span th:text="#{home.root-dialog.body}" />
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success" data-dismiss="modal"><span th:text="#{home.root-dialog.ok}" /></button>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						</td>
 					<td th:text="${#strings.substringAfter(auth.authority,'_')}">x</td>
 				</tr>
 			</tbody>

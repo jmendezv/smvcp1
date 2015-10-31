@@ -8,6 +8,11 @@
 @import url("general.css");
 
 @import url("pagination.css");
+
+
+.brand {
+	max-height: 25px;
+}
 /*
 body {
 	color: #666666;
