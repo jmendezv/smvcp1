@@ -10,44 +10,47 @@
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#"><span th:text="#{application.acronym}"/></a>
+					<a class="navbar-brand" href="#"><span th:text="#{application.acronym}"/>
+					<img class="brand"
+						th:src="@{resources/images/icon.png}" />
+					</a>
 				</div>
 				<div>
 					<ul class="nav navbar-nav">
 
 						<li class="active"><a href="#">
 						<span class="glyphicon glyphicon-home" />
-						<span th:text="#{home.home}" />
+						<span th:text="#{navbar.home}" />
 						</a></li>
 
 						<li><a href="#" th:href="@{/profile}">
 						<span class="glyphicon glyphicon-pencil" />
-						<span th:text="#{home.profile}" /></a></li>
+						<span th:text="#{navbar.profile}" /></a></li>
 
 						<li><a href="#"
 							th:href="@{/changepwd(username=${#httpServletRequest.userPrincipal.name})}">
 							<span class="glyphicon glyphicon-lock"></span>
-							<span th:text="#{home.changepwd}" class="text-default" /></a></li>
+							<span th:text="#{navbar.changepwd}" class="text-default" /></a></li>
 
 						<li><a id="unsubscribe" href="#"
 							th:href="@{/unsubscribe(username=${#httpServletRequest.userPrincipal.name})}">
 							<span class="glyphicon glyphicon-remove" />
 
-								<span th:text="#{home.unsubscribe}" class="text-danger" />
+								<span th:text="#{navbar.unsubscribe}" class="text-danger" />
 						</a></li>
 
 						<li sec:authorize-url="/admin"><a href="admin"
 
 							th:href="@{/admin}">
 							<span class="glyphicon glyphicon-exclamation-sign"/>
-							<span th:text="#{home.adminArea}" /></a></li>
+							<span th:text="#{navbar.admin}" /></a></li>
 
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 
 						<li><a href="/logout" th:href="@{/logout}"><span
 								class="glyphicon glyphicon-off"></span> <span
-								th:text="#{home.logout}" /></a></li>
+								th:text="#{navbar.logout}" /></a></li>
 								
 
 					</ul>

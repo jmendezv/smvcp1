@@ -5,6 +5,44 @@
 </head>
 <body>
 	<div layout:fragment="content">
+	
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#"><span
+						th:text="#{application.acronym}" />
+						<img class="brand"
+						th:src="@{resources/images/icon.png}" />
+						</a>
+				</div>
+				<div>
+					<ul class="nav navbar-nav">
+
+						<li><a href="../smvcp1" th:href="@{../smvcp1}"> <span
+								class="glyphicon glyphicon-home" /> <span
+								th:text="#{navbar.home}"></span></a></li>
+
+						<li><a href="admin"	th:href="@{/admin}">
+							<span class="glyphicon glyphicon-exclamation-sign"/>
+							<span th:text="#{navbar.admin}" /></a></li>
+						
+						<li class="active"><a href="#"> <span
+								th:text="#{navbar.connections}" />
+						</a></li>
+
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+
+						<li><a href="/logout" th:href="@{/logout}"><span
+								class="glyphicon glyphicon-off"></span> <span
+								th:text="#{navbar.logout}" /></a></li>
+
+
+					</ul>
+				</div>
+			</div>
+		</nav>
+	
 
 		<h3 class="text-center" th:text="#{connections.title}"></h3>
 
@@ -41,15 +79,6 @@
 			</div>
 		</div>
 		<p />
-
-		<ul class="pager">
-		
-		<!-- li><a href="javascript:history.back()"><span
-					th:text="#{connections.back}"></span></a></li -->
-		
-			<li><a href="../smvcp1" th:href="@{../smvcp1}"><span
-					th:text="#{connections.gohome}"></span></a></li>
-		</ul>
 
 	</div>
 </body>

@@ -7,11 +7,11 @@
 
 	<div layout:fragment="content">
 
-		<nav class="navbar navbar-inverse" role="navigation">
+		<nav class="navbar navbar-inverse " role="navigation">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="#"> <span
-						th:text="#{application.acronym}" /> <img
+						th:text="#{application.acronym}" /> <img class="brand"
 						th:src="@{resources/images/icon.png}" />
 					</a>
 				</div>
@@ -26,38 +26,42 @@
 				<div class="collapse navbar-collapse" id="navbar-container">
 					<ul class="nav navbar-nav">
 
-						<li class="active"><a href="#"> <span
-								class="glyphicon glyphicon-home" /> <span
-								th:text="#{login.home}" /></a></li>
-
+					
 						<li><a href="/resetpwd" th:href="@{/resetpwd}"> <span
 								class="glyphicon glyphicon-link" /> <span
-								th:text="#{login.resetpwd}" /></a></li>
+								th:text="#{navbar.resetpwd}" /></a></li>
 
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 
 						<li><a href="/register" th:href="@{/register}"><span
 								class="glyphicon glyphicon-user"></span> <span
-								th:text="#{login.register}" /></a></li>
+								th:text="#{navbar.register}" /></a></li>
 
 						<li><a href="/contact" th:href="@{/contact}"><span
 								class="glyphicon glyphicon-envelope"></span> <span
-								th:text="#{login.contact}" /></a></li>
+								th:text="#{navbar.contact}" /></a></li>
 
 						<li><a href="#" id="about_opener"><span
 								class="glyphicon glyphicon-education" /> <span
-								th:text="#{login.about}" /></a></li>
+								th:text="#{navbar.about}" /></a></li>
 
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#"> <span
 								class="glyphicon glyphicon-question-sign" /> <span
-								th:text="#{login.help}" /> <span class="caret" /></a>
+								th:text="#{navbar.help}" /> <span class="caret" /></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a  href="#" id="help_opener">System</a></li>
-								<li><a  href="#" id="help_opener2">Other</a></li>
-							</ul>
-						</li>
+								<li class="dropdown-submenu"><a href="#" id="help_opener">
+										<span class="glyphicon glyphicon-screenshot" /> <span
+										th:text="#{navbar.help.system}" />
+								</a></li>
+								<li class="divider" role="separator"></li>
+								<li class="dropdown-submenu disabled"><a href="#"
+									id="help_opener2"> <span class="glyphicon glyphicon-leaf" />
+										<span th:text="#{navbar.help.environment}" />
+								</a></li>
+							</ul></li>
+
 					</ul>
 				</div>
 			</div>
@@ -81,18 +85,20 @@
 					<label class="control-label col-sm-2 control-label" for="username">
 						<span th:utext="#{login.name}" />
 					</label>
-					<div class="col-sm-10">
+					<div class="col-sm-5">
 						<input type="email" placeholder="Email" id="username"
 							name="username" value="pep@smvcp.com" required="required"
-							class="form-control" />
+							class="form-control" data-toggle="tooltip" data-placement="below" th:title="#{login.name.tooltip}" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-2 control-label" for="password"><span
 						th:utext="#{login.password}" /></label>
-					<div class="col-sm-10">
+					<div class="col-sm-5">
 						<input type="password" placeholder="Clave" id="password"
-							name="password" value="123456" class="form-control" /> <input
+							name="password" value="123456" class="form-control" data-toggle="tooltip" data-placement="below" th:title="#{login.password.tooltip}" /> 
+							
+							<input
 							type="hidden" name="${_csrf.parameterName}"
 							value="${_csrf.token}" required="required" />
 					</div>
@@ -107,10 +113,21 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-primary btn-lg">
-							<span th:utext="#{login.login}" />
-						</button>
+					<div class="col-sm-offset-3 col-sm-10">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-primary btn-lg">
+							<span class="glyphicon glyphicon-transfer" />
+								<span th:utext="#{login.login}" />
+							</button>
+						</div>
+						<div class="btn-group">
+							<button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">
+								<span class="glyphicon glyphicon-option-horizontal" /> 
+								<span th:utext="#{login.options}" /> <span class="caret" /></button>
+								<ul class="dropdown-menu">
+									<li class="disabled"><a href="#"><span class="glyphicon glyphicon-text-background" /> <span th:utext="#{login.options.anonymous}" /> </a></li>
+								</ul>	
+						</div>
 					</div>
 				</div>
 			</fieldset>
@@ -168,9 +185,14 @@
 				</dd>
 			</dl>
 		</div>
-
-
-
 	</div>
+	
+	<script type="text/javascript">
+
+		$(document).ready(function() {
+			$("[data-toggle='tooltip']").tooltip();
+			});
+	</script>
+	
 </body>
 </html>

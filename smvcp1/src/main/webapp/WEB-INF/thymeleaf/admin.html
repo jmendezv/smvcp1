@@ -10,28 +10,34 @@
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#"><span th:text="#{application.acronym}"/></a>
+					<a class="navbar-brand" href="#"><span
+						th:text="#{application.acronym}" />
+						<img class="brand"
+						th:src="@{resources/images/icon.png}" />
+						</a>
 				</div>
 				<div>
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#"> <span
-								th:text="#{admin.home}" />
-						</a></li>
 
 						<li><a href="../smvcp1" th:href="@{../smvcp1}"> <span
 								class="glyphicon glyphicon-home" /> <span
-								th:text="#{admin.back}"></span></a></li>
+								th:text="#{navbar.home}"></span></a></li>
+
+						<li class="active"><a href="#"> <span
+								th:text="#{navbar.admin}" />
+						</a></li>
 
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 
-						<li><a id="admin_service" href="#" th:href="@{/adminService}"> <span
-								class="glyphicon glyphicon-share" /> <span
-								th:text="#{admin.adminService}" /></a></li>
+						<li><a id="admin_service" href="#" th:href="@{/adminService}">
+								<span class="glyphicon glyphicon-share" /> <span
+								th:text="#{navbar.record}" />
+						</a></li>
 
 						<li><a href="/logout" th:href="@{/logout}"><span
 								class="glyphicon glyphicon-off"></span> <span
-								th:text="#{home.logout}" /></a></li>
+								th:text="#{navbar.logout}" /></a></li>
 
 
 					</ul>
@@ -58,7 +64,8 @@
 				</div>
 			</div>
 			<div class="col-md-2">
-				<div class="text-info" th:object="${#httpServletRequest.session.servletContext}">
+				<div class="text-info"
+					th:object="${#httpServletRequest.session.servletContext}">
 					<p>
 						<span th:text="|#{admin.path} *{contextPath}|"></span>
 					</p>
@@ -66,18 +73,19 @@
 			</div>
 		</div>
 
-<div id="admin_service_dialog" th:title="#{admin.title}">
-  <p>
-    <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
-    <span th:text="#{admin.serviceBody}" />
-  </p>
-</div>
+		<div id="admin_service_dialog" th:title="#{admin.title}">
+			<p>
+				<span class="ui-icon ui-icon-circle-check"
+					style="float: left; margin: 0 7px 50px 0;"></span> <span
+					th:text="#{admin.serviceBody}" />
+			</p>
+		</div>
 
 
 		<div class="table-responsive">
 			<table class="table">
 				<caption class="text-center">
-					<span  th:text="#{admin.caption}" />
+					<span th:text="#{admin.caption}" />
 				</caption>
 				<thead>
 					<tr>
@@ -116,7 +124,7 @@
 					</tr>
 				</tbody>
 				<tfoot>
-				
+
 				</tfoot>
 
 			</table>
