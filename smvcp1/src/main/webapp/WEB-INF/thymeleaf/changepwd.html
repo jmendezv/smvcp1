@@ -6,6 +6,38 @@
 <body>
 
 	<div layout:fragment="content">
+	
+	<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#"><span
+						th:text="#{application.acronym}" /> <img class="brand"
+						th:src="@{resources/images/icon.png}" /> </a>
+				</div>
+				<div>
+					<ul class="nav navbar-nav">
+
+						<li><a href="../smvcp1" th:href="@{../smvcp1}"> <span
+								class="glyphicon glyphicon-home" /> <span
+								th:text="#{navbar.home}"></span></a></li>
+
+						<li class="active"><a href="#">
+							<span class="glyphicon glyphicon-lock"></span>
+							<span th:text="#{navbar.changepwd}" class="text-default" /></a></li>
+							
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+
+						<li><a href="/logout" th:href="@{/logout}"><span
+								class="glyphicon glyphicon-off"></span> <span
+								th:text="#{navbar.logout}" /></a></li>
+
+					</ul>
+
+				</div>
+			</div>
+		</nav>
+	
 
 		<h3 class="text-center" th:text="#{changepwd.title}"></h3>
 
@@ -41,7 +73,7 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="password"
 						th:text="#{changepwd.password}" />
-					<div class="col-sm-10">
+					<div class="col-sm-4">
 						<input type="password" id="password" name="password"
 							th:field="*{password}" class="form-control"
 							th:placeholder="#{changepwd.password.tip}" />
@@ -50,11 +82,10 @@
 				<li th:each="error : ${#fields.errors('password')}"
 						th:text="${error}">Error de entrada</li>
 			</ul -->
-				</div>
-				<div class="form-group">
+				
 					<label class="control-label col-sm-2" for="passwordConfirmation"
 						th:text="#{changepwd.passwordConfirmation}" />
-					<div class="col-sm-10">
+					<div class="col-sm-4">
 						<input type="password" id="passwordConfirmation"
 							name="passwordConfirmation" th:field="*{passwordConfirmation}" class="form-control" 
 							th:placeholder="#{changepwd.passwordConfirmation.tip}"/>
@@ -65,7 +96,7 @@
 			</ul -->
 				</div>
 				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
+					<div class="col-sm-offset-4 col-sm-8">
 						<button class="btn btn-default btn-lg" type="submit"
 							name="action" value="save">
 							<span th:text="#{changepwd.action.save}" />

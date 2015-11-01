@@ -90,6 +90,53 @@ $(function() {
 	});
 });
 
+/* tooltips */
+
+		$(document).ready(function() {
+			$("[data-toggle='tooltip']").tooltip();
+			});
+		
+/* bootstrap validator */		
+		
+		$(document).ready(function() {
+			var validator = $("#form-login").bootstrapValidator({
+				feedbackIcons: {
+					valid: "glyphicon glyphicon-ok",
+					invalid: "glyphicon glyphico-remove",
+					validating: "glyphicon glyphicon-refresh"
+					},
+				fields: {
+					username: {
+						message: "Escribe tu email",
+						validators: {
+							notEmpty: {
+								message: "Por favor, escribe tu email" 
+								},
+							emailAddress: {
+								message: "No es una email valido"
+								}
+							}
+						},
+						password: {
+							message: "Escribe tu clave",
+							validators: {
+								notEmpty: {
+									message: "Por favor, escribe tu clave" 
+									},
+								stringLength: {
+									min: 6,
+									max: 15,
+									message: "Debe tener entre 6 y 15 caracteres"
+									},
+								different: {
+									field: "username",
+									message: "la clave no puede ser igual que el email"
+									}
+								}
+							}
+				}
+				});
+			});
 
 
 

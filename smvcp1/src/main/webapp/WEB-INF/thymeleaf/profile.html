@@ -7,6 +7,40 @@
 
 	<div layout:fragment="content">
 
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#"><span
+						th:text="#{application.acronym}" /> <img class="brand"
+						th:src="@{resources/images/icon.png}" /> </a>
+				</div>
+				<div>
+					<ul class="nav navbar-nav">
+
+						<li><a href="../smvcp1" th:href="@{../smvcp1}"> <span
+								class="glyphicon glyphicon-home" /> <span
+								th:text="#{navbar.home}"></span></a></li>
+
+						<li class="active"><a href="#" th:href="@{/profile}"> <span
+								class="glyphicon glyphicon-pencil" /> <span
+								th:text="#{navbar.profile}" /></a></li>
+
+
+
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+
+						<li><a href="/logout" th:href="@{/logout}"><span
+								class="glyphicon glyphicon-off"></span> <span
+								th:text="#{navbar.logout}" /></a></li>
+
+					</ul>
+
+				</div>
+			</div>
+		</nav>
+
+
 		<h3 class="text-center" th:text="#{profile.title}"></h3>
 
 		<form action="#" th:action="@{/profile}" th:object="${profileBean}"
@@ -29,29 +63,28 @@
 					<label class="control-label col-sm-2" for="name"> <span
 						th:text="#{profile.name}" />
 					</label>
-					<div class="col-sm-10">
+					<div class="col-sm-4">
 						<input type="text" id="name" name="name" th:field="*{name}"
-							th:errorclass="fieldError" 
-							th:placeholder="#{profile.name.tip}" class="form-control" />
+							th:errorclass="fieldError" th:placeholder="#{profile.name.tip}"
+							class="form-control" />
 					</div>
-				</div>
-				<!--  p th:if="${#fields.hasErrors('name')}" class="errorMessage" th:errors="*{name}">Error
+
+					<!--  p th:if="${#fields.hasErrors('name')}" class="errorMessage" th:errors="*{name}">Error
 				de entrada</p -->
 
-				<!-- ul th:if="${#fields.hasErrors('name')}">
+					<!-- ul th:if="${#fields.hasErrors('name')}">
 				<li th:each="error : ${#fields.errors('name')}" class="fieldError"
 					th:text="${error}">Error de entrada</li>
 			</ul>
 			</p -->
 
-				<div class="form-group">
 					<label class="control-label col-sm-2" for="city"> <span
 						th:text="#{profile.city}" />
 					</label>
-					<div class="col-sm-10">
+					<div class="col-sm-4">
 						<input type="text" id="city" name="city" th:field="*{city}"
-							th:errorclass="fieldError"
-							th:placeholder="#{profile.city.tip}" class="form-control" />
+							th:errorclass="fieldError" th:placeholder="#{profile.city.tip}"
+							class="form-control" />
 					</div>
 					<!--  ul th:if="${#fields.hasErrors('city')}">
 				<li th:each="error : ${#fields.errors('city')}" class="fieldError"
@@ -62,24 +95,24 @@
 					<label class="control-label col-sm-2" for="profession"> <span
 						th:text="#{profile.profession}" />
 					</label>
-					<div class="col-sm-10">
+					<div class="col-sm-4">
 						<input type="text" id="profession" name="profession"
 							th:field="*{profession}" th:errorclass="fieldError"
-							 th:placeholder="#{profile.profession.tip}" class="form-control" />
+							th:placeholder="#{profile.profession.tip}" class="form-control" />
 					</div>
 					<!-- ul th:if="${#fields.hasErrors('profession')}">
 				<li th:each="error : ${#fields.errors('profession')}"
 					class="fieldError" th:text="${error}">Error de entrada</li>
 			</ul -->
-				</div>
-				<div class="form-group">
+
+
 					<label class="control-label col-sm-2" for="phone"> <span
 						th:text="#{profile.phone}" />
 					</label>
-					<div class="col-sm-10">
+					<div class="col-sm-4">
 						<input type="text" id="phone" name="phone" th:field="*{phone}"
-							th:errorclass="fieldError" 
-							th:placeholder="#{profile.phone.tip}" class="form-control" />
+							th:errorclass="fieldError" th:placeholder="#{profile.phone.tip}"
+							class="form-control" />
 					</div>
 					<!-- ul th:if="${#fields.hasErrors('phone')}">
 				<li th:each="error : ${#fields.errors('phone')}" class="fieldError"
@@ -88,7 +121,7 @@
 				</div>
 
 				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
+					<div class="col-sm-offset-4 col-sm-8">
 						<button type="submit" class="btn btn-default btn-lg" name="action"
 							value="save">
 							<span th:text="#{register.action.save}" />

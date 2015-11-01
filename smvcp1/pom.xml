@@ -415,16 +415,25 @@
 			</exclusions>
 		</dependency>
 
+		<!-- jquery -->
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>
 			<version>${jquery.version}</version>
 		</dependency>
 
+		<!-- jquery-ui -->
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery-ui</artifactId>
 			<version>${jquery-ui.version}</version>
+		</dependency>
+
+		<!-- bootstrap validator -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrapvalidator</artifactId>
+			<version>0.5.3</version>
 		</dependency>
 
 		<!-- Joda Time -->
@@ -435,20 +444,12 @@
 		</dependency>
 
 		<!-- recaptcha4j -->
-		<!-- dependency>
-			<groupId>net.tanesha.recaptcha4j</groupId>
-			<artifactId>recaptcha4j</artifactId>
-			<version>0.0.7</version>
-		</dependency -->
+		<!-- dependency> <groupId>net.tanesha.recaptcha4j</groupId> <artifactId>recaptcha4j</artifactId> 
+			<version>0.0.7</version> </dependency -->
 
 		<!-- SimpleCaptcha -->
-		<!-- dependency>
-			<groupId>com.google.code.maven-play-plugin.org.playframework</groupId>
-			<artifactId>jj-simplecaptcha</artifactId>
-			<version>1.1</version>
-		</dependency -->
-
-
+		<!-- dependency> <groupId>com.google.code.maven-play-plugin.org.playframework</groupId> 
+			<artifactId>jj-simplecaptcha</artifactId> <version>1.1</version> </dependency -->
 
 	</dependencies>
 

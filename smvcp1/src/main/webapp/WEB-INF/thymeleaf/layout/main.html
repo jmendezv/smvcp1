@@ -25,7 +25,10 @@
 <link rel='stylesheet'
 	th:href="@{/webjars/jquery-ui/1.11.4/jquery-ui.css}" />
 	
-<!-- Achtung place jquery.min.js firts otherwise menus won't work  -->	
+<link rel='stylesheet' 
+	th:href="@{/webjars/bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css}" />
+	
+<!-- Achtung place jquery.min.js first otherwise menus won't work  -->	
 	
 <script type="text/javascript"
 	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>	
@@ -37,37 +40,8 @@
 	th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
 	
 <script type="text/javascript" th:src="@{/resources/js/main.js}"></script>
-	
-<!-- script type="text/javascript"
-	th:src="@{/webjars/bootstrap/3.3.5/js/button.js}"></script>
-<script type="text/javascript"
-	th:src="@{/webjars/bootstrap/3.3.5/js/carousel.js}"></script>		
-<script type="text/javascript"
-	th:src="@{/webjars/bootstrap/3.3.5/js/collapse.js}"></script>	
-<script type="text/javascript"
-	th:src="@{/webjars/bootstrap/3.3.5/js/dropdown.js}"></script>
-<script type="text/javascript"
-	th:src="@{/webjars/bootstrap/3.3.5/js/modal.js}"></script>
-<script type="text/javascript"
-	th:src="@{/webjars/bootstrap/3.3.5/js/npm.js}"></script>	
-<script type="text/javascript"
-	th:src="@{/webjars/bootstrap/3.3.5/js/popover.js}"></script>
-<script type="text/javascript"
-	th:src="@{/webjars/bootstrap/3.3.5/js/scrollspy.js}"></script>
-<script type="text/javascript"
-	th:src="@{/webjars/bootstrap/3.3.5/js/tab.js}"></script>
-<script type="text/javascript"
-	th:src="@{/webjars/bootstrap/3.3.5/js/tooltip.js}"></script>
-<script type="text/javascript"
-	th:src="@{/webjars/bootstrap/3.3.5/js/transition.js}"></script -->				
 
-<!-- script type="text/javascript" th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script -->
-<!--/*  Each token will be replaced by their respective titles in the resulting page. */-->
-
-<!-- Only works on line!!!! -->
-
-<!-- /webjars/bootstrap/3.3.5/js/bootstrap.min.js doesn't match with this !!! -->
-<!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script -->
+<script type="text/javascript" th:src="@{/webjars/bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js}"></script>	
 
 <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">SMVCP1</title>
 </head>
