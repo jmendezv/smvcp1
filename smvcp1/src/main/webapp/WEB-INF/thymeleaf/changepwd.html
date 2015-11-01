@@ -6,8 +6,8 @@
 <body>
 
 	<div layout:fragment="content">
-	
-	<nav class="navbar navbar-inverse">
+
+		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="#"><span
@@ -21,10 +21,10 @@
 								class="glyphicon glyphicon-home" /> <span
 								th:text="#{navbar.home}"></span></a></li>
 
-						<li class="active"><a href="#">
-							<span class="glyphicon glyphicon-lock"></span>
-							<span th:text="#{navbar.changepwd}" class="text-default" /></a></li>
-							
+						<li class="active"><a href="#"> <span
+								class="glyphicon glyphicon-lock"></span> <span
+								th:text="#{navbar.changepwd}" class="text-default" /></a></li>
+
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 
@@ -37,80 +37,86 @@
 				</div>
 			</div>
 		</nav>
-	
+
 
 		<h3 class="text-center" th:text="#{changepwd.title}"></h3>
 
-		<form th:action="@{/changepwd}" th:object="${userRegistrationBean}"
-			method="post" class="form-horizontal" role="form">
-			<legend>
+		<div class="panel panel-default">
+			<div class="panel-heading">
 				<span th:text="#{changepwd.legend}" />
-			</legend>
-			<fieldset>
-				<table th:if="${#fields.hasAnyErrors()}" class="table">
-					<tr th:each="error : ${#fields.allErrors()}">
-						<td th:text="${error}">Error de entrada</td>
-					</tr>
-				</table>
+			</div>
+			<div class="panel-body">
+				<form name="form-changepwd" id="form-changepwd" th:action="@{/changepwd}" th:object="${userRegistrationBean}"
+					method="post" class="form-horizontal" role="form">
+					
+					<fieldset>
+						<table th:if="${#fields.hasAnyErrors()}" class="table">
+							<tr th:each="error : ${#fields.allErrors()}">
+								<td th:text="${error}">Error de entrada</td>
+							</tr>
+						</table>
 
-				<!--  ul th:if="${#fields.hasAnyErrors()}">
+						<!--  ul th:if="${#fields.hasAnyErrors()}">
 				<li th:each="error : ${#fields.allErrors()}" th:text="${error}">Error
 					de entrada</li>
 			</ul -->
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="username"
-						th:text="#{changepwd.userName}" />
-					<div class="col-sm-10">
-						<input type="text" id="username" name="username"
-							th:field="*{userName}" readonly="readonly" class="form-control"
-							th:placeholder="#{changepwd.username.tip}" />
-					</div>
-					<!--  ul th:if="${#fields.hasErrors('userName')}">
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="username"
+								th:text="#{changepwd.userName}" />
+							<div class="col-sm-10">
+								<input type="text" id="username" name="username"
+									th:field="*{userName}" readonly="readonly" class="form-control"
+									th:placeholder="#{changepwd.username.tip}" />
+							</div>
+							<!--  ul th:if="${#fields.hasErrors('userName')}">
 				<li th:each="error : ${#fields.errors('userName')}"
 						th:text="${error}">Error de entrada</li>
 			</ul -->
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="password"
-						th:text="#{changepwd.password}" />
-					<div class="col-sm-4">
-						<input type="password" id="password" name="password"
-							th:field="*{password}" class="form-control"
-							th:placeholder="#{changepwd.password.tip}" />
-					</div>
-					<!-- ul th:if="${#fields.hasErrors('password')}">
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="password"
+								th:text="#{changepwd.password}" />
+							<div class="col-sm-4">
+								<input type="password" id="password" name="password"
+									th:field="*{password}" class="form-control"
+									th:placeholder="#{changepwd.password.tip}" />
+							</div>
+							<!-- ul th:if="${#fields.hasErrors('password')}">
 				<li th:each="error : ${#fields.errors('password')}"
 						th:text="${error}">Error de entrada</li>
 			</ul -->
-				
-					<label class="control-label col-sm-2" for="passwordConfirmation"
-						th:text="#{changepwd.passwordConfirmation}" />
-					<div class="col-sm-4">
-						<input type="password" id="passwordConfirmation"
-							name="passwordConfirmation" th:field="*{passwordConfirmation}" class="form-control" 
-							th:placeholder="#{changepwd.passwordConfirmation.tip}"/>
-					</div>
-					<!-- ul th:if="${#fields.hasErrors('passwordConfirmation')}">
+
+							<label class="control-label col-sm-2" for="passwordConfirmation"
+								th:text="#{changepwd.passwordConfirmation}" />
+							<div class="col-sm-4">
+								<input type="password" id="passwordConfirmation"
+									name="passwordConfirmation" th:field="*{passwordConfirmation}"
+									class="form-control"
+									th:placeholder="#{changepwd.passwordConfirmation.tip}" />
+							</div>
+							<!-- ul th:if="${#fields.hasErrors('passwordConfirmation')}">
 				<li th:each="error : ${#fields.errors('passwordConfirmation')}"
 						th:text="${error}">Error de entrada</li>
 			</ul -->
-				</div>
-				<div class="form-group">
-					<div class="col-sm-offset-4 col-sm-8">
-						<button class="btn btn-default btn-lg" type="submit"
-							name="action" value="save">
-							<span th:text="#{changepwd.action.save}" />
-						</button>
-						<button class="btn btn-default btn-lg" type="submit"
-							 name="action" value="cancel">
-							<span th:text="#{changepwd.action.cancel}" />
-						</button>
-					</div>
-				</div>
-				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" />
-			</fieldset>
-		</form>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-4 col-sm-8">
+								<button class="btn btn-default btn-lg" type="submit"
+									name="action" value="save">
+									<span th:text="#{changepwd.action.save}" />
+								</button>
+								<button class="btn btn-default btn-lg" type="submit"
+									name="action" value="cancel">
+									<span th:text="#{changepwd.action.cancel}" />
+								</button>
+							</div>
+						</div>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+					</fieldset>
+				</form>
+			</div>
+		</div>
 
 	</div>
 </body>

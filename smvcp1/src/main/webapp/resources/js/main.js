@@ -3,7 +3,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    $(".dropdown-toggle").dropdown();
+	$(".dropdown-toggle").dropdown();
 });
 
 $(function() {
@@ -92,54 +92,153 @@ $(function() {
 
 /* tooltips */
 
-		$(document).ready(function() {
-			$("[data-toggle='tooltip']").tooltip();
-			});
-		
-/* bootstrap validator */		
-		
-		$(document).ready(function() {
-			var validator = $("#form-login").bootstrapValidator({
-				feedbackIcons: {
-					valid: "glyphicon glyphicon-ok",
-					invalid: "glyphicon glyphico-remove",
-					validating: "glyphicon glyphicon-refresh"
+$(document).ready(function() {
+	$("[data-toggle='tooltip']").tooltip();
+});
+
+/* bootstrap login validator */
+
+$(document).ready(function() {
+	var validator = $("#form-login").bootstrapValidator({
+		feedbackIcons : {
+			valid : "glyphicon glyphicon-ok",
+			invalid : "glyphicon glyphico-remove",
+			validating : "glyphicon glyphicon-refresh"
+		},
+		fields : {
+			username : {
+				message : "Escribe tu email",
+				validators : {
+					notEmpty : {
+						message : "Por favor, escribe tu email"
 					},
-				fields: {
-					username: {
-						message: "Escribe tu email",
-						validators: {
-							notEmpty: {
-								message: "Por favor, escribe tu email" 
-								},
-							emailAddress: {
-								message: "No es una email valido"
-								}
-							}
-						},
-						password: {
-							message: "Escribe tu clave",
-							validators: {
-								notEmpty: {
-									message: "Por favor, escribe tu clave" 
-									},
-								stringLength: {
-									min: 6,
-									max: 15,
-									message: "Debe tener entre 6 y 15 caracteres"
-									},
-								different: {
-									field: "username",
-									message: "la clave no puede ser igual que el email"
-									}
-								}
-							}
+					emailAddress : {
+						message : "No es una email valido"
+					}
 				}
-				});
-			});
+			},
+			password : {
+				message : "Escribe tu clave",
+				validators : {
+					notEmpty : {
+						message : "Por favor, escribe tu clave"
+					},
+					stringLength : {
+						min : 6,
+						max : 15,
+						message : "Debe tener entre 6 y 15 caracteres"
+					},
+					different : {
+						field : "username",
+						message : "la clave no puede ser igual que el email"
+					}
+				}
+			}
+		}
+	});
+});
+
+/* bootstrap profile validator */
+
+$(document).ready(function() {
+	var validator = $("#form-profile").bootstrapValidator({
+		feedbackIcons : {
+			valid : "glyphicon glyphicon-ok",
+			invalid : "glyphicon glyphico-remove",
+			validating : "glyphicon glyphicon-refresh"
+		},
+		fields : {
+			name : {
+				message : "Escribe tu email",
+				validators : {
+					notEmpty : {
+						message : "Por favor, escribe tu email"
+					},
+					emailAddress : {
+						message : "No es una email valido"
+					}
+				}
+			},
+			city : {
+				message : "Escribe tu ciudad",
+				validators : {
+					notEmpty : {
+						message : "Por favor, escribe tu ciudad"
+					},
+					regexp: {
+						message : "Ha de comenzar por mayuscula",
+						regexp : "[A-Z]\\w+"
+					}
+				}
+			},
+			profession : {
+				message : "Escribe tu profesion",
+				validators : {
+					notEmpty : {
+						message : "Por favor, escribe tu profesion"
+					}
+				}
+			},
+			phone : {
+				message : "Escribe tu telefono",
+				validators : {
+					notEmpty : {
+						message : "Por favor, escribe tu telefono"
+					},
+					phone : {
+						country: "ES",
+						message : "El telefono no es valido"
+					}
+				}
+			}
+		}
+	});
+});
 
 
+/* bootstrap changepwd validator */
 
+$(document).ready(function() {
+	var validator = $("#form-changepwd").bootstrapValidator({
+		feedbackIcons : {
+			valid : "glyphicon glyphicon-ok",
+			invalid : "glyphicon glyphico-remove",
+			validating : "glyphicon glyphicon-refresh"
+		},
+		fields : {
+			password : {
+				message : "Escribe tu email",
+				validators : {
+					notEmpty : {
+						message : "Por favor, escribe tu email"
+					},
+					stringLength : {
+						min : 8,
+						max : 16,
+						message : "La logintud ha de estar entre 8 y 16 caracteres"
+					}
+				}
+			},
+			passwordConfirmation : {
+				message : "Escribe tu ciudad",
+				validators : {
+					notEmpty : {
+						message : "Por favor, escribe tu ciudad"
+					},
+					stringLength : {
+						min : 8,
+						max : 16,
+						message : "La logintud ha de estar entre 8 y 16 caracteres"
+					},
+					identical : {
+						field : "password",
+						message: "La clave de confirmacion no es igual que la clave"
+					}
+				}
+			}
+		}
+	});
+});
 
 /*
  * $('#map_canvas').gmap().bind('init', function(ev, map) {

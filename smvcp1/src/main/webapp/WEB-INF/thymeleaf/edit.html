@@ -21,11 +21,11 @@
 								class="glyphicon glyphicon-home" /> <span
 								th:text="#{navbar.home}"></span></a></li>
 
-						<li><a href="admin"	th:href="@{/admin}">
-							<span class="glyphicon glyphicon-exclamation-sign"/>
-							<span th:text="#{navbar.admin}" /></a></li>
-						
-							<li class="active"><a href="#"> <span
+						<li><a href="admin" th:href="@{/admin}"> <span
+								class="glyphicon glyphicon-exclamation-sign" /> <span
+								th:text="#{navbar.admin}" /></a></li>
+
+						<li class="active"><a href="#"> <span
 								th:text="#{navbar.edit}" />
 						</a></li>
 
@@ -45,78 +45,84 @@
 
 		<h3 class="text-center" th:text="#{edit.title}"></h3>
 
-		<form action="#" th:action="@{/edit}" th:object="${userEditBean}"
-			method="post" class="form-horizontal" role="form">
-			<legend>
+		<div class="panel panel-default">
+			<div class="panel-heading">
 				<span th:text="#{edit.legend}" />
-			</legend>
-			<fieldset>
-				<!-- ul th:if="${#fields.hasAnyErrors()}">
+			</div>
+			<div class="panel-body">
+				<form action="#" th:action="@{/edit}" th:object="${userEditBean}"
+					method="post" class="form-horizontal" role="form">
+
+					<fieldset>
+						<!-- ul th:if="${#fields.hasAnyErrors()}">
 				<li th:each="error : ${#fields.allErrors()}" th:text="${error}">Error
 					de entrada</li>
 			</ul -->
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="userName"
-						th:text="#{edit.userName}" />
-					<div class="col-sm-10">
-						<input type="text" id="userName" name="userName"
-							th:field="*{userName}" readonly="readonly" class="form-control" />
-					</div>
-					<ul th:if="${#fields.hasErrors('userName')}">
-						<li th:each="error : ${#fields.errors('userName')}"
-							th:text="${error}">xxx</li>
-					</ul>
-				</div>
-
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<div class="checkbox">
-							<label class="control-label col-sm-2"
-								th:for="${#ids.seq('enabled')}"> <input type="checkbox"
-								th:field="*{enabled}" /> <span th:text="#{edit.enabled}" /></label>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="userName"
+								th:text="#{edit.userName}" />
+							<div class="col-sm-10">
+								<input type="text" id="userName" name="userName"
+									th:field="*{userName}" readonly="readonly" class="form-control" />
+							</div>
+							<ul th:if="${#fields.hasErrors('userName')}">
+								<li th:each="error : ${#fields.errors('userName')}"
+									th:text="${error}">xxx</li>
+							</ul>
 						</div>
-					</div>
-				</div>
 
-				<div class="text-center">
-					<mark>
-						<span th:text="#{edit.roles}" />
-					</mark>
-				</div>
-
-
-				<div class="form-group" th:each="role, roleStat: ${allRoles}">
-					<div class="col-sm-offset-2 col-sm-10">
-						<div class="checkbox">
-							<label th:for="${#ids.next('roles')}"
-								class="control-label col-sm-4"><input type="checkbox"
-								th:field="*{roles}" th:value="${role}"> </input><span
-								th:text="#{${'edit.role.' + role}}" /> </label>
-
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<div class="checkbox">
+									<label class="control-label col-sm-2"
+										th:for="${#ids.seq('enabled')}"> <input
+										type="checkbox" th:field="*{enabled}" /> <span
+										th:text="#{edit.enabled}" /></label>
+								</div>
+							</div>
 						</div>
-					</div>
-				</div>
 
-				<div class="form-group text-center">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default btn-lg" name="action"
-							value="save">
-							<span th:text="#{edit.action.save}" />
-						</button>
-						<button type="submit" class="btn btn-default btn-lg" name="action"
-							value="cancel">
-							<span th:text="#{edit.action.cancel}" />
-						</button>
-						<button type="submit" class="btn btn-danger btn-lg" name="action"
-							value="delete">
-							<span th:text="#{edit.action.delete}" />
-						</button>
-					</div>
-				</div>
-				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" />
-			</fieldset>
-		</form>
+						<div class="text-center">
+							<mark>
+								<span th:text="#{edit.roles}" />
+							</mark>
+						</div>
+
+
+						<div class="form-group" th:each="role, roleStat: ${allRoles}">
+							<div class="col-sm-offset-2 col-sm-10">
+								<div class="checkbox">
+									<label th:for="${#ids.next('roles')}"
+										class="control-label col-sm-4"><input type="checkbox"
+										th:field="*{roles}" th:value="${role}"> </input><span
+										th:text="#{${'edit.role.' + role}}" /> </label>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group text-center">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-default btn-lg"
+									name="action" value="save">
+									<span th:text="#{edit.action.save}" />
+								</button>
+								<button type="submit" class="btn btn-default btn-lg"
+									name="action" value="cancel">
+									<span th:text="#{edit.action.cancel}" />
+								</button>
+								<button type="submit" class="btn btn-danger btn-lg"
+									name="action" value="delete">
+									<span th:text="#{edit.action.delete}" />
+								</button>
+							</div>
+						</div>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+					</fieldset>
+				</form>
+			</div>
+		</div>
 
 	</div>
 
