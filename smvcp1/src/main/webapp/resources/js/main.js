@@ -207,10 +207,10 @@ $(document).ready(function() {
 		},
 		fields : {
 			password : {
-				message : "Escribe tu email",
+				message : "Escribe tu clave",
 				validators : {
 					notEmpty : {
-						message : "Por favor, escribe tu email"
+						message : "Por favor, escribe tu clave"
 					},
 					stringLength : {
 						min : 8,
@@ -220,10 +220,10 @@ $(document).ready(function() {
 				}
 			},
 			passwordConfirmation : {
-				message : "Escribe tu ciudad",
+				message : "Confirma tu clave",
 				validators : {
 					notEmpty : {
-						message : "Por favor, escribe tu ciudad"
+						message : "Por favor, confirma tu clave"
 					},
 					stringLength : {
 						min : 8,
