@@ -234,7 +234,7 @@ $(document)
 													notEmpty : {
 														message : "Por favor, escribe tu email"
 													},
-													emailAddress:{
+													emailAddress : {
 														message : "Por favor, escribe un email valido"
 													}
 												}
@@ -266,6 +266,62 @@ $(document)
 													identical : {
 														field : "password",
 														message : "La clave de confirmacion no es igual que la clave"
+													}
+												}
+											}
+										}
+									});
+
+				});
+
+/* bootstrap contact validator */
+
+$(document)
+		.ready(
+				function() {
+					var validator = $("#form-contact")
+							.bootstrapValidator(
+									{
+										feedbackIcons : {
+											valid : "glyphicon glyphicon-ok",
+											invalid : "glyphicon glyphico-remove",
+											validating : "glyphicon glyphicon-refresh"
+										},
+										fields : {
+											userName : {
+												message : "Escribe tu email",
+												validators : {
+													notEmpty : {
+														message : "Por favor, escribe tu email"
+													},
+													emailAddress : {
+														message : "Por favor, escribe un email valido"
+													}
+												}
+											},
+											subject : {
+												message : "Escribe el asunto",
+												validators : {
+													notEmpty : {
+														message : "Por favor, el asunto"
+													},
+													stringLength : {
+														min : 8,
+														max : 16,
+														message : "La logintud ha de estar entre 8 y 16 caracteres"
+													}
+												}
+											},
+											comments : {
+												message : "Confirma tus comentarios",
+												validators : {
+													notEmpty : {
+														message : "Por favor, tus comentarios"
+													},
+													stringLength : {
+														min : 8,
+														max : 64,
+														message : "La logintud ha de estar entre 8 y 64 caracteres"
 													}
 												}
 											}

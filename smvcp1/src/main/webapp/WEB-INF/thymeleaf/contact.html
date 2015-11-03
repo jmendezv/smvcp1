@@ -7,97 +7,117 @@
 
 	<div layout:fragment="content">
 
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="../smvcp1"> <span
+						th:text="#{application.acronym}" /> <img class="brand"
+						th:src="@{resources/images/icon.png}" />
+					</a>
+				</div>
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#navbar-container">
+						<span class="sr-only"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<div class="collapse navbar-collapse" id="navbar-container">
+					<ul class="nav navbar-nav">
+
+						<li class="active"><a href="#"> <span
+								class="glyphicon glyphicon-envelope" /> <span
+								th:text="#{navbar.contact}" /></a></li>
+
+					</ul>
+
+				</div>
+			</div>
+		</nav>
+
+
 		<h3 class="text-center" th:text="#{contact.title}"></h3>
 
-		<!-- TODO create ContactBean class -->
-		<form th:action="@{/contact}" th:object="${contactBean}" method="post"
-			class="form-horizontal" role="form">
-			<legend>
+		<div class="panel panel-default">
+			<div class="panel-heading">
 				<span th:utext="#{contact.legend}" />
-			</legend>
-			<fieldset>
-				<!-- table th:if="${#fields.hasAnyErrors()}" class="table">
-					<tr th:each="error : ${#fields.allErrors()}">
-						<td th:text="${error}">Error de entrada</td>
-					</tr>
-				</table -->
+			</div>
+			<div class="panel-body">
+				<form name="form-contact" id="form-contact" th:action="@{/contact}"
+					th:object="${contactBean}" method="post" class="form-horizontal"
+					role="form">
 
-				<!--  ul th:if="${#fields.hasAnyErrors()}">
-				<li th:each="error : ${#fields.allErrors()}" th:text="${error}">Error
-					de entrada</li>
-			</ul -->
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="username"> <span
-						th:text="#{contact.userName}" />
-					</label>
-					<div class="col-sm-10">
-						<input th:if="${!#fields.hasErrors('userName')}" type="text"
-							id="username" name="username" th:field="*{userName}"
-							class="form-control" th:placeholder="#{contact.userName.tip}" />
-						<input th:placeholder="#{Email.contactBean.userName}"
-							th:if="${#fields.hasErrors('userName')}" type="text"
-							id="username" name="username" th:field="*{userName}"
-							class="form-control" />
-					</div>
-					<!--  ul th:if="${#fields.hasErrors('userName')}">
+					<fieldset>
+					
+						<div th:if="${#fields.hasAnyErrors()}">
+							<div class="alert alert-danger" role="alert"
+								th:each="error : ${#fields.allErrors()}" th:text="${error}">Error
+								de entrada</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="username"> <span
+								th:text="#{contact.userName}" />
+							</label>
+							<div class="col-sm-10">
+								<input type="text" id="userName" name="userName"
+									th:field="*{userName}" class="form-control"
+									th:placeholder="#{contact.userName.tip}" />
+
+							</div>
+							<!--  ul th:if="${#fields.hasErrors('userName')}">
 				<li th:each="error : ${#fields.errors('userName')}"
 						th:text="${error}">Error de entrada</li>
 			</ul -->
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="subject"> <span
-						th:text="#{contact.subject}" />
-					</label>
-					<div class="col-sm-10">
-						<input th:if="${!#fields.hasErrors('subject')}"
-							th:placeholder="#{contact.subject.tip}" type="text" id="subject"
-							name="subject" th:field="*{subject}" class="form-control" /> <input
-							th:if="${#fields.hasErrors('subject')}"
-							th:placeholder="#{NotBlank.contactBean.subject}" type="text"
-							id="subject" name="subject" th:field="*{subject}"
-							class="form-control" />
-					</div>
-					<!-- ul th:if="${#fields.hasErrors('password')}">
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="subject"> <span
+								th:text="#{contact.subject}" />
+							</label>
+							<div class="col-sm-10">
+								<input th:placeholder="#{contact.subject.tip}" type="text"
+									id="subject" name="subject" th:field="*{subject}"
+									class="form-control" />
+							</div>
+							<!-- ul th:if="${#fields.hasErrors('password')}">
 				<li th:each="error : ${#fields.errors('password')}"
 						th:text="${error}">Error de entrada</li>
 			</ul -->
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="comments"> <span
-						th:text="#{contact.comments}" />
-					</label>
-					<div class="col-sm-10">
-						<input th:if="${!#fields.hasErrors('comments')}"
-							th:placeholder="#{contact.comments.tip}" type="text"
-							id="comments" name="comments" th:field="*{comments}"
-							class="form-control" /> <input
-							th:if="${#fields.hasErrors('comments')}"
-							th:placeholder="#{NotBlank.contactBean.comments}" type="text"
-							id="comments" name="comments" th:field="*{comments}"
-							class="form-control" />
-					</div>
-					<!-- ul th:if="${#fields.hasErrors('passwordConfirmation')}">
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="comments"> <span
+								th:text="#{contact.comments}" />
+							</label>
+							<div class="col-sm-10">
+								<input th:placeholder="#{contact.comments.tip}" type="text"
+									id="comments" name="comments" th:field="*{comments}"
+									class="form-control" />
+							</div>
+							<!-- ul th:if="${#fields.hasErrors('passwordConfirmation')}">
 				<li th:each="error : ${#fields.errors('passwordConfirmation')}"
 						th:text="${error}">Error de entrada</li>
 			</ul -->
-				</div>
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" name="action" value="save"
-							class="btn btn-default btn-lg">
-							<span th:text="#{contact.action.save}" />
-						</button>
-						<button type="submit" name="action" value="cancel"
-							class="btn btn-default btn-lg">
-							<span th:text="#{contact.action.cancel}" />
-						</button>
-					</div>
-				</div>
-				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" />
-			</fieldset>
-		</form>
-		
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" name="action" value="save"
+									class="btn btn-default btn-lg">
+									<span th:text="#{contact.action.save}" />
+								</button>
+								<!-- button type="submit" name="action" value="cancel"
+									class="btn btn-default btn-lg">
+									<span th:text="#{contact.action.cancel}" />
+								</button -->
+							</div>
+						</div>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+					</fieldset>
+				</form>
+			</div>
+		</div>
+
 		<span id="map_canvas"></span>
 
 	</div>

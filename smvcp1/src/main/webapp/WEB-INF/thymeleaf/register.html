@@ -49,16 +49,13 @@
 					method="post" class="form-horizontal" role="form">
 
 					<fieldset>
-						<table th:if="${#fields.hasAnyErrors()}" class="table">
-							<tr th:each="error : ${#fields.allErrors()}">
-								<td th:text="${error}">Error de entrada</td>
-							</tr>
-						</table>
-
-						<!--  ul th:if="${#fields.hasAnyErrors()}">
-				<li th:each="error : ${#fields.allErrors()}" th:text="${error}">Error
-					de entrada</li>
-			</ul -->
+					
+						<div th:if="${#fields.hasAnyErrors()}">
+							<div class="alert alert-danger" role="alert"
+								th:each="error : ${#fields.allErrors()}" th:text="${error}">Error
+								de entrada</div>
+						</div>
+						
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="userName"> <span
 								th:text="#{register.userName}" />
