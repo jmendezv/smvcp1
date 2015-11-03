@@ -61,9 +61,9 @@ $(function() {
 	});
 });
 
-/* tooltips */
+/* Must be activated using jquery. To enable all tooltips */
 
-$(document).ready(function() {
+$(function() {
 	$("[data-toggle='tooltip']").tooltip();
 });
 
