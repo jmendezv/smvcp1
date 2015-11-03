@@ -7,83 +7,120 @@
 
 	<div layout:fragment="content">
 
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="../smvcp1"> <span
+						th:text="#{application.acronym}" /> <img class="brand"
+						th:src="@{resources/images/icon.png}" />
+					</a>
+				</div>
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#navbar-container">
+						<span class="sr-only"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<div class="collapse navbar-collapse" id="navbar-container">
+					<ul class="nav navbar-nav">
+
+						<li class="active"><a href="#"> <span
+								class="glyphicon glyphicon-user" /> <span
+								th:text="#{navbar.register}" /></a></li>
+
+					</ul>
+
+				</div>
+			</div>
+		</nav>
+
+
 		<h3 class="text-center" th:text="#{register.title}"></h3>
 
-		<form th:action="@{/register}" th:object="${userRegistrationBean}"
-			method="post" class="form-horizontal" role="form">
-			<legend>
+		<div class="panel panel-default">
+			<div class="panel-heading">
 				<span th:utext="#{register.legend}" />
-			</legend>
-			<fieldset>
-				<table th:if="${#fields.hasAnyErrors()}" class="table">
-					<tr th:each="error : ${#fields.allErrors()}">
-						<td 
-							th:text="${error}">Error de entrada</td>
-					</tr>
-				</table>
+			</div>
+			<div class="panel-body">
+				<form name="form-register" id="form-register"
+					th:action="@{/register}" th:object="${userRegistrationBean}"
+					method="post" class="form-horizontal" role="form">
 
-				<!--  ul th:if="${#fields.hasAnyErrors()}">
+					<fieldset>
+						<table th:if="${#fields.hasAnyErrors()}" class="table">
+							<tr th:each="error : ${#fields.allErrors()}">
+								<td th:text="${error}">Error de entrada</td>
+							</tr>
+						</table>
+
+						<!--  ul th:if="${#fields.hasAnyErrors()}">
 				<li th:each="error : ${#fields.allErrors()}" th:text="${error}">Error
 					de entrada</li>
 			</ul -->
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="username"> <span
-						th:text="#{register.userName}" />
-					</label>
-					<div class="col-sm-10">
-						<input type="text" id="username" name="username"
-							th:field="*{userName}" class="form-control" 
-							th:placeholder="#{register.userName.tip}"/>
-					</div>
-					<!--  ul th:if="${#fields.hasErrors('userName')}">
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="userName"> <span
+								th:text="#{register.userName}" />
+							</label>
+							<div class="col-sm-10">
+								<input type="text" id="userName" name="userName"
+									th:field="*{userName}" class="form-control"
+									th:placeholder="#{register.userName.tip}" />
+							</div>
+							<!--  ul th:if="${#fields.hasErrors('userName')}">
 				<li th:each="error : ${#fields.errors('userName')}"
 						th:text="${error}">Error de entrada</li>
 			</ul -->
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="password"> <span
-						th:text="#{register.password}" />
-					</label>
-					<div class="col-sm-10">
-						<input type="password" id="password" name="password"
-							th:field="*{password}" class="form-control" 
-							th:placeholder="#{register.password.tip}"/>
-					</div>
-					<!-- ul th:if="${#fields.hasErrors('password')}">
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="password"> <span
+								th:text="#{register.password}" />
+							</label>
+							<div class="col-sm-3">
+								<input type="password" id="password" name="password"
+									th:field="*{password}" class="form-control"
+									th:placeholder="#{register.password.tip}" />
+							</div>
+							<!-- ul th:if="${#fields.hasErrors('password')}">
 				<li th:each="error : ${#fields.errors('password')}"
 						th:text="${error}">Error de entrada</li>
 			</ul -->
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="passwordConfirmation">
-						<span th:text="#{register.passwordConfirmation}" />
-					</label>
-					<div class="col-sm-10">
-						<input type="password" id="passwordConfirmation"
-							name="passwordConfirmation" th:field="*{passwordConfirmation}"
-							class="form-control" th:placeholder="#{register.passwordConfirmation.tip}"/>
-					</div>
-					<!-- ul th:if="${#fields.hasErrors('passwordConfirmation')}">
+
+
+							<label class="control-label col-sm-4" for="passwordConfirmation">
+								<span th:text="#{register.passwordConfirmation}" />
+							</label>
+							<div class="col-sm-3">
+								<input type="password" id="passwordConfirmation"
+									name="passwordConfirmation" th:field="*{passwordConfirmation}"
+									class="form-control"
+									th:placeholder="#{register.passwordConfirmation.tip}" />
+							</div>
+							<!-- ul th:if="${#fields.hasErrors('passwordConfirmation')}">
 				<li th:each="error : ${#fields.errors('passwordConfirmation')}"
 						th:text="${error}">Error de entrada</li>
 			</ul -->
-				</div>
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" name="action" value="save"
-							class="btn btn-default btn-lg">
-							<span th:text="#{register.action.save}" />
-						</button>
-						<button type="submit" name="action" value="cancel"
-							class="btn btn-default btn-lg">
-							<span th:text="#{register.action.cancel}" />
-						</button>
-					</div>
-				</div>
-				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" />
-			</fieldset>
-		</form>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" name="action" value="save"
+									class="btn btn-default btn-lg">
+									<span th:text="#{register.action.save}" />
+								</button>
+								<!-- button type="submit" name="action" value="cancel"
+									class="btn btn-default btn-lg">
+									<span th:text="#{register.action.cancel}" />
+								</button -->
+							</div>
+						</div>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+					</fieldset>
+				</form>
+			</div>
+		</div>
+
 
 	</div>
 </body>

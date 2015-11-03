@@ -94,10 +94,10 @@ public class ResetPwdController {
 		// Error user no existeix
 		// TODO show message como si nada!!!
 		if (user == null) {
-			bindingResult.addError(new ObjectError(
-					"resetpwd.error.doesnotexist", messageSource.getMessage(
-							"resetpwd.error.doesnotexist",
-							new String[] { userName }, null)));
+			bindingResult.addError(new ObjectError("userName", messageSource
+					.getMessage("resetpwd.error.doesnotexist",
+							new String[] { userName },
+							Locale.getDefault())));
 			return "resetpwd";
 		}
 

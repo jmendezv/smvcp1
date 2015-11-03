@@ -43,7 +43,8 @@
 								class="glyphicon glyphicon-envelope"></span> <span
 								th:text="#{navbar.contact}" /></a></li>
 
-						<li><a href="#" id="about_opener"><span
+						<li><a href="#" id="about-opener" data-toggle="modal"
+							data-target="#about-dialog"><span
 								class="glyphicon glyphicon-education" /> <span
 								th:text="#{navbar.about}" /></a></li>
 
@@ -52,7 +53,8 @@
 								class="glyphicon glyphicon-question-sign" /> <span
 								th:text="#{navbar.help}" /> <span class="caret" /></a>
 							<ul class="dropdown-menu" role="menu">
-								<li class="dropdown-submenu"><a href="#" id="help_opener">
+								<li class="dropdown-submenu"><a href="#"
+									data-toggle="modal" data-target="#help-dialog" id="help-opener">
 										<span class="glyphicon glyphicon-screenshot" /> <span
 										th:text="#{navbar.help.system}" />
 								</a></li>
@@ -79,10 +81,10 @@
 					method="post" class="form-horizontal" role="form">
 
 					<fieldset>
-						<div th:if="${param.error}" class="alert error">
+						<div th:if="${param.error}" class="alert alert-danger">
 							<span th:text="#{login.error.validacion}" />
 						</div>
-						<div th:if="${param.logout}" class="alert success">
+						<div th:if="${param.logout}" class="alert alert-info">
 							<span th:text="#{login.loggedout}" />
 						</div>
 						<div class="form-group">
@@ -141,64 +143,97 @@
 							</div>
 						</div>
 					</fieldset>
-
 				</form>
 			</div>
 
 		</div>
 
-
-
-		<div id="help_dialog" th:title="#{login.help}">
-			<ul class="list-group">
-				<!-- li class="list-group-item"><span th:text="#{help.item1}" /></li -->
-				<li class="list-group-item"><span th:text="#{help.item2}" /></li>
-				<li class="list-group-item"><span th:text="#{help.item3}" /></li>
-				<li class="list-group-item"><span th:text="#{help.item4}" /></li>
-				<li class="list-group-item"><span th:text="#{help.item5}" /></li>
-				<li class="list-group-item"><span th:text="#{help.item6}" /></li>
-				<!-- li class="list-group-item"><span th:text="#{help.item7}" /></li -->
-				<li class="list-group-item"><span th:text="#{help.item8}" /></li>
-				<!-- li class="list-group-item"><span th:text="#{help.item9}" /></li -->
-				<!-- li class="list-group-item"><span th:text="#{help.item10}" /></li -->
-				<!-- li class="list-group-item"><span th:text="#{help.item11}" /></li -->
-				<!-- li><span th:text="#{help.item12}" /></li -->
-			</ul>
+		<div name="about-dialog" id="about-dialog" class="modal fade"
+			role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">
+							<span th:text="#{about.title}" />
+						</h4>
+					</div>
+					<div class="modal-body">
+						<dl class="dl-horizontal">
+							<dt>
+								<span th:text="#{about.formation}" />
+							</dt>
+							<dd>
+								<ul class="list-unstyled">
+									<li><span th:text="#{about.formation.item1}" /></li>
+									<li><span th:text="#{about.formation.item2}" /></li>
+									<li><span th:text="#{about.formation.item3}" /></li>
+								</ul>
+							</dd>
+							<dt>
+								<span th:text="#{about.other}" />
+							</dt>
+							<dd>
+								<ul class="list-unstyled">
+									<li><span th:text="#{about.other.item1}" /></li>
+									<li><span th:text="#{about.other.item2}" /></li>
+									<li><span th:text="#{about.other.item3}" /></li>
+								</ul>
+							</dd>
+							<dt>
+								<span th:text="#{about.work}" />
+							</dt>
+							<dd>
+								<ul class="list-unstyled">
+									<li><span th:text="#{about.work.item1}" /></li>
+									<li><span th:text="#{about.work.item2}" /></li>
+									<li><span th:text="#{about.work.item3}" /></li>
+								</ul>
+							</dd>
+						</dl>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							<span th:text="#{login.dialog.close}" />
+						</button>
+					</div>
+				</div>
+			</div>
 		</div>
 
-		<div id="about_dialog" th:title="#{login.about}">
-			<dl class="dl-horizontal">
-				<dt>
-					<span th:text="#{about.formation}" />
-				</dt>
-				<dd>
-					<ul class="list-unstyled">
-						<li><span th:text="#{about.formation.item1}" /></li>
-						<li><span th:text="#{about.formation.item2}" /></li>
-						<li><span th:text="#{about.formation.item3}" /></li>
-					</ul>
-				</dd>
-				<dt>
-					<span th:text="#{about.other}" />
-				</dt>
-				<dd>
-					<ul class="list-unstyled">
-						<li><span th:text="#{about.other.item1}" /></li>
-						<li><span th:text="#{about.other.item2}" /></li>
-						<li><span th:text="#{about.other.item3}" /></li>
-					</ul>
-				</dd>
-				<dt>
-					<span th:text="#{about.work}" />
-				</dt>
-				<dd>
-					<ul class="list-unstyled">
-						<li><span th:text="#{about.work.item1}" /></li>
-						<li><span th:text="#{about.work.item2}" /></li>
-						<li><span th:text="#{about.work.item3}" /></li>
-					</ul>
-				</dd>
-			</dl>
+		<div name="help-dialog" id="help-dialog" class="modal fade"
+			role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">
+							<span th:text="#{help.title}" />
+						</h4>
+					</div>
+					<div class="modal-body">
+						<ul class="list-group">
+							<!-- li class="list-group-item"><span th:text="#{help.item1}" /></li -->
+							<li class="list-group-item"><span th:text="#{help.item2}" /></li>
+							<li class="list-group-item"><span th:text="#{help.item3}" /></li>
+							<li class="list-group-item"><span th:text="#{help.item4}" /></li>
+							<li class="list-group-item"><span th:text="#{help.item5}" /></li>
+							<li class="list-group-item"><span th:text="#{help.item6}" /></li>
+							<!-- li class="list-group-item"><span th:text="#{help.item7}" /></li -->
+							<li class="list-group-item"><span th:text="#{help.item8}" /></li>
+							<!-- li class="list-group-item"><span th:text="#{help.item9}" /></li -->
+							<!-- li class="list-group-item"><span th:text="#{help.item10}" /></li -->
+							<!-- li class="list-group-item"><span th:text="#{help.item11}" /></li -->
+							<!-- li><span th:text="#{help.item12}" /></li -->
+						</ul>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							<span th:text="#{login.dialog.close}" />
+						</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
