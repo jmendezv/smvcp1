@@ -10,3 +10,14 @@ grant usage on *.* to amarokuser@localhost identified by 'amarokpasswd';
 grant all privileges on amarokdb.* to amarokuser@localhost ;
  # running sql script 	
  \. setup.sql
+ 
+  load data infile '/tmp/t1.csv' into table t1 fields terminated by ',' enclosed by '"' lines terminated by '\n';
+  
+  select id, name, weight from t1 into outfile '/tmp/t1.csv' fields terminated by ',' enclosed by '"' lines terminated by '\n';
+  
+  myslq
+  mysqldump
+  mysqladmin
+  mysqlimport
+  mysqlshow
+  

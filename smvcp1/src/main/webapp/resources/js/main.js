@@ -135,13 +135,10 @@ $(document).ready(function() {
 		},
 		fields : {
 			name : {
-				message : "Escribe tu email",
+				message : "Escribe tu nombre",
 				validators : {
 					notEmpty : {
-						message : "Por favor, escribe tu email"
-					},
-					emailAddress : {
-						message : "No es una email valido"
+						message : "Por favor, escribe tu nombre"
 					}
 				}
 			},

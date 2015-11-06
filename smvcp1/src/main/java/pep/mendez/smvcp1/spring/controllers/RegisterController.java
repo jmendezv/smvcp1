@@ -1,5 +1,7 @@
 package pep.mendez.smvcp1.spring.controllers;
 
+import java.util.Locale;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -12,6 +14,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.DigestUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -63,7 +66,8 @@ public class RegisterController {
 	public String registerForm(
 			@Valid @ModelAttribute("userRegistrationBean") UserRegistrationBean userRegistrationBean,
 			BindingResult bindingResult,
-			@RequestParam(value = "action", required = true) String action) {
+			@RequestParam(value = "action", required = true) String action,
+			ModelMap model) {
 
 		logger.debug(userRegistrationBean.toString());
 
@@ -101,7 +105,8 @@ public class RegisterController {
 
 		// assign user role if no authority granted
 		if (user.getAuthorities().size() == 0) {
-			AuthorityEntity authority = new AuthorityEntity(userName, "ROLE_USER");
+			AuthorityEntity authority = new AuthorityEntity(userName,
+					"ROLE_USER");
 			authority.setUser(user);
 			user.add(authority);
 		}
@@ -111,15 +116,27 @@ public class RegisterController {
 		String md5Hex = DigestUtils.md5DigestAsHex((userName + Utility.SALT)
 				.getBytes());
 
-		StringBuilder body = new StringBuilder(
-				UtilityConstants.VALIDATE_MESSAGE_1);
+		// moved to message.properties
+		// StringBuilder body = new StringBuilder(
+		// UtilityConstants.VALIDATE_MESSAGE_1);
+		StringBuilder body = new StringBuilder(messageSource.getMessage("register.controller.msg1",
+				new String[] {}, Locale.getDefault()));
+		
+		// moved to messages.properties
+//		body.append(user.getId()).append(";d=").append(md5Hex)
+//				.append(UtilityConstants.VALIDATE_MESSAGE_2);
+		
 		body.append(user.getId()).append(";d=").append(md5Hex)
-				.append(UtilityConstants.VALIDATE_MESSAGE_2);
-
+		.append(messageSource.getMessage("register.controller.msg2",
+				new String[] {}, Locale.getDefault()));
+		
 		String from = env.getProperty("mailserver.replyTo");
 
-		Utility.sendEmail(mailSender, from, userName, "Registro",
+		Utility.sendEmail(mailSender, from, userName, messageSource.getMessage("register.controller.subject",
+				new String[] {}, Locale.getDefault()),
 				body.toString());
+
+		model.addAttribute("registered", "yes");
 
 		return "login";
 	}

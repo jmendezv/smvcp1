@@ -101,6 +101,8 @@ public class ChangePwdController {
 		user.setPassword(encodedPassword);
 
 		userService.save(user);
+		
+		model.addAttribute("pwdchanged", "success");
 
 		return "home";
 	}

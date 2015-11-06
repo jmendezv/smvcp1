@@ -106,15 +106,21 @@ public class ValidateResetPwdController {
 						String encodedPassword = passwordEncoder.encode(newPwd);
 						user.setPassword(encodedPassword);
 
+//						StringBuilder body = new StringBuilder(
+//								UtilityConstants.RESETED_PASSWORD_MESSAGE_1);
+						
 						StringBuilder body = new StringBuilder(
-								UtilityConstants.RESETED_PASSWORD_MESSAGE_1);
+								messageSource.getMessage(
+										"validateresetpwd.controller.validated", null,
+										Locale.getDefault()));
+						
 						body.append(user.getUserName()).append("/")
 								.append(newPwd);
 
 						String from = env.getProperty("mailserver.replyTo");
 
 						String subject = messageSource.getMessage(
-								"validateresetpwdcontroller.subject", null,
+								"validateresetpwd.controller.subject", null,
 								Locale.getDefault());
 
 						Utility.sendEmail(mailSender, from, user.getUserName(),

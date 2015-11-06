@@ -141,6 +141,8 @@ public class ProfileController {
 		profile.setProfession(profileBean.getProfession());
 		// save will create or update accordinly
 		userService.save(user);
+		
+		model.addAttribute("profiled", "success");
 
 		return "home";
 

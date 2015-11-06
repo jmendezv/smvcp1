@@ -102,7 +102,7 @@ public class ResetPwdController {
 		}
 
 		int hours = Integer.valueOf(env.getProperty(
-				"resetpwdcontroller.expiryhours", "24"));
+				"resetpwd.controller.expiryhours", "24"));
 
 		ResetEntity reset = new ResetEntity(new Random().nextLong(), new Date(
 				System.currentTimeMillis() + DateTimeConstants.MILLIS_PER_HOUR
@@ -116,15 +116,23 @@ public class ResetPwdController {
 
 		// http://localhost:8080/smvcp1/resetpwd/1;d=<username_digest>;c=<resert_code>
 		// http://localhost:8080/smvcp1/resetpwd/1;d=AB468EDAB33D49032CE198C;c=3453456786656
+//		StringBuilder body = new StringBuilder(
+//				UtilityConstants.RESET_PASSWORD_MESSAGE_1);
+		
 		StringBuilder body = new StringBuilder(
-				UtilityConstants.RESET_PASSWORD_MESSAGE_1);
+				messageSource.getMessage("resetpwd.controller.msg1", null, Locale.getDefault()));
+		
+//		body.append(user.getId()).append(";d=").append(userNameMd5Hex)
+//				.append(";c=").append(reset.getResetCode())
+//				.append(UtilityConstants.RESET_PASSWORD_MESSAGE_2);
+		
 		body.append(user.getId()).append(";d=").append(userNameMd5Hex)
-				.append(";c=").append(reset.getResetCode())
-				.append(UtilityConstants.RESET_PASSWORD_MESSAGE_2);
+		.append(";c=").append(reset.getResetCode())
+		.append(messageSource.getMessage("resetpwd.controller.msg2", null, Locale.getDefault()));
 
 		String from = env.getProperty("mailserver.replyTo");
 
-		String subject = messageSource.getMessage("resetpwdcontroller.subject",
+		String subject = messageSource.getMessage("resetpwd.controller.subject",
 				null, Locale.getDefault());
 
 		Utility.sendEmail(mailSender, from, userName, subject, body.toString());

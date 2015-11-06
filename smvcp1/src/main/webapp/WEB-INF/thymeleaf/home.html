@@ -82,8 +82,8 @@
 		</div>
 
 		<!-- Old confirmation unsubscribe dialog -->
-		
-		<div role="dialog" id="confirm-unsubscribe-dialog"
+
+		<div class="modal" role="dialog" id="confirm-unsubscribe-dialog"
 			th:title="#{home.confirmation-dialog.title}">
 			<p>
 				<span th:text="#{home.confirmation-dialog.body}" />
@@ -91,6 +91,14 @@
 		</div>
 		​
 		<h3 class="text-center" th:text="#{home.title}"></h3>
+
+		<div th:if="${profiled}" class="alert alert-success">
+			<span th:text="#{home.profiled}" />
+		</div>
+		
+		<div th:if="${pwdchanged}" class="alert alert-success">
+			<span th:text="#{home.pwdchanged}" />
+		</div>
 
 		<div th:object="${#httpServletRequest.userPrincipal}">
 			<p>

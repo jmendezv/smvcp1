@@ -27,7 +27,6 @@
 				<div class="collapse navbar-collapse" id="navbar-container">
 					<ul class="nav navbar-nav">
 
-
 						<li><a href="/resetpwd" th:href="@{/resetpwd}"> <span
 								class="glyphicon glyphicon-link" /> <span
 								th:text="#{navbar.resetpwd}" /></a></li>
@@ -43,14 +42,11 @@
 								class="glyphicon glyphicon-envelope"></span> <span
 								th:text="#{navbar.contact}" /></a></li>
 
-
-
 						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#"> 	
-							<span
+							data-toggle="dropdown" href="#"> <span
 								class="glyphicon glyphicon-info-sign" /> <span
 								th:text="#{navbar.options}" /> <span class="caret" /></a>
-							
+
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="#" id="about-opener" data-toggle="modal"
 									data-target="#about-dialog"><span
@@ -67,7 +63,6 @@
 										<span th:text="#{navbar.help.system}" />
 								</a></li>
 							</ul></li>
-
 					</ul>
 				</div>
 			</div>
@@ -89,6 +84,9 @@
 						</div>
 						<div th:if="${param.logout}" class="alert alert-info">
 							<span th:text="#{login.loggedout}" />
+						</div>
+						<div th:if="${registered}" class="alert alert-success">
+							<span th:text="#{login.registered}" />
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-2 control-label"
@@ -151,12 +149,13 @@
 
 		</div>
 
-		<div name="about-dialog" id="about-dialog" class="modal fade" tabindex="-1"
-		aria-hidden="true" role="dialog">
+		<div name="about-dialog" id="about-dialog" class="modal fade"
+			tabindex="-1" aria-hidden="true" role="dialog">
 			<div class="modal-dialog" keyboard="false" backdrop="false">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
 						<h4 class="modal-title">
 							<span th:text="#{about.title}" />
 						</h4>
