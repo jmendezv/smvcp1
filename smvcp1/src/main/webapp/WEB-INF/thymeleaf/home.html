@@ -35,7 +35,6 @@
 						<li><a id="unsubscribe" href="#"
 							th:href="@{/unsubscribe(username=${#httpServletRequest.userPrincipal.name})}">
 							<span class="glyphicon glyphicon-remove" />
-
 								<span th:text="#{navbar.unsubscribe}" class="text-danger" />
 						</a></li>
 
@@ -58,13 +57,11 @@
 			</div>
 		</nav>
 
-
+		<!-- Confirmation si/no dialog -->
 		<div class="hidden" id="confirm_dialog" th:title="#{home.confirmation-dialog.title}">
-			<span th:text="#{home.confirmation-dialog.body}" />
-
+			<p><span th:text="#{home.confirmation-dialog.body}" /></p>
 		</div>
 		​
-
 		<h3 class="text-center" th:text="#{home.title}"></h3>
 
 		<div th:object="${#httpServletRequest.userPrincipal}">
@@ -97,7 +94,7 @@
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close float-right"
-											data-dismiss="modal">X</button>
+											data-dismiss="modal">&times;</button>
 										<h3 class="modal-title"><span th:text="#{home.admin-dialog.title}" /></h3>
 									</div>
 									<div class="modal-body">
@@ -120,7 +117,7 @@
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close float-right"
-											data-dismiss="modal">X</button>
+											data-dismiss="modal">&times;</button>
 										<h3 class="modal-title"><span th:text="#{home.user-dialog.title}" /></h3>
 									</div>
 									<div class="modal-body">
@@ -143,7 +140,7 @@
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close float-right"
-											data-dismiss="modal">X</button>
+											data-dismiss="modal">&times;</button>
 										<h3 class="modal-title"><span th:text="#{home.root-dialog.body}" /></h3>
 									</div>
 									<div class="modal-body">

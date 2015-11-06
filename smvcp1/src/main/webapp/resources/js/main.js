@@ -25,15 +25,21 @@ $(document).ready(function() {
  * $("#help-opener").click(function() { $("#help-dialog").dialog("open"); });
  * });
  */
+
 $(function() {
 	$("#unsubscribe").click(function(e) {
 		e.preventDefault();
+		// guarda la url de la etiqueta <a>
 		var targetUrl = $(this).attr("href");
-
+//46721
 		$("#confirm_dialog").dialog({
+			resizable : false,
+			modal : true,
+			height : 240,
 			buttons : {
 				"Confirma" : function() {
 					window.location.href = targetUrl;
+					$(this).dialog("close");
 				},
 				"Cancela" : function() {
 					$(this).dialog("close");
