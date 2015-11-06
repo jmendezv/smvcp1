@@ -31,11 +31,20 @@ $(function() {
 		e.preventDefault();
 		// guarda la url de la etiqueta <a>
 		var targetUrl = $(this).attr("href");
-//46721
-		$("#confirm_dialog").dialog({
-			resizable : false,
+		// 46721
+		$("#confirm-unsubscribe-dialog").dialog({
+			resizable : true,
 			modal : true,
-			height : 240,
+			//height : 240,
+			text : "dfadsffsd",
+			show : {
+				effect : "blind",
+				duration : 1000
+			},
+			hide : {
+				effect : "explode",
+				duration : 1000
+			},
 			buttons : {
 				"Confirma" : function() {
 					window.location.href = targetUrl;
@@ -47,7 +56,7 @@ $(function() {
 			}
 		});
 
-		$("#confirm_dialog").dialog("open");
+		$("#confirm-unsubscribe-dialog").dialog("open");
 	});
 });
 

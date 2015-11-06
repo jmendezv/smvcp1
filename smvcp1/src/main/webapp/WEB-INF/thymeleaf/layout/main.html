@@ -28,16 +28,17 @@
 <link rel='stylesheet' 
 	th:href="@{/webjars/bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css}" />
 	
-<!-- Achtung place jquery.min.js first otherwise menus won't work  -->	
+<!-- Achtung place jquery.min.js first, then bootstrap.min.js and finally jquery-ui otherwise menus won't work  -->	
 	
 <script type="text/javascript"
 	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>	
 
 <script type="text/javascript"
+	th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
+
+<script type="text/javascript"
 	th:src="@{/webjars/jquery-ui/1.11.4/jquery-ui.js}"></script>
 	
-<script type="text/javascript"
-	th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
 	
 <script type="text/javascript" th:src="@{/resources/js/main.js}"></script>
 
