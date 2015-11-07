@@ -199,9 +199,9 @@ $(document)
 														message : "Por favor, escribe tu clave"
 													},
 													stringLength : {
-														min : 8,
-														max : 16,
-														message : "La logintud ha de estar entre 8 y 16 caracteres"
+														min : 6,
+														max : 12,
+														message : "La logintud ha de estar entre 6 y 12 caracteres"
 													}
 												}
 											},
@@ -212,9 +212,9 @@ $(document)
 														message : "Por favor, confirma tu clave"
 													},
 													stringLength : {
-														min : 8,
-														max : 16,
-														message : "La logintud ha de estar entre 8 y 16 caracteres"
+														min : 6,
+														max : 12,
+														message : "La logintud ha de estar entre 6 y 12 caracteres"
 													},
 													identical : {
 														field : "password",
@@ -258,9 +258,9 @@ $(document)
 														message : "Por favor, escribe tu clave"
 													},
 													stringLength : {
-														min : 8,
-														max : 16,
-														message : "La logintud ha de estar entre 8 y 16 caracteres"
+														min : 6,
+														max : 12,
+														message : "La logintud ha de estar entre 6 y 12 caracteres"
 													}
 												}
 											},
@@ -271,9 +271,9 @@ $(document)
 														message : "Por favor, confirma tu clave"
 													},
 													stringLength : {
-														min : 8,
-														max : 16,
-														message : "La logintud ha de estar entre 8 y 16 caracteres"
+														min : 6,
+														max : 12,
+														message : "La logintud ha de estar entre 6 y 12 caracteres"
 													},
 													identical : {
 														field : "password",

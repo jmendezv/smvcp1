@@ -9,6 +9,13 @@
 
 @import url("pagination.css");
 
+body {
+	background-image: url('../images/white_background_1.jpg') ;
+	background-size: 100%;
+	display: block;
+	padding: 0 !important;
+	margin: 0;
+}
 
 .brand {
 	max-height: 25px;

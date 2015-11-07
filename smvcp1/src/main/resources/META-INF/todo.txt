@@ -21,3 +21,7 @@ grant all privileges on amarokdb.* to amarokuser@localhost ;
   mysqlimport
   mysqlshow
   
+  // elimna DS_Store recursivament del sistema
+  
+  sudo find / -name ".DS_Store" -depth -exec rm {} \;
+  
