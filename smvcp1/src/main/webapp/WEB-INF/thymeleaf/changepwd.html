@@ -66,7 +66,7 @@
 							<div class="col-sm-10">
 								<input type="text" id="username" name="username"
 									th:field="*{userName}" readonly="readonly" class="form-control"
-									th:placeholder="#{changepwd.username.tip}" />
+									th:placeholder="#{changepwd.username.tip}" style="background-color: rgba(255, 255, 255, 0.1);"/>
 							</div>
 							<!--  ul th:if="${#fields.hasErrors('userName')}">
 				<li th:each="error : ${#fields.errors('userName')}"
@@ -79,7 +79,7 @@
 							<div class="col-sm-4">
 								<input type="password" id="password" name="password"
 									th:field="*{password}" class="form-control"
-									th:placeholder="#{changepwd.password.tip}" />
+									th:placeholder="#{changepwd.password.tip}" style="background-color: rgba(255, 255, 255, 0.1);"/>
 							</div>
 							<!-- ul th:if="${#fields.hasErrors('password')}">
 				<li th:each="error : ${#fields.errors('password')}"
@@ -92,7 +92,7 @@
 								<input type="password" id="passwordConfirmation"
 									name="passwordConfirmation" th:field="*{passwordConfirmation}"
 									class="form-control"
-									th:placeholder="#{changepwd.passwordConfirmation.tip}" />
+									th:placeholder="#{changepwd.passwordConfirmation.tip}" style="background-color: rgba(255, 255, 255, 0.1);"/>
 							</div>
 							<!-- ul th:if="${#fields.hasErrors('passwordConfirmation')}">
 				<li th:each="error : ${#fields.errors('passwordConfirmation')}"
@@ -102,7 +102,7 @@
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<button class="btn btn-default btn-lg" type="submit"
-									name="action" value="save">
+									name="action" value="save"  style="background-color: rgba(255, 255, 255, 0.1);">
 									<span th:text="#{changepwd.action.save}" />
 								</button>
 								<!-- button class="btn btn-default btn-lg" type="submit"

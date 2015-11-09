@@ -1,3 +1,5 @@
+
+
 $(document).ready(function() {
 
 });
@@ -26,6 +28,10 @@ $(document).ready(function() {
  * });
  */
 
+
+/*
+ * home: link unsubscribe si/no?
+ */
 $(function() {
 	$("#unsubscribe").click(function(e) {
 		e.preventDefault();
@@ -35,8 +41,8 @@ $(function() {
 		$("#confirm-unsubscribe-dialog").dialog({
 			resizable : true,
 			modal : true,
-			//height : 240,
-			text : "dfadsffsd",
+			// height : 240,
+			text : "whatever",
 			show : {
 				effect : "blind",
 				duration : 1000
@@ -57,6 +63,49 @@ $(function() {
 		});
 
 		$("#confirm-unsubscribe-dialog").dialog("open");
+	});
+});
+
+/*
+ * edit: button delete confirm dialog
+ */
+$(function() {
+	$("#btn-delete").click(function(event) {
+		event.preventDefault();
+		var target = event.target;
+		// get containing form
+		//var $form = $(this).closest('form');
+		//var targetUrl = $form.attr("action");
+		 //var submitForm = $('#edit-form');
+		// 46721
+		$("#confirm-delete-user-dialog").dialog({
+			resizable : true,
+			modal : true,
+			// height : 240,
+			text : "dfadsffsd",
+			show : {
+				effect : "blind",
+				duration : 1000
+			},
+			hide : {
+				effect : "explode",
+				duration : 1000
+			},
+			buttons : {
+				"Confirma" : function() {
+					//$('form#edit-form').submit();
+					//submitForm.submit();
+					//window.location.href = targetUrl;
+					$(this).dialog("close");
+				},
+				"Cancela" : function() {
+					
+					$(this).dialog("close");
+				}
+			}
+		});
+
+		$("#confirm-delete-user-dialog").dialog("open");
 	});
 });
 

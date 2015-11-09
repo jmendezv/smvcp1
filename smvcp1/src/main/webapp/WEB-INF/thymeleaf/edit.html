@@ -44,6 +44,15 @@
 
 
 		<h3 class="text-center" th:text="#{edit.title}"></h3>
+		
+		<!-- Old confirmation unsubscribe dialog -->
+
+		<div class="modal" role="dialog" id="confirm-delete-user-dialog"
+			th:title="#{home.confirmation-dialog.title}">
+			<p>
+				<span th:text="#{home.confirmation-dialog.body}" />
+			</p>
+		</div>
 
 		<div class="panel panel-default"
 			style="background-color: transparent;">
@@ -51,7 +60,7 @@
 				<span th:text="#{edit.legend}" />
 			</div>
 			<div class="panel-body">
-				<form action="#" th:action="@{/edit}" th:object="${userEditBean}"
+				<form id="edit-form" name="edit-form" action="#" th:action="@{/edit}" th:object="${userEditBean}"
 					method="post" class="form-horizontal" role="form">
 
 					<fieldset>
@@ -64,7 +73,7 @@
 								th:text="#{edit.userName}" />
 							<div class="col-sm-10">
 								<input type="text" id="userName" name="userName"
-									th:field="*{userName}" readonly="readonly" class="form-control" />
+									th:field="*{userName}" readonly="readonly" class="form-control" style="background-color: rgba(255, 255, 255, 0.1);"/>
 							</div>
 							<ul th:if="${#fields.hasErrors('userName')}">
 								<li th:each="error : ${#fields.errors('userName')}"
@@ -77,14 +86,14 @@
 								<div class="checkbox">
 									<label class="control-label col-sm-2"
 										th:for="${#ids.seq('enabled')}"> <input
-										type="checkbox" th:field="*{enabled}" /> <span
+										type="checkbox" th:field="*{enabled}" style="background-color: rgba(255, 255, 255, 0.1);"/> <span
 										th:text="#{edit.enabled}" /></label>
 								</div>
 							</div>
 						</div>
 
 						<div class="text-center">
-							<span class="bg-primary" th:text="#{edit.roles}" />
+							<span class="bg-primary" th:utext="#{edit.roles}" />
 						</div>
 
 						<!-- checkbox inline not working -->
@@ -93,7 +102,7 @@
 								<div class="checkbox">
 									<label th:for="${#ids.next('roles')}"
 										class="control-label col-sm-4 checkbox-inline"> <input type="checkbox"
-										th:field="*{roles}" th:value="${role}"><span
+										th:field="*{roles}" th:value="${role}" style="background-color: rgba(255, 255, 255, 0.1);"><span
 										th:text="#{${'edit.role.' + role}}" /></input>
 									</label>
 								</div>
@@ -102,15 +111,15 @@
 
 						<div class="form-group text-center">
 							<div class="col-sm-offset-2 col-sm-10">
-								<button type="submit" class="btn btn-default btn-lg"
-									name="action" value="save">
+								<button id="btn-save" type="submit" class="btn btn-default btn-lg"
+									name="action" value="save"  style="background-color: rgba(255, 255, 255, 0.1);">
 									<span th:text="#{edit.action.save}" />
 								</button>
 								<!-- button type="submit" class="btn btn-default btn-lg"
 									name="action" value="cancel">
 									<span th:text="#{edit.action.cancel}" />
 								</button -->
-								<button type="submit" class="btn btn-danger btn-lg"
+								<button id="btn-delete" type="submit" class="btn btn-danger btn-lg"
 									name="action" value="delete">
 									<span th:text="#{edit.action.delete}" />
 								</button>
