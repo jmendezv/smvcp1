@@ -2,6 +2,24 @@
 <html layout:decorator="layout/main">
 <head>
 <title>${#messages.msg('home.title')}</title>
+<script type="text/javascript" language="javascript"> 
+
+// <![CDATA[
+
+// global variable declared as a callback method or function
+var handler = function(event) {
+	var msgs = ["Trial version", "No license"];
+	
+	$("div").dblclick(function() { 
+		alert(msgs.sort()[0]);
+	}); 
+};
+            
+jQuery(document).ready(handler);
+
+// ]]>
+
+</script>
 </head>
 <body>
 
@@ -95,7 +113,7 @@
 		<div th:if="${profiled}" class="alert alert-success">
 			<span th:text="#{home.profiled}" />
 		</div>
-		
+
 		<div th:if="${pwdchanged}" class="alert alert-success">
 			<span th:text="#{home.pwdchanged}" />
 		</div>

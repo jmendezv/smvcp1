@@ -20,7 +20,7 @@ public class ContactEntity extends BaseEntity {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "username", length = 128, unique = true, nullable = false)
+	@Column(name = "username", length = 128, unique = true, nullable = true)
 	private String userName;
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "datecontact")

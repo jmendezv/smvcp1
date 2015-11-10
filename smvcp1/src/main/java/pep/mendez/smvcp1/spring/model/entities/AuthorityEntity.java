@@ -25,9 +25,9 @@ public class AuthorityEntity extends BaseEntity {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@Column(name = "username", length = 64, nullable = false, unique = false)
+	@Column(name = "username", length = 64, nullable = true, unique = false)
 	private String userName;
-	@Column(name = "authority", length = 64, nullable = false, unique = false)
+	@Column(name = "authority", length = 64, nullable = true, unique = false)
 	private String authority;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", nullable = true)

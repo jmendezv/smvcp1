@@ -15,6 +15,25 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+ -- delimiter //
+ -- mysql> create trigger users_hist before delete on users for each row begin insert into users_old values (null, old.username); end;//
+ -- mysql> delimiter ;
+ 
+-- delimiter //
+-- create procedure user_auth(in id long) begin select u.id, u.username, u.password, a.authority from users u inner join authorities a on u.id = a.user_id and u.id = id; end //
+  -- select u.id, u.username, u.password , a.authority from users u, authorities a where u.id = id and u.id = a.user_id;
+  -- end //
+  -- delimiter ;
+
+ -- select u.id, u.username, a.authority from users u inner join authorities a on u.id = a.user_id and u.id = 1;
+ 
+--  delimiter //
+-- create procedure count_users (out n long) begin select count(*) into n from users; end //
+-- delimiter ;
+
+-- call count_users(@t);
+
+-- select @t;
 --
 -- Table structure for table `authorities`
 --
@@ -24,13 +43,13 @@ DROP TABLE IF EXISTS `authorities`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `authorities` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `authority` varchar(64) NOT NULL,
-  `username` varchar(64) NOT NULL,
-  `user_id` bigint(20) NOT NULL,
+  `authority` varchar(64) DEFAULT NULL,
+  `username` varchar(64) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_df8c9872ad284bb8a647e2c29f0` (`user_id`),
-  CONSTRAINT `FK_df8c9872ad284bb8a647e2c29f0` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+  KEY `FK_s21btj9mlob1djhm3amivbe5e` (`user_id`),
+  CONSTRAINT `FK_s21btj9mlob1djhm3amivbe5e` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,92 +58,120 @@ CREATE TABLE `authorities` (
 
 LOCK TABLES `authorities` WRITE;
 /*!40000 ALTER TABLE `authorities` DISABLE KEYS */;
-INSERT INTO `authorities` VALUES 
-(3,'ROLE_USER','pep@smvcp.com',3),
-(4,'ROLE_ADMIN','pep@smvcp.com',3),
-(5,'ROLE_USER','manel@smvcp.com',4),
-(6,'ROLE_USER','vanessa@smvcp.com',5),
-(8,'ROLE_USER','ninel@smvcp.com',6),
-(9,'ROLE_ADMIN','ninel@smvcp.com',6),
-(10,'ROLE_ROOT','ninel@smvcp.com',6),
-(11,'ROLE_USER','mingo@smvc.com',7),
-(12,'ROLE_USER','chris@smvc.com',8),
-(13,'ROLE_USER','xavi@smvc.com',9),
-(14,'ROLE_USER','anna@smvc.com',10),
-(15,'ROLE_ADMIN','anna@smvc.com',10);
-/*(15,'ROLE_USER','amed@smvc.com',10),
-(16,'ROLE_USER','abel@smvc.com',11),
-(17,'ROLE_USER','abir@smvc.com',12),
-(18,'ROLE_USER','maria@smvc.com',13),
-(19,'ROLE_ADMIN','maria@smvc.com',13),
-(20,'ROLE_USER','susana@smvc.com',14),
-(21,'ROLE_USER','esther@smvc.com',15),
-(22,'ROLE_USER','ruth@smvc.com',16),
-(23,'ROLE_USER','andres@smvc.com',17),
-(24,'ROLE_USER','juan@smvc.com',18),
-(25,'ROLE_USER','isma@smvc.com',19);*/
+INSERT INTO `authorities` VALUES (1,'ROLE_USER','pep@smvcp.com',1),(2,'ROLE_ADMIN','pep@smvcp.com',1),(3,'ROLE_USER','ana@smvcp.com',3);
 /*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `connection`
+-- Table structure for table `connections`
 --
 
-DROP TABLE IF EXISTS `connection`;
+DROP TABLE IF EXISTS `connections`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `connection` (
+CREATE TABLE `connections` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `ip` varchar(64) DEFAULT NULL,
   `timeIn` datetime DEFAULT NULL,
-  `timeOut` datetime DEFAULT NULL,
-  `user_id` bigint(20) NOT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_f2f11777f7dc4aa68289477aa4c` (`user_id`),
-  CONSTRAINT `FK_f2f11777f7dc4aa68289477aa4c` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+  KEY `FK_bifjq7gtcpt2q922i3wvgbja9` (`user_id`),
+  CONSTRAINT `FK_bifjq7gtcpt2q922i3wvgbja9` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `connection`
+-- Dumping data for table `connections`
 --
 
-LOCK TABLES `connection` WRITE;
-/*!40000 ALTER TABLE `connection` DISABLE KEYS */;
-/*!40000 ALTER TABLE `connection` ENABLE KEYS */;
+LOCK TABLES `connections` WRITE;
+/*!40000 ALTER TABLE `connections` DISABLE KEYS */;
+/*!40000 ALTER TABLE `connections` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `profile`
+-- Table structure for table `contacts`
 --
 
-DROP TABLE IF EXISTS `profile`;
+DROP TABLE IF EXISTS `contacts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `profile` (
+CREATE TABLE `contacts` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `city` varchar(32) NOT NULL,
-  `date` datetime NOT NULL,
-  `ip` varchar(64) NOT NULL,
-  `name` varchar(32) NOT NULL,
-  `phone` varchar(16) NOT NULL,
-  `profession` varchar(32) NOT NULL,
-  `user_id` bigint(20) NOT NULL,
+  `comments` varchar(255) DEFAULT NULL,
+  `datecontact` datetime DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
+  `username` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  -- UNIQUE KEY `UK_baf146a9c69749c985536f810ec` (`user_id`),
-  KEY `FK_dfa972e3693844b3b7ae4b077fe` (`user_id`),
-  CONSTRAINT `FK_dfa972e3693844b3b7ae4b077fe` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `UK_iy89i58xo7oepohxdhtenhgel` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `profile`
+-- Dumping data for table `contacts`
 --
 
-LOCK TABLES `profile` WRITE;
-/*!40000 ALTER TABLE `profile` DISABLE KEYS */;
-INSERT INTO `profile` VALUES (2,'terrassa','2015-09-16 21:11:17','127.0.0.1','pep','0000000000','estudiant',3),(4,'terrassa','2015-09-15 22:08:55','127.0.0.1','josep','8888888888','estudiante',4),(5,'a','2015-09-15 22:32:49','127.0.0.1','a','0000000000','a',5);
-/*!40000 ALTER TABLE `profile` ENABLE KEYS */;
+LOCK TABLES `contacts` WRITE;
+/*!40000 ALTER TABLE `contacts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `contacts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `profiles`
+--
+
+DROP TABLE IF EXISTS `profiles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `profiles` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `city` varchar(32) DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
+  `ip` varchar(64) DEFAULT NULL,
+  `name` varchar(32) DEFAULT NULL,
+  `phone` varchar(16) DEFAULT NULL,
+  `profession` varchar(32) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_4ixsj6aqve5pxrbw2u0oyk8bb` (`user_id`),
+  CONSTRAINT `FK_4ixsj6aqve5pxrbw2u0oyk8bb` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `profiles`
+--
+
+LOCK TABLES `profiles` WRITE;
+/*!40000 ALTER TABLE `profiles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `profiles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `resets`
+--
+
+DROP TABLE IF EXISTS `resets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `resets` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `dateExpiry` datetime DEFAULT NULL,
+  `resetCode` bigint(20) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_pabh43dxq8nxlmyy6jisxg72d` (`user_id`),
+  CONSTRAINT `FK_pabh43dxq8nxlmyy6jisxg72d` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `resets`
+--
+
+LOCK TABLES `resets` WRITE;
+/*!40000 ALTER TABLE `resets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `resets` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -136,12 +183,12 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `enabled` tinyint(1) DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `username` varchar(128) NOT NULL,
+  `enabled` bit(1) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `username` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_f80ad6c47538465fbf8957f51f5` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `UK_r43af9ap4edm43mmtq01oddj6` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,25 +197,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES 
-(3,1,'$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','pep@smvcp.com'),
-(4,1,'$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','manel@smvcp.com'),
-(5,1,'$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','vanessa@smvcp.com'),
-(6,0,'$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','ninel@smvcp.com'),
-(7,1,'$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','mingo@smvcp.com'),
-(8,1,'$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','chris@smvcp.com'),
-(9,1,'$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','xavi@smvcp.com'),
-(10,0,'$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','anna@smvcp.com');
-/*(10,1,'$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','amed@smvcp.com'),
-(11,1,'$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','abel@smvcp.com'),
-(12,1,'$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','abir@smvcp.com'),
-(13,1,'$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','maria@smvcp.com'),
-(14,1,'$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','susana@smvcp.com'),
-(15,1,'$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','esther@smvcp.com'),
-(16,1,'$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','ruth@smvcp.com'),
-(17,0,'$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','andres@smvcp.com'),
-(18,0,'$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','juan@smvcp.com'),
-(19,1,'$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','isma@smvcp.com');*/
+INSERT INTO `users` VALUES (1,'','$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','pep@smvcp.com'),(3,'','$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','ana@smvcp.com');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -181,4 +210,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-27 14:03:28
+-- Dump completed on 2015-11-10 15:16:36

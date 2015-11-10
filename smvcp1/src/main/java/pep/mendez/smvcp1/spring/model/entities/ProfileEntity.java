@@ -27,18 +27,18 @@ public class ProfileEntity extends BaseEntity {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "name", length = 32, nullable = false, unique = false)
+	@Column(name = "name", length = 32, nullable = true, unique = false)
 	private String name;
-	@Column(name = "city", length = 32, nullable = false, unique = false)
+	@Column(name = "city", length = 32, nullable = true, unique = false)
 	private String city;
-	@Column(name = "profession", length = 32, nullable = false, unique = false)
+	@Column(name = "profession", length = 32, nullable = true, unique = false)
 	private String profession;
-	@Column(name = "phone", length = 16, nullable = false, unique = false)
+	@Column(name = "phone", length = 16, nullable = true, unique = false)
 	private String phone;
-	@Column(name = "ip", length = 64, nullable = false, unique = false)
+	@Column(name = "ip", length = 64, nullable = true, unique = false)
 	private String ip;
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "date", nullable = false, unique = false)
+	@Column(name = "date", nullable = true, unique = false)
 	private Date date;
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", nullable = true)

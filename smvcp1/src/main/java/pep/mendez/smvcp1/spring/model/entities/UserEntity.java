@@ -40,9 +40,9 @@ public class UserEntity extends BaseEntity {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "username", length = 128, unique = true, nullable = false)
+	@Column(name = "username", length = 128, unique = true, nullable = true)
 	private String userName;
-	@Column(name = "password", length = 255, unique = false, nullable = false)
+	@Column(name = "password", length = 255, unique = false, nullable = true)
 	private String password;
 	@Column(name = "enabled")
 	private boolean enabled = false;

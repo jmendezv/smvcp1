@@ -1,8 +1,16 @@
+/*
+ * Local instalation
+ * Content Delivery Network (CDN) based version
+ */
 
-
+// anonymous function
 $(document).ready(function() {
-
+	// Document Object Model (DOM) is ready
 });
+
+var f = function(){}
+
+jQuery(document).ready(f);
 
 $(document).ready(function() {
 	$(".dropdown-toggle").dropdown();
@@ -67,6 +75,7 @@ $(function() {
 });
 
 /*
+ * TODO:
  * edit: button delete confirm dialog
  */
 $(function() {
@@ -82,7 +91,7 @@ $(function() {
 			resizable : true,
 			modal : true,
 			// height : 240,
-			text : "dfadsffsd",
+			text : "whatever",
 			show : {
 				effect : "blind",
 				duration : 1000
@@ -96,10 +105,10 @@ $(function() {
 					//$('form#edit-form').submit();
 					//submitForm.submit();
 					//window.location.href = targetUrl;
+					//$(event.relatedTarget).data('form')
 					$(this).dialog("close");
 				},
-				"Cancela" : function() {
-					
+				"Cancela" : function() {	
 					$(this).dialog("close");
 				}
 			}
