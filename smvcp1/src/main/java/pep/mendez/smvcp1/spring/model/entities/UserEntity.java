@@ -8,8 +8,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.LazyCollection;
@@ -28,6 +32,22 @@ import org.hibernate.annotations.LazyCollectionOption;
  *         cannot simultaneously fetch multiple bags
  *
  */
+
+/*
+ * 
+ * to some:
+ * 
+ * Stored Procedures should be considered database assembly language: for use in only the most performance critical situations.
+ */
+@NamedStoredProcedureQueries({
+
+	@NamedStoredProcedureQuery(
+		name = "count_users", 
+		procedureName = "count_users", 
+		parameters = { 
+				@StoredProcedureParameter(mode = ParameterMode.OUT, type = Long.class, name = "total") 
+		}) 
+})
 @Entity
 @Table(name = "users")
 public class UserEntity extends BaseEntity {

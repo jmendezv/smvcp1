@@ -117,6 +117,10 @@ jQuery(document).ready(handler);
 		<div th:if="${pwdchanged}" class="alert alert-success">
 			<span th:text="#{home.pwdchanged}" />
 		</div>
+		
+		<div th:if="total" class="alert alert-success">
+			<span th:text="| ${total} #{home.records_found}|" />
+		</div>
 
 		<div th:object="${#httpServletRequest.userPrincipal}">
 			<p>

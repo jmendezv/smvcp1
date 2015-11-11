@@ -61,5 +61,9 @@ public class UserService {
 	public void delete(long id) {
 		userRepository.delete(id);
 	}
+	
+	public long countUsers() {
+		return userRepository.countUsers();
+	}
 
 }

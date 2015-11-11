@@ -32,4 +32,9 @@ public interface ExtendedUserRepository {
 	 */
 	void enableAll();
 	
+	/**
+	 * Count users with a Procedure Call
+	 */
+	long countUsers();
+	
 }

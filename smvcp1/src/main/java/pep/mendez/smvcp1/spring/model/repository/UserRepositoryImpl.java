@@ -2,7 +2,9 @@ package pep.mendez.smvcp1.spring.model.repository;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
+import javax.persistence.StoredProcedureQuery;
 
 import org.springframework.orm.jpa.EntityManagerFactoryUtils;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -39,6 +41,16 @@ public class UserRepositoryImpl implements ExtendedUserRepository {
 				.createQuery(
 						"UPDATE UserEntity user SET user.enabled = 1 WHERE user.enabled = 0")
 				.executeUpdate();
+	}
+
+	@Override
+	public long countUsers() {
+		StoredProcedureQuery query = entityManager
+				.createStoredProcedureQuery("count_users");
+		query.registerStoredProcedureParameter("total", Long.class, ParameterMode.OUT);
+		query.execute();
+		long total = (long) query.getOutputParameterValue("total");
+		return total;
 	}
 
 }

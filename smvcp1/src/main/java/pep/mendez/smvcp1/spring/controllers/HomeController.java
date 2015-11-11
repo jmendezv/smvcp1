@@ -56,10 +56,12 @@ public class HomeController {
 			HttpServletRequest request, HttpSession session) {
 
 		UserEntity user = userService.findByUserName(principal.getName());
+		long total = userService.countUsers();
 
 		logger.info(user.toString());
 
 		model.addAttribute("user", user);
+		model.addAttribute("total", total);
 		// Connection connection = new Connection();
 		// connection.setTimeIn(new Date());
 		// connection.setIp(request.getRemoteAddr());
