@@ -43,6 +43,12 @@ public class UserRepositoryImpl implements ExtendedUserRepository {
 				.executeUpdate();
 	}
 
+	/**
+	 * StoredProcedure example:
+	 * delimiter // 
+	 * create procedure count_users (out n long) begin select count(*) into n from users; end //
+	 * delimiter ;
+	 */
 	@Override
 	public long countUsers() {
 		StoredProcedureQuery query = entityManager
