@@ -28,7 +28,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  */
 
 /**
- * @author pep
+ * @author pep mendez
  *
  */
 public class CustomScheduleInterceptor extends HandlerInterceptorAdapter {
