@@ -6,7 +6,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 /**
  * @author pep
  * 
- * Referenced by UserRestController
+ *         Referenced by UserRestController
+ * 
+ *         Marks a method or exception class with the status code() and reason()
+ *         that should be returned.
+ * 
+ *         The status code is applied to the HTTP response when the handler
+ *         method is invoked and overrides status information set by other
+ *         means, like ResponseEntity or "redirect:".
  *
  */
 @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Usuario no existe")
