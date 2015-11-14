@@ -76,9 +76,15 @@
 								th:text="#{contact.subject}" />
 							</label>
 							<div class="col-sm-10">
-								<input th:placeholder="#{contact.subject.tip}" type="text"
+							
+								<select th:placeholder="#{contact.subject.tip}" type="text" 
 									id="subject" name="subject" th:field="*{subject}"
-									class="form-control" style="background-color: rgba(255, 255, 255, 0.1);"/>
+									class="form-control" style="background-color: rgba(255, 255, 255, 0.1);">
+									<option value="item1"><span th:text="#{contact.subject.item1}" /></option>
+									<option value="item2"><span th:text="#{contact.subject.item2}" /></option>
+									<option value="item3"><span th:text="#{contact.subject.item3}" /></option>
+									<option value="item4"><span th:text="#{contact.subject.item4}" /></option>
+									</select>
 							</div>
 							<!-- ul th:if="${#fields.hasErrors('password')}">
 				<li th:each="error : ${#fields.errors('password')}"
@@ -90,7 +96,7 @@
 								th:text="#{contact.comments}" />
 							</label>
 							<div class="col-sm-10">
-								<input th:placeholder="#{contact.comments.tip}" type="text"
+								<textarea th:placeholder="#{contact.comments.tip}" rows="5"
 									id="comments" name="comments" th:field="*{comments}"
 									class="form-control" style="background-color: rgba(255, 255, 255, 0.1);"/>
 							</div>

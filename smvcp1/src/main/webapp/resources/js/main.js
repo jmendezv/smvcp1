@@ -374,12 +374,12 @@ $(document)
 												validators : {
 													notEmpty : {
 														message : "Por favor, el asunto"
-													},
+													}/*,
 													stringLength : {
 														min : 8,
-														max : 16,
-														message : "La logintud ha de estar entre 8 y 16 caracteres"
-													}
+														max : 255,
+														message : "La logintud ha de estar entre 8 y 255 caracteres"
+													}*/
 												}
 											},
 											comments : {
@@ -390,8 +390,8 @@ $(document)
 													},
 													stringLength : {
 														min : 8,
-														max : 64,
-														message : "La logintud ha de estar entre 8 y 64 caracteres"
+														max : 255,
+														message : "La logintud ha de estar entre 8 y 255 caracteres"
 													}
 												}
 											}
