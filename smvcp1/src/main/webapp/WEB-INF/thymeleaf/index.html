@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html layout:decorator="layout/main">
+<head>
+<title>${#messages.msg('login.title')}</title>
+<script type="text/javascript">
+function openDialog() {
+	document.getElementById('about-dialog').showModal();
+}
+</script>
+
+</head>
+<body>
+
+	<div layout:fragment="content">
+
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#"> <span
+						th:text="#{application.acronym}" /> <img class="brand"
+						th:src="@{resources/images/icon.png}" />
+					</a>
+				</div>
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#navbar-container">
+						<span class="sr-only"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<div class="collapse navbar-collapse" id="navbar-container">
+					<ul class="nav navbar-nav">
+
+						<li><a href="/resetpwd" th:href="@{/resetpwd}"> <span
+								class="glyphicon glyphicon-link" /> <span
+								th:text="#{navbar.resetpwd}" /></a></li>
+
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+
+						<li><a href="/register" th:href="@{/register}"><span
+								class="glyphicon glyphicon-user"></span> <span
+								th:text="#{navbar.register}" /></a></li>
+
+						<li><a href="/login" th:href="@{/login}"><span
+								class="glyphicon glyphicon-log-in"></span> <span
+								th:text="#{navbar.login}" /></a></li>
+
+
+						<li><a href="/contact" th:href="@{/contact}"><span
+								class="glyphicon glyphicon-envelope"></span> <span
+								th:text="#{navbar.contact}" /></a></li>
+
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#"> <span
+								class="glyphicon glyphicon-info-sign" /> <span
+								th:text="#{navbar.options}" /> <span class="caret" /></a>
+
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#" id="about-opener" data-toggle="modal"
+									data-target="#about-dialog"><span
+										class="glyphicon glyphicon-education" /> <span
+										th:text="#{navbar.about}" /></a></li>
+								<li class="dropdown-submenu"><a href="#"
+									data-toggle="modal" data-target="#help-dialog" id="help-opener">
+										<span class="glyphicon glyphicon-question-sign" /> <span
+										th:text="#{navbar.help}" />
+								</a></li>
+								<li class="divider" role="separator"></li>
+								<li class="dropdown-submenu disabled"><a href="#"
+									id="help_opener2"> <span class="glyphicon glyphicon-leaf" />
+										<span th:text="#{navbar.help.system}" />
+								</a></li>
+							</ul></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<h3 class="text-center" th:text="#{login.title}"></h3>
+
+		<div class="container col-sm-offset-3 col-sm-6">
+			<div class="panel panel-default"
+				style="background-color: transparent;">
+				<div class="panel-heading">
+					<span th:utext="#{login.legend}" />
+				</div>
+				<div class="panel-body">
+	index
+				</div>
+			</div>
+		</div>
+
+		<!-- registered dialog -->
+		<div name="registered-dialog" id="registered-dialog"
+			class="modal fade" tabindex="-1" aria-hidden="true" role="dialog">
+			<div class="modal-dialog" keyboard="false" backdrop="false">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title">
+							<span th:text="#{login.registered.title}" />
+						</h4>
+					</div>
+					<div class="modal-body">
+						<span th:text="#{login.registered}" />
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							<span th:text="#{login.dialog.close}" />
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- About dialog -->
+		<div name="about-dialog" id="about-dialog" class="modal fade"
+			tabindex="-1" aria-hidden="true" role="dialog">
+			<div class="modal-dialog" keyboard="false" backdrop="false">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title">
+							<span th:text="#{about.title}" />
+						</h4>
+					</div>
+					<div class="modal-body">
+						<dl class="dl-horizontal">
+							<dt>
+								<span th:text="#{about.formation}" />
+							</dt>
+							<dd>
+								<ul class="list-unstyled">
+									<li><span th:text="#{about.formation.item1}" /></li>
+									<li><span th:text="#{about.formation.item2}" /></li>
+									<li><span th:text="#{about.formation.item3}" /></li>
+								</ul>
+							</dd>
+							<dt>
+								<span th:text="#{about.other}" />
+							</dt>
+							<dd>
+								<ul class="list-unstyled">
+									<li><span th:text="#{about.other.item1}" /></li>
+									<li><span th:text="#{about.other.item2}" /></li>
+									<li><span th:text="#{about.other.item3}" /></li>
+								</ul>
+							</dd>
+							<dt>
+								<span th:text="#{about.work}" />
+							</dt>
+							<dd>
+								<ul class="list-unstyled">
+									<li><span th:text="#{about.work.item1}" /></li>
+									<li><span th:text="#{about.work.item2}" /></li>
+									<li><span th:text="#{about.work.item3}" /></li>
+								</ul>
+							</dd>
+						</dl>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							<span th:text="#{login.dialog.close}" />
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Help dialog -->
+		<div name="help-dialog" id="help-dialog" class="modal fade"
+			role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">
+							<span th:text="#{help.title}" />
+						</h4>
+					</div>
+					<div class="modal-body">
+						<ul class="list-group">
+							<!-- li class="list-group-item"><span th:text="#{help.item1}" /></li -->
+							<li class="list-group-item"><span th:text="#{help.item2}" /></li>
+							<li class="list-group-item"><span th:text="#{help.item3}" /></li>
+							<li class="list-group-item"><span th:text="#{help.item4}" /></li>
+							<li class="list-group-item"><span th:text="#{help.item5}" /></li>
+							<li class="list-group-item"><span th:text="#{help.item6}" /></li>
+							<!-- li class="list-group-item"><span th:text="#{help.item7}" /></li -->
+							<li class="list-group-item"><span th:text="#{help.item8}" /></li>
+							<!-- li class="list-group-item"><span th:text="#{help.item9}" /></li -->
+							<!-- li class="list-group-item"><span th:text="#{help.item10}" /></li -->
+							<!-- li class="list-group-item"><span th:text="#{help.item11}" /></li -->
+							<!-- li><span th:text="#{help.item12}" /></li -->
+						</ul>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							<span th:text="#{login.dialog.close}" />
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

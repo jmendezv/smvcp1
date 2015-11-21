@@ -12,6 +12,7 @@ Este proyecto te puede ser util para crear aplicaciones web más complejas.
 
 * smvcp1 es el codigo base del curso Spring MVC: un enfoque practico
 * Version 1
+* Y mucho más ...
 
 ### How do I get set up? ###
 
