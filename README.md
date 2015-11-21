@@ -2,6 +2,12 @@
 
 Simple Model View Controller Project 1 ilustra el proceso de creación de una aplicación web con Spring MVC y otras tecnologías afines como Spring securiy framework, Spring Data JPA y un largo etcetera.
 
+Este proyecto te puede ser util para crear aplicaciones web más complejas.
+
+> Nota del autor
+
+**Naturalmente con algunos _cambios_ imprescindibles**
+
 ### What is this repository for? ###
 
 * smvcp1 es el codigo base del curso Spring MVC: un enfoque practico
