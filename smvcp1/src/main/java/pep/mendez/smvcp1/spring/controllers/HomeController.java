@@ -29,7 +29,7 @@ import pep.mendez.smvcp1.utils.UtilityConstants;
  *
  */
 @Controller
-@RequestMapping(value = "/")
+
 @PropertySources(value = { @PropertySource(name = "props", value = { "classpath:application.properties" }) })
 public class HomeController {
 
@@ -51,7 +51,9 @@ public class HomeController {
 	@Autowired
 	JavaMailSender mailSender;
 
-	@RequestMapping(method = RequestMethod.GET)
+	
+	
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String homePage(ModelMap model, Principal principal,
 			HttpServletRequest request, HttpSession session) {
 
