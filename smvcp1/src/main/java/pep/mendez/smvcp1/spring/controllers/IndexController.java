@@ -31,25 +31,9 @@ public class IndexController {
 	@Autowired
 	MessageSource messageSource;
 
-	@RequestMapping(value = "/")
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String indexPage() {
-
-		// UserEntity user = userService.findByUserName(principal.getName());
-		// long total = userService.countUsers();
-		//
-		// logger.info(user.toString());
-		//
-		// model.addAttribute("user", user);
-		// model.addAttribute("total", total);
-		// Connection connection = new Connection();
-		// connection.setTimeIn(new Date());
-		// connection.setIp(request.getRemoteAddr());
-		// session.setAttribute("connection", connection);
-		// if (user.getProfile() == null) {
-		// return "redirect:/profile";
-		// }
-		// return "home";
-		return "redirect:/index";
+		return "redirect:index";
 	}
 
 	@RequestMapping(value = "/index")

@@ -137,6 +137,8 @@ public class ResetPwdController {
 
 		Utility.sendEmail(mailSender, from, userName, subject, body.toString());
 
+		// password reset successfully so go to login
+		
 		return "login";
 	}
 

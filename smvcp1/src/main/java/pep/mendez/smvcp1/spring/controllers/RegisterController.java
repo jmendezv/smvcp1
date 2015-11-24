@@ -138,6 +138,8 @@ public class RegisterController {
 
 		model.addAttribute("registered", "yes");
 
+		// registered ok, so go to login now
+		
 		return "login";
 	}
 
