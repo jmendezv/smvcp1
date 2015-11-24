@@ -22,11 +22,29 @@ body {
 }
 
 .gap-right {
-	margin-right: 10px;
+	margin-right: 15px;
 }
 
 .gap-left {
-	margin-left: 10px;
+	margin-left: 15px;
+}
+
+.voffset20 {
+	margin-top: 10px;
+}
+
+div {
+	text-align: justify;
+	/* auto, distribute, inter-word, newspaper */
+	text-justify: auto;
+}
+
+.corousel-inner > .item > img {
+	margin: 0 auto;
+}
+
+.carousel_caption {
+	text-align: center;
 }
 
 /*
