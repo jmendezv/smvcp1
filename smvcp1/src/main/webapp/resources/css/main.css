@@ -10,7 +10,7 @@
 @import url("pagination.css");
 
 body {
-	background-image: url('../images/white_background_1.jpg') ;
+	background-image: url('../images/white_background_1.jpg');
 	background-size: 100%;
 	display: block;
 	padding: 0 !important;
@@ -20,9 +20,15 @@ body {
 .brand {
 	max-height: 25px;
 }
+
 .gap-right {
 	margin-right: 10px;
 }
+
+.gap-left {
+	margin-left: 10px;
+}
+
 /*
 body {
 	color: #666666;

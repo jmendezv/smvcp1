@@ -117,7 +117,7 @@ jQuery(document).ready(handler);
 		<div th:if="${pwdchanged}" class="alert alert-success">
 			<span th:text="#{home.pwdchanged}" />
 		</div>
-		
+
 		<div th:if="total" class="alert alert-success">
 			<span th:text="| ${total} #{home.records_found}|" />
 		</div>
@@ -126,10 +126,11 @@ jQuery(document).ready(handler);
 			<p>
 				<span
 					th:text="|#{home.welcome} *{#strings.capitalize(#strings.substringBefore(name, '@'))}|" />
+
+				<img th:if="${user.enabled}" alt="enabled"
+					src="../../resources/images/enabled.png"
+					th:src="@{resources/images/enabled.png}" />
 			</p>
-			<img th:if="${user.enabled}" alt="enabled"
-				src="../../resources/images/enabled.png"
-				th:src="@{resources/images/enabled.png}" />
 		</div>
 
 		<table class="table" th:object="${user}" th:if="${user.enabled}">
