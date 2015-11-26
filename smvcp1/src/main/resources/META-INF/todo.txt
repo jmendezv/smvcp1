@@ -25,3 +25,5 @@ grant all privileges on amarokdb.* to amarokuser@localhost ;
   
   sudo find / -name ".DS_Store" -depth -exec rm {} \;
   
+  load data local infile '/Users/test/Documents/estudidocents.csv' into table t1 fields terminated by ';' lines terminated by "\r" ignore 1 rows;
+  
