@@ -4,6 +4,8 @@ TODO list
 
 * captcha en login
 
+Database setup
+
 sudo apt-get install mysql-server amarok
 create database amarokdb;
 grant usage on *.* to amarokuser@localhost identified by 'amarokpasswd';
