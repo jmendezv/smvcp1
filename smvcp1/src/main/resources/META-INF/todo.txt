@@ -29,3 +29,9 @@ grant all privileges on amarokdb.* to amarokuser@localhost ;
   
   load data local infile '/Users/test/Documents/estudidocents.csv' into table t1 fields terminated by ';' lines terminated by "\r" ignore 1 rows;
   
+   mvn install:install-file -Dfile=Downloads/kaptcha-2/kaptcha-2.3.2.jar  -DgroupId=com.google.code -DartifactId=kaptcha -Dversion=2.3.2 -Dpackaging=jar
+   
+   [INFO] --- maven-install-plugin:2.4:install-file (default-cli) @ standalone-pom ---
+[INFO] Installing /Users/test/Downloads/kaptcha-2/kaptcha-2.3.2.jar to /Users/test/.m2/repository/com/google/code/kaptcha/2.3.2/kaptcha-2.3.2.jar
+[INFO] Installing /var/folders/lz/m9js2w91603d3f_6qpnrcb200000gn/T/mvninstall2319275789014790792.pom to /Users/test/.m2/repository/com/google/code/kaptcha/2.3.2/kaptcha-2.3.2.pom
+   
