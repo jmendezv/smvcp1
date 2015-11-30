@@ -451,6 +451,12 @@
 		<!-- dependency> <groupId>com.google.code.maven-play-plugin.org.playframework</groupId> 
 			<artifactId>jj-simplecaptcha</artifactId> <version>1.1</version> </dependency -->
 
+		<dependency>
+			<groupId>com.google.code</groupId>
+			<artifactId>kaptcha</artifactId>
+			<version>2.3.2</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
