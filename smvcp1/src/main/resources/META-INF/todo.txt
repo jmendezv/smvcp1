@@ -42,3 +42,7 @@ grant all privileges on amarokdb.* to amarokuser@localhost ;
 
 (How to avoid validations errors & warnings)
 Project properties/Validation/HTML Syntax
+
+http://fullcalendar.io/docs/usage/
+
+create table events ( id bigint primary key auto_increment, resourceId varchar(32), title varchar(64), start datetime, end datetime);

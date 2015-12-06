@@ -70,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/", "/index","/login", "/validate*/**", "/register", "/help", "/contact",
 						"/about", "/closed", "/user/**", "/resources/**", "/exception", "/error",
 						"/resetpwd/**", "/pwdreseted/**",
-						"/changepwd/**", "/webjars/**")
+						"/changepwd/**", "/webjars/**", "/getEvents")
 					.permitAll()
 				.antMatchers("/home")
 					.hasAnyRole("USER", "ADMIN")

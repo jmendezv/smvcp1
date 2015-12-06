@@ -2,7 +2,7 @@
 <html layout:decorator="layout/main">
 <head>
 <title>${#messages.msg('home.title')}</title>
-<script type="text/javascript" > 
+<script type="text/javascript"> 
 
 // <![CDATA[
 
@@ -16,6 +16,163 @@ var handler = function(event) {
 };
             
 jQuery(document).ready(handler);
+
+$(document).ready(function() {
+
+	var noTime = $.fullCalendar.moment('2014-05-01');
+	var local = $.fullCalendar.moment('2014-05-01T12:00:00');
+	var utc = $.fullCalendar.moment.utc('2014-05-01T12:00:00');
+	var noTZ = $.fullCalendar.moment.parseZone('2014-05-01T12:00:00');
+
+	// page is now ready, initialize the calendar...
+
+	$('#calendar').fullCalendar({
+		customButtons : {
+			button1 : {
+				text : 'custom!',
+				click : function() {
+					alert('clicked the custom button!');
+				}
+			}
+		},
+		header : {
+			left : 'prevYear, title, nextYear, button1',
+			center : "month, agendaDay, agendaWeek",
+			// center: "month, basicDay, basicWeek, agendaDay, agendaWeek",
+			// center : 'timelineDay, timelineWeek, timelineMonth,
+			// timelineYear',
+			right : 'today prev,next'
+		},
+		firstDay : 1,
+		weekends : true,
+		// This option is useful for right-to-left languages such as Arabic and
+		// Hebrew.
+		isRTL : false,
+		hiddenDays : [],
+		// If true, the calendar will always be 6 weeks tall. If false, the
+		// calendar will have either 4, 5, or 6 weeks, depending on the month.
+		fixedWeekCount : false,
+		// Determines if week numbers should be displayed on the calendar.
+		weekNumbers : true,
+		businessHours : {
+			start : '09:00', // a start time (10am in this example)
+			end : '18:00', // an end time (6pm in this example)
+
+			dow : [ 1, 2, 3, 4, 5, 6 ]
+		// days of week. an array of zero-based day of week integers (0=Sunday)
+		// (Monday-Thursday in this example)
+		},
+		// integer also acceptable
+		// height: auto,
+		// width vs. height, this is the aspect ratio of the calendar's
+		// "content" area
+		aspectRatio : 1.35,
+		// Whether to automatically resize the calendar when the browser window
+		// resizes
+		handleWindowResize : true,
+		// A value of false (the default) will display all events as-is.
+		// A value of true will limit the number of events to the height of the
+		// day cell.
+		// An integer value will limit the events to a specific number of rows.
+		eventLimit : true, // for all non-agenda views
+		views : {
+			agenda : {
+				eventLimit : 6
+			// adjust to 6 only for agendaWeek/agendaDay
+			}
+		},
+		// Determines the action taken when the user clicks on a "more" link
+		// created by the eventLimit option. Other values "week" and "day"
+		eventLimitClick : "popover",
+		dayClick : function() {
+			alert('a day has been clicked!');
+		},
+		schedulerLicenseKey : 'CC-Attribution-NonCommercial-NoDerivatives',
+		// schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source'
+		// defaultView : 'timelineMonth',
+		// defaultView : 'timelineYear',
+		defaultView : 'agendaDay',
+		// defaultView: 'timelineDay',
+		// header : [ center, 'month,timelineFourDays' ],
+		views : {
+			timelineFourDays : {
+				type : 'timeline',
+				duration : {
+					days : 4
+				}
+			}
+		},
+//		events : [ {
+//			"id" : "1",
+//			"resourceId" : "b",
+//			"start" : "2015-12-06T10:00:00",
+//			"end" : "2015-12-06T12:00:00",
+//			"title" : "Clase XXXXXXXXX"
+//		}, {
+//			"id" : "2",
+//			"resourceId" : "c",
+//			"start" : "2015-12-07T05:00:00",
+//			"end" : "2015-12-07T05:40:00",
+//			"title" : "Clase YYYYYYYYYYYY"
+//		}, ],
+		events: {
+        		url: '/smvcp1/getEvents',
+        		type: 'GET',
+        		color: 'yellow',   // a non-ajax option
+            textColor: 'black'
+       	},
+		eventColor: '#378006',
+		// resourceColumns: [
+		// {
+		// labelText: 'First Name',
+		// field: 'fname'
+		// },
+		// {
+		// labelText: 'Last Name',
+		// field: 'lname'
+		// }
+		// ],
+		// resources: [
+		// {
+		// id: 'a',
+		// fname: 'John',
+		// lname: 'Smith'
+		// },
+		// {
+		// id: 'b',
+		// fname: 'Jerry',
+		// lname: 'Garcia'
+		// }
+		// ],
+		resources : [
+		// {
+		// id : 'a-1',
+		// title : 'Aula Magna'
+		// }, {
+		// id : 'a-2',
+		// title : 'Aula Alfa'
+		// }, {
+		// id : 'a-3',
+		// title : 'Aula Grande'
+		// }, {
+		// id : 'a-4',
+		// title : 'Aula Pequeña'
+		// }
+		],
+		editable : true,
+		eventDrop : function(event, delta, revertFunc) {
+
+			alert(event.title + " was dropped on " + event.start.format());
+
+			if (!confirm("Are you sure about this change?")) {
+				revertFunc();
+			}
+
+		},
+		slotWidth : 100,
+	});
+
+});
 
 // ]]>
 
@@ -235,6 +392,7 @@ jQuery(document).ready(handler);
 			</tbody>
 		</table>
 
+		<div id="calendar" />
 
 	</div>
 
