@@ -196,7 +196,7 @@ function deleteEvent(eventId) {
         url: "/smvcp1/deleteEvent",
         dataType: "json",
         contentType: "application/json",
-        data: JSON.stringify(dataRow),
+        data: {'id': eventId},
         success : function(data) {
 			console.log("SUCCESS: ", data);
 			display(data);

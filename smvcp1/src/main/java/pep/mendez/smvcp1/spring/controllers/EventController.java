@@ -3,6 +3,7 @@ package pep.mendez.smvcp1.spring.controllers;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.Date;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -107,14 +108,14 @@ public class EventController {
 	 * If you annotate a method with @ResponseBody, spring will try to convert
 	 * its return value and write it to the http response automatically.
 	 * 
-	 * If you annotate a method's parameter with @RequestBody, spring will try to
-	 * convert the content of the incoming request body to your parameter object
-	 * on the fly.
+	 * If you annotate a method's parameter with @RequestBody, spring will try
+	 * to convert the content of the incoming request body to your parameter
+	 * object on the fly.
 	 */
 	@RequestMapping(value = "/saveEvent", method = RequestMethod.POST)
 	public @ResponseBody EventBean saveEvent(@RequestBody EventBean eventBean,
 			Principal principal) {
-		
+
 		logger.debug(eventBean.toString() + principal.toString());
 		EventEntity eventEntity = new EventEntity(eventBean.getResourceId(),
 				eventBean.getTitle(), eventBean.getStart(), eventBean.getEnd());
@@ -124,49 +125,49 @@ public class EventController {
 	}
 
 	@RequestMapping(value = "/deleteEvent", method = RequestMethod.POST)
-	public @ResponseBody EventBean deleteEvent(@RequestBody EventBean eventBean,
+	public @ResponseBody EventBean deleteEvent(@RequestParam("id") Long id,
 			Principal principal) {
-		
-		logger.debug(eventBean.toString() + principal.toString());
-		eventService.delete(eventBean.getId());
-		return eventBean;
-	}	
-	
-	/*
-	// @RequestMapping(value = "/saveEvent", method = RequestMethod.POST)
-	public void saveEvent4(@RequestParam("eventJson") String eventJson,
-			Principal principal) throws JsonMappingException,
-			JsonParseException, IOException {
 
-		// DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		EventEntity eventEntity = new ObjectMapper().readValue(eventJson,
-				EventEntity.class);
-		eventEntity.setResourceId(principal.getName());
-		eventEntity.setEnd(new Date(System.currentTimeMillis() + 1 * 60 * 60
-				* 1000));
-		eventService.save(eventEntity);
-
-		return;
+		EventEntity eventEntity = eventService.find(id);
+		if (eventEntity.getResourceId().equals(principal.getName())) {
+			eventService.delete(id);
+		}
+		return new EventBean(eventEntity.getId(), eventEntity.getResourceId(),
+				eventEntity.getTitle(), eventEntity.getStart(),
+				eventEntity.getEnd());
 	}
-	*/
 
 	/*
-	// @RequestMapping(value = "/saveEvent", method = RequestMethod.POST)
-	// @ResponseStatus(HttpStatus.NO_CONTENT)
-	public @ResponseBody EventEntity saveEvent5(
-			@RequestParam("eventJson") String eventJson, Principal principal)
-			throws JsonMappingException, JsonParseException, IOException {
+	 * // @RequestMapping(value = "/saveEvent", method = RequestMethod.POST)
+	 * public void saveEvent4(@RequestParam("eventJson") String eventJson,
+	 * Principal principal) throws JsonMappingException, JsonParseException,
+	 * IOException {
+	 * 
+	 * // DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	 * EventEntity eventEntity = new ObjectMapper().readValue(eventJson,
+	 * EventEntity.class); eventEntity.setResourceId(principal.getName());
+	 * eventEntity.setEnd(new Date(System.currentTimeMillis() + 1 * 60 * 60
+	 * 1000)); eventService.save(eventEntity);
+	 * 
+	 * return; }
+	 */
 
-		// DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		EventEntity eventEntity = new ObjectMapper().readValue(eventJson,
-				EventEntity.class);
-		eventEntity.setResourceId(principal.getName());
-		eventEntity.setEnd(new Date(System.currentTimeMillis() + 60 * 60 * 60
-				* 1000));
-
-		return eventService.save(eventEntity);
-	}
-	*/
+	/*
+	 * // @RequestMapping(value = "/saveEvent", method = RequestMethod.POST) //
+	 * @ResponseStatus(HttpStatus.NO_CONTENT) public @ResponseBody EventEntity
+	 * saveEvent5(
+	 * 
+	 * @RequestParam("eventJson") String eventJson, Principal principal) throws
+	 * JsonMappingException, JsonParseException, IOException {
+	 * 
+	 * // DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	 * EventEntity eventEntity = new ObjectMapper().readValue(eventJson,
+	 * EventEntity.class); eventEntity.setResourceId(principal.getName());
+	 * eventEntity.setEnd(new Date(System.currentTimeMillis() + 60 * 60 * 60
+	 * 1000));
+	 * 
+	 * return eventService.save(eventEntity); }
+	 */
 }
 
 // ****************** notes *********************
