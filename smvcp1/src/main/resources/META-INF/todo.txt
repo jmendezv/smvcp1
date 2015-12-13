@@ -1,5 +1,9 @@
 TODO list
 
+Camtasia 2
+
+HCCCL-YK3NH-9HB44-BGQXP-93564
+
 * calendar
 
 * captcha en login
@@ -46,3 +50,135 @@ Project properties/Validation/HTML Syntax
 http://fullcalendar.io/docs/usage/
 
 create table events ( id bigint primary key auto_increment, resourceId varchar(32), title varchar(64), start datetime, end datetime);
+
+
+/*
+	// No va
+	$.ajax({
+		type: 'POST',
+		url: "/smvcp1/saveEvent",
+		dataType: "json",
+		contentType: "application/json; charset=utf-8",
+		data: JSON.stringify(jsonEvent),
+		async: false, // Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation
+		cache: false, // This will force requested pages not to be cached by the browser          
+		processData:false, //To avoid making query String instead of JSON
+		success: function(response){
+	        alert(response);
+	    }
+	}); */
+	
+	
+	//		events : [ {
+//			"id" : "1",
+//			"resourceId" : "b",
+//			"start" : "2015-12-06T10:00:00",
+//			"end" : "2015-12-06T12:00:00",
+//			"title" : "Clase XXXXXXXXX"
+//		}, {
+//			"id" : "2",
+//			"resourceId" : "c",
+//			"start" : "2015-12-07T05:00:00",
+//			"end" : "2015-12-07T05:40:00",
+//			"title" : "Clase YYYYYYYYYYYY"
+//		}, ],
+
+		// resourceColumns: [
+		// {
+		// labelText: 'First Name',
+		// field: 'fname'
+		// },
+		// {
+		// labelText: 'Last Name',
+		// field: 'lname'
+		// }
+		// ],
+		// resources: [
+		// {
+		// id: 'a',
+		// fname: 'John',
+		// lname: 'Smith'
+		// },
+		// {
+		// id: 'b',
+		// fname: 'Jerry',
+		// lname: 'Garcia'
+		// }
+		// ],
+		resources : [
+		// {
+		// id : 'a-1',
+		// title : 'Aula Magna'
+		// }, {
+		// id : 'a-2',
+		// title : 'Aula Alfa'
+		// }, {
+		// id : 'a-3',
+		// title : 'Aula Grande'
+		// }, {
+		// id : 'a-4',
+		// title : 'Aula Pequeña'
+		// }
+		],
+		
+		
+		
+		eventResize: function (event, dayDelta, minuteDelta, revertFunc) {
+		    if (confirm("Confirm change appointment length?")) {
+		        UpdateEvent(event.id, event.start, event.end);
+		    }
+		    else {
+		        revertFunc();
+		    } 
+		}, 
+/*
+		select: function(start, end, allDay) {
+			// var title = $("#dialog").dialog();
+		    var title = prompt('Event Title:');
+		    //alert(title)
+		    if (title) {
+		    	 //alert("title is true")
+			    start = $.fullcalendar.formatDate(start, 'yyyy-MM-dd HH:mm:ss');
+			    end = $.fullcalendar.formatDate(end, 'yyyy-MM-dd HH:mm:ss');
+		        $.fullCalendar('renderEvent',
+		            {
+		                title: title,
+		                start: start,
+		                end: end,
+		                allDay: allDay
+		            },
+		            true // make the event "stick"
+		        );
+		        alert("about to post")
+		        
+		        //ajax call to store event in DB
+		       
+		        
+		        jQuery.post("/smvcp1/saveEvent", 
+					{ 
+			        		title: title,
+		                	start: start,
+		                	end: end,
+		                	allDay: allDay
+		            	},
+		            function(data, status, xhr) {
+						alert("post return data " + data);
+					},
+		            "json"
+		        );
+		        
+		    }
+		    $("#calendar").fullCalendar('unselect');
+		} */
+		
+		//$('#calendar').fullCalendar('removeEvents');
+            //$('#calendar').fullCalendar('addEventSource', events);         
+            //$('#calendar').fullCalendar('rerenderEvents' );
+			//console.log("SUCCESS: ", data);
+			//display(data);
+			
+			
+			//console.log("ERROR: ", e);
+			//display(e);
+			
+			//console.log("DONE");

@@ -27,6 +27,7 @@ $(document).ready(function() {
 	// page is now ready, initialize the calendar...
 
 	$('#calendar').fullCalendar({
+		// you can define your own buttons 
 		customButtons : {
 			button1 : {
 				text : 'custom!',
@@ -35,15 +36,20 @@ $(document).ready(function() {
 				}
 			}
 		},
+		// User defined fullcalendar top header
 		header : {
-			left : 'prevYear, title, nextYear, button1',
+			// 'title' stands for the actual month and year
+			left : 'prevYear, title, nextYear',
+			// left : 'prevYear, title, nextYear, button1',
 			center : "month, agendaDay, agendaWeek",
 			// center: "month, basicDay, basicWeek, agendaDay, agendaWeek",
 			// center : 'timelineDay, timelineWeek, timelineMonth,
 			// timelineYear',
 			right : 'today prev,next'
 		},
+		// Monday
 		firstDay : 1,
+		// defaults to true
 		weekends : true,
 		// This option is useful for right-to-left languages such as Arabic and
 		// Hebrew.
@@ -57,10 +63,9 @@ $(document).ready(function() {
 		businessHours : {
 			start : '09:00', // a start time (10am in this example)
 			end : '18:00', // an end time (6pm in this example)
-
 			dow : [ 1, 2, 3, 4, 5, 6 ]
 		// days of week. an array of zero-based day of week integers (0=Sunday)
-		// (Monday-Thursday in this example)
+		// (Monday-Saturday in this example)
 		},
 		// integer also acceptable
 		// height: auto,
@@ -75,6 +80,7 @@ $(document).ready(function() {
 		// day cell.
 		// An integer value will limit the events to a specific number of rows.
 		eventLimit : true, // for all non-agenda views
+		// initial view
 		views : {
 			agenda : {
 				eventLimit : 6
@@ -84,9 +90,6 @@ $(document).ready(function() {
 		// Determines the action taken when the user clicks on a "more" link
 		// created by the eventLimit option. Other values "week" and "day"
 		eventLimitClick : "popover",
-		dayClick : function() {
-			alert('a day has been clicked!');
-		},
 		schedulerLicenseKey : 'CC-Attribution-NonCommercial-NoDerivatives',
 		// schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source'
 		// defaultView : 'timelineMonth',
@@ -102,77 +105,117 @@ $(document).ready(function() {
 				}
 			}
 		},
-//		events : [ {
-//			"id" : "1",
-//			"resourceId" : "b",
-//			"start" : "2015-12-06T10:00:00",
-//			"end" : "2015-12-06T12:00:00",
-//			"title" : "Clase XXXXXXXXX"
-//		}, {
-//			"id" : "2",
-//			"resourceId" : "c",
-//			"start" : "2015-12-07T05:00:00",
-//			"end" : "2015-12-07T05:40:00",
-//			"title" : "Clase YYYYYYYYYYYY"
-//		}, ],
 		events: {
-        		url: '/smvcp1/getEvents',
-        		type: 'GET',
-        		color: 'yellow',   // a non-ajax option
-            textColor: 'black'
+        		url: '/smvcp1/getEvents',	// ajax call
+        		type: 'GET', 				// GET/POST
+        		//color: 'yellow',   			// background
+            textColor: 'black'			// foreground
        	},
-		eventColor: '#378006',
-		// resourceColumns: [
-		// {
-		// labelText: 'First Name',
-		// field: 'fname'
-		// },
-		// {
-		// labelText: 'Last Name',
-		// field: 'lname'
-		// }
-		// ],
-		// resources: [
-		// {
-		// id: 'a',
-		// fname: 'John',
-		// lname: 'Smith'
-		// },
-		// {
-		// id: 'b',
-		// fname: 'Jerry',
-		// lname: 'Garcia'
-		// }
-		// ],
-		resources : [
-		// {
-		// id : 'a-1',
-		// title : 'Aula Magna'
-		// }, {
-		// id : 'a-2',
-		// title : 'Aula Alfa'
-		// }, {
-		// id : 'a-3',
-		// title : 'Aula Grande'
-		// }, {
-		// id : 'a-4',
-		// title : 'Aula Pequeña'
-		// }
-		],
-		editable : true,
-		eventDrop : function(event, delta, revertFunc) {
-
-			alert(event.title + " was dropped on " + event.start.format());
-
-			if (!confirm("Are you sure about this change?")) {
-				revertFunc();
-			}
-
-		},
+		//eventColor: '#378006',
+		editable : false,
+		// cell width
 		slotWidth : 100,
+		allDaySlot: false,
+		slotDuration: '01:00:00',
+		
+		/*
+			calEvent: A standard JavaScript object that FullCalendar uses to store information about a calendar event:
+				id, title, allDay, start, end...
+			jsEvent: holds the native JavaScript event with low-level information such as click coordinates.
+			view: holds the current View Object. An object that is passed to every callback, containing info about the current view.
+				name, title, start, end...
+				
+		*/
+	    eventClick: function(calEvent, jsEvent, view) {
+
+	        alert('Event: ' + calEvent.title);
+	        //alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+	        //alert('View: ' + view.name);
+	        // change the border color just for fun
+	        
+
+	    },
+		selectable: true,
+		selectHelper: true,
+		dayClick: function (date, jsEvent, view, resourceObj) {
+		    saveEvent(date);
+		},
 	});
 
 });
+
+function saveEvent(date) {
+	//alert("Saving event " + date);
+	var end = date;
+	date = moment(date).subtract(1, "hours");
+	var title = prompt("Motivo", "Meeting");
+
+	if (title) {
+		var eventJson = {
+			//'resourceId': EventID,
+			'id': 0,
+			'resourceId': 'none',
+			'title': title,
+			'start': date,
+			// one hour later
+			'end': end
+		};
+		//alert(JSON.stringify(eventJson));
+		$.ajax({
+        		type: 'POST',
+        		url: "/smvcp1/saveEvent",
+        		dataType: "json",
+        		contentType: "application/json",
+        		data: JSON.stringify(eventJson),
+        		// TODO review
+        		success : function(data) {
+        			$("#calendar").fullCalendar("refetchEvents");
+			},
+			error : function(e) {
+			},
+			done : function(e) {
+				$(this).css('border-color', 'red');
+			}
+    		}); 
+		
+	}
+	/*
+	$.post("/smvcp1/saveEvent", JSON.stringify(eventJson), function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+    });
+	*/
+	//$.post("/smvcp1/saveEvent");
+};
+
+function deleteEvent(eventId) {
+    var dataRow = {
+        'id': EventID
+    }
+    $.ajax({
+        type: 'POST',
+        url: "/smvcp1/deleteEvent",
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify(dataRow),
+        success : function(data) {
+			console.log("SUCCESS: ", data);
+			display(data);
+		},
+		error : function(e) {
+			console.log("ERROR: ", e);
+			display(e);
+		},
+		done : function(e) {
+			console.log("DONE");
+		}
+    }); 
+};
+
+function showEventPopup(date) {
+    //ClearPopupFormValues();
+    //$('#popupEventForm').dialog("open");
+    //$('#eventTitle').focus(); 
+} ; 
 
 // ]]>
 
@@ -393,6 +436,30 @@ $(document).ready(function() {
 		</table>
 
 		<div id="calendar" />
+
+		<div id="popupEventForm" class="modal fade" role="dialog"
+			style="display: none;">
+			<div class="modal-header">
+				<h3>Add new event</h3>
+			</div>
+			<div class="modal-body">
+				<form id="EventForm" class="well">
+					<input type="hidden" id="eventID" /> <label>Event title</label> <input
+						type="text" id="eventTitle" placeholder="Title here" /><br /> <label>Scheduled
+						date</label> <input type="text" id="eventDate" /><br /> <label>Scheduled
+						time</label> <input type="text" id="eventTime" /><br /> <label>Appointment
+						length (minutes)</label> <input type="text" id="eventDuration"
+						placeholder="15" /><br />
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="btnPopupCancel" data-dismiss="modal"
+					class="btn">Cancel</button>
+				<button type="button" id="btnPopupSave" data-dismiss="modal"
+					class="btn btn-primary">Save event</button>
+			</div>
+		</div>
+
 
 	</div>
 

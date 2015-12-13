@@ -23,5 +23,15 @@ public class EventService {
 	public Collection<EventEntity> findAll() {
 		return eventRepository.findAll();
 	}
+	
+	@Transactional(readOnly = false)
+	public EventEntity save(EventEntity eventEntity) {
+		return eventRepository.save(eventEntity);
+	}
 
+	@Transactional(readOnly = false)
+	public void delete(Long id) {
+		eventRepository.delete(id);
+	}
+	
 }
