@@ -97,14 +97,6 @@ $(document).ready(function() {
 		defaultView : 'agendaDay',
 		// defaultView: 'timelineDay',
 		// header : [ center, 'month,timelineFourDays' ],
-		views : {
-			timelineFourDays : {
-				type : 'timeline',
-				duration : {
-					days : 4
-				}
-			}
-		},
 		events: {
         		url: '/smvcp1/getEvents',	// ajax call
         		type: 'GET', 				// GET/POST
@@ -128,12 +120,13 @@ $(document).ready(function() {
 		*/
 	    eventClick: function(calEvent, jsEvent, view) {
 
-	        alert('Event: ' + calEvent.title);
+	        if (confirm('Eliminar evento: ' + calEvent.title + '?')) {
+	        		deleteEvent(calEvent.id);
+		    }
 	        //alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
 	        //alert('View: ' + view.name);
 	        // change the border color just for fun
 	        
-
 	    },
 		selectable: true,
 		selectHelper: true,
@@ -144,11 +137,15 @@ $(document).ready(function() {
 
 });
 
+/*
+ * date is javascript moment not a js Date
+ */
 function saveEvent(date) {
 	//alert("Saving event " + date);
+	// date records one more hour
 	var end = date;
 	date = moment(date).subtract(1, "hours");
-	var title = prompt("Motivo", "Meeting");
+	var title = prompt("Motivo", "Reunión");
 
 	if (title) {
 		var eventJson = {
@@ -170,6 +167,8 @@ function saveEvent(date) {
         		// TODO review
         		success : function(data) {
         			$("#calendar").fullCalendar("refetchEvents");
+        			// from the server
+        			location.reload(true);
 			},
 			error : function(e) {
 			},
@@ -177,36 +176,25 @@ function saveEvent(date) {
 				$(this).css('border-color', 'red');
 			}
     		}); 
-		
 	}
-	/*
-	$.post("/smvcp1/saveEvent", JSON.stringify(eventJson), function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
-    });
-	*/
-	//$.post("/smvcp1/saveEvent");
 };
 
 function deleteEvent(eventId) {
     var dataRow = {
-        'id': EventID
+        'id': eventId
     }
     $.ajax({
         type: 'POST',
         url: "/smvcp1/deleteEvent",
-        dataType: "json",
-        contentType: "application/json",
-        data: {'id': eventId},
+   		// param=value format
+        data: 'id=' + eventId,
         success : function(data) {
-			console.log("SUCCESS: ", data);
-			display(data);
+        		$("#calendar").fullCalendar("refetchEvents");
 		},
 		error : function(e) {
-			console.log("ERROR: ", e);
-			display(e);
 		},
 		done : function(e) {
-			console.log("DONE");
+			alert("Event deleted " + eventId);
 		}
     }); 
 };

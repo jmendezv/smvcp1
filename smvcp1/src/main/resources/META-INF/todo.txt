@@ -182,3 +182,35 @@ create table events ( id bigint primary key auto_increment, resourceId varchar(3
 			//display(e);
 			
 			//console.log("DONE");
+			
+			views : {
+			timelineFourDays : {
+				type : 'timeline',
+				duration : {
+					days : 4
+				}
+			}
+		},
+		
+		
+		           		/*
+            		var events = {
+                		url: '/smvcp1/getEvents',	// ajax call
+                		type: 'GET', 				// GET/POST
+                		//color: 'yellow',   			// background
+                    textColor: 'black'			// foreground
+               	};*/
+            		//$("#calendar").fullCalendar("removeEvents");
+            		//$("#calendar").fullCalendar("removeEventSource", events);
+            		//$("#calendar").fullCalendar("addEventSource", events);
+            		// refetches but doesn't refresh 
+        			//$("#calendar").fullCalendar("refresh");
+        			
+        				//$("#calendar").fullCalendar("rerenderEvents");
+        				
+        				/*
+	$.post("/smvcp1/saveEvent", JSON.stringify(eventJson), function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+    });
+	*/
+	//$.post("/smvcp1/saveEvent");

@@ -154,6 +154,7 @@ public class EventController {
 
 	/*
 	 * // @RequestMapping(value = "/saveEvent", method = RequestMethod.POST) //
+	 * 
 	 * @ResponseStatus(HttpStatus.NO_CONTENT) public @ResponseBody EventEntity
 	 * saveEvent5(
 	 * 
