@@ -167,8 +167,7 @@ function saveEvent(date) {
         		// TODO review
         		success : function(data) {
         			$("#calendar").fullCalendar("refetchEvents");
-        			// from the server
-        			location.reload(true);
+
 			},
 			error : function(e) {
 			},
@@ -177,6 +176,8 @@ function saveEvent(date) {
 			}
     		}); 
 	}
+	// from the server
+	location.reload(true);
 };
 
 function deleteEvent(eventId) {
