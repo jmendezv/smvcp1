@@ -6,7 +6,38 @@
 function openDialog() {
 	document.getElementById('about-dialog').showModal();
 }
+
+$(document).ready(
+		
+	function() {
+			
+		$("#flip").click(function() {
+			$("#panel").slideToggle("slow");
+		});
+	}
+
+);
+
+
 </script>
+
+<style>
+
+#panel, #flip {
+	padding: 5px;
+	text-align: center;
+	background-color: #c0c0c0;
+	border: solid 1px #c3c3c3;
+}
+
+#panel {
+	padding: 50px;
+	background-color: #b0b0b0;
+	text-align: left;
+	display: none;
+}
+
+</style>
 
 </head>
 <body>
@@ -80,6 +111,18 @@ function openDialog() {
 
 		<h3 class="text-center" th:text="#{index.title}"></h3>
 
+		<div id="flip">Lorem ipsum dolor sit amet</div>
+		<div id="panel">
+			Sed aliquet risus a tortor. Integer id quam. Morbi mi.
+			Quisque nisl felis, venenatis tristique, dignissim in, ultrices
+			sit amet, augue. Proin sodales libero eget ante. Nulla quam.
+			laoreet. Vestibulum nisi lectus, commodo ac, facilisis
+			eu, pede. Ut orci risus, accumsan porttitor,
+			quis, aliquet eget, justo. Sed pretium blandit orci. Ut
+			diam at pede suscipit sodales.
+
+		</div>
+
 		<!-- col-sm-offset-1  -->
 		<div class="container" style="background-color: transparent;">
 
@@ -106,7 +149,7 @@ function openDialog() {
 						src="../../../resources/images/belalcazar.png" th:width="180px"
 						th:src="@{/resources/images/belalcazar.png}"
 						th:alt-title="#{footer.title}" />
-
+					
 					<div class="page-header">
 						<h4>Sed dignissim lacinia nunc</h4>
 						<p>
@@ -121,6 +164,7 @@ function openDialog() {
 							in libero.
 						</p>
 					</div>
+					
 					<p class="small">Curabitur sodales ligula in libero. Sed
 						dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh.
 						Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed
@@ -138,6 +182,7 @@ function openDialog() {
 					<blockquote>By Lorum Ipsum Generator</blockquote>
 
 				</div>
+				
 				<div class="row voffset20">
 					<div class="well" style="background-color: transparent;">
 						<h4>Sed lectus</h4>
@@ -187,23 +232,25 @@ function openDialog() {
 
 				<div class="row voffset20">
 					<div class="panel-group" style="background-color: transparent;">
-						<div class="panel panel-default" style="background-color: transparent;">
+						<div class="panel panel-default"
+							style="background-color: transparent;">
 							<div class="panel-heading">
 								<h4 class="panel-title">
 									<a data-toggle="collapse" href="#collapse1">Aenean lectus
 										elit</a>
 								</h4>
 							</div>
-							<div id="collapse1" class="panel-collapse collapse" style="background-color: transparent;">
-								<div class="panel-body" style="background-color: transparent;">Cras metus. Sed aliquet risus a
-									tortor. Integer id quam. Morbi mi. Quisque nisl felis,
-									venenatis tristique, dignissim in, ultrices sit amet, augue.
-									Proin sodales libero eget ante. Nulla quam. Aenean laoreet.
-									Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu,
-									pede. Ut orci risus, accumsan porttitor, cursus quis, aliquet
-									eget, justo. Sed pretium blandit orci. Ut eu diam at pede
-									suscipit sodales. fermentum non, convallis id, sagittis at,
-									neque.</div>
+							<div id="collapse1" class="panel-collapse collapse"
+								style="background-color: transparent;">
+								<div class="panel-body" style="background-color: transparent;">Cras
+									metus. Sed aliquet risus a tortor. Integer id quam. Morbi mi.
+									Quisque nisl felis, venenatis tristique, dignissim in, ultrices
+									sit amet, augue. Proin sodales libero eget ante. Nulla quam.
+									Aenean laoreet. Vestibulum nisi lectus, commodo ac, facilisis
+									ac, ultricies eu, pede. Ut orci risus, accumsan porttitor,
+									cursus quis, aliquet eget, justo. Sed pretium blandit orci. Ut
+									eu diam at pede suscipit sodales. fermentum non, convallis id,
+									sagittis at, neque.</div>
 								<div class="panel-footer">By Lorum Ipsum Generator</div>
 							</div>
 						</div>
@@ -223,31 +270,38 @@ function openDialog() {
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
 					<div class="item active">
-						<img class="img-responsive center-block" th:src="@{/resources/images/babe_01.jpg}" alt="pic01" />
+						<img class="img-responsive center-block"
+							th:src="@{/resources/images/babe_01.jpg}" alt="pic01" />
 						<div class="carousel_caption">
 							<h4>Maecenas mattis</h4>
-							<p>Morbi in dui quis est pulvinar ullamcorper. Duis sagittis ipsum. Praesent mauris. </p>
+							<p>Morbi in dui quis est pulvinar ullamcorper. Duis sagittis
+								ipsum. Praesent mauris.</p>
 						</div>
 					</div>
 
 					<div class="item">
-						<img class="img-responsive center-block" th:src="@{/resources/images/babe_02.jpg}" alt="pic02" />
+						<img class="img-responsive center-block"
+							th:src="@{/resources/images/babe_02.jpg}" alt="pic02" />
 						<div class="carousel_caption">
 							<h4>Morbi lacinia molestie dui</h4>
-							<p>Vestibulum tincidunt malesuada tellus. Ut ultrices ultrices enim.</p>
+							<p>Vestibulum tincidunt malesuada tellus. Ut ultrices
+								ultrices enim.</p>
 						</div>
 					</div>
 
 					<div class="item">
-						<img class="img-responsive center-block" th:src="@{/resources/images/babe_03.jpg}" alt="pic03" />
+						<img class="img-responsive center-block"
+							th:src="@{/resources/images/babe_03.jpg}" alt="pic03" />
 						<div class="carousel_caption">
 							<h4>Aenean quam</h4>
-							<p>Class aptent taciti sociosqu ad litora torquent per conubia nostra.</p>
+							<p>Class aptent taciti sociosqu ad litora torquent per
+								conubia nostra.</p>
 						</div>
 					</div>
-					
+
 					<div class="item">
-						<img class="img-responsive center-block" th:src="@{/resources/images/babe_04.jpg}" alt="pic04" />
+						<img class="img-responsive center-block"
+							th:src="@{/resources/images/babe_04.jpg}" alt="pic04" />
 						<div class="carousel_caption">
 							<h4>Morbi lacinia molestie dui</h4>
 							<p>Proin ut ligula vel nunc egestas porttitor.</p>
