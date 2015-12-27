@@ -15,6 +15,20 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+-- trigger users_hist
+-- procedure user_auth
+-- procedure count_users
+
+--  show triggers;
+-- show procedure status;
+-- show create procedure user_auth;
+
+-- drop procedure if exists user_auth;
+-- delimiter // 
+-- create procedure user_auth(in id long) begin select u.id, u.username, u.password, a.authority from users u inner join authorities a on u.id = a.user_id and u.id = id; 
+-- end //  
+-- delimiter ;
+
  -- delimiter //
  -- mysql> create trigger users_hist before delete on users for each row begin insert into users_old values (null, old.username); end;//
  -- mysql> delimiter ;
@@ -58,7 +72,7 @@ CREATE TABLE `authorities` (
 
 LOCK TABLES `authorities` WRITE;
 /*!40000 ALTER TABLE `authorities` DISABLE KEYS */;
-INSERT INTO `authorities` VALUES (1,'ROLE_USER','pep@smvcp.com',1),(2,'ROLE_ADMIN','pep@smvcp.com',1),(3,'ROLE_USER','ana@smvcp.com',3);
+INSERT INTO `authorities` VALUES (1,'ROLE_USER','pep@smartcoding.es',1),(2,'ROLE_ADMIN','pep@smartcoding.es',1),(3,'ROLE_USER','ana@smartcoding.es',3);
 /*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,7 +211,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'','$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','pep@smvcp.com'),(3,'','$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','ana@smvcp.com');
+INSERT INTO `users` VALUES (1,'','$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','pep@smartcoding.es'),(3,'','$2a$10$0NNbiILNyNzspF8dg95s7eQuQS.pPyKuUeNbhQ4pHezM0dwK.1Wje','ana@smartcoding.es');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -18,7 +18,7 @@ import pep.mendez.smvcp1.spring.model.repository.UserRepository;
  */
 @Service
 // readOnly defaults to false
-@Transactional
+@Transactional()
 public class UserService {
 	private static final int PAGE_SIZE = 5;
 

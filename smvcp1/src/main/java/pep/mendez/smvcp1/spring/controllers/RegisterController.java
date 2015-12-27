@@ -130,7 +130,7 @@ public class RegisterController {
 		.append(messageSource.getMessage("register.controller.msg2",
 				new String[] {}, Locale.getDefault()));
 		
-		String from = env.getProperty("mailserver.replyTo");
+		String from = env.getProperty("mailserver.username");
 
 		Utility.sendEmail(mailSender, from, userName, messageSource.getMessage("register.controller.subject",
 				new String[] {}, Locale.getDefault()),

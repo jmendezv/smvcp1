@@ -78,14 +78,16 @@ public class SpringContextConfig {
 		dataSource.setDriverClassName(driver);
 		dataSource.setUsername(username);
 		dataSource.setPassword(password);
-		dataSource.addConnectionProperty("MaxActive", "20");
-		dataSource.addConnectionProperty("MaxWait", "60000");
-		dataSource.addConnectionProperty("TestWhileIdle", "true");
-		dataSource.addConnectionProperty("TimeBetweenEvictionRunsMillis",
-				"300000");
-		dataSource
-				.addConnectionProperty("MinEvictableIdleTimeMillis", "300000");
-		dataSource.addConnectionProperty("TestOnBorrow", "true");
+
+//		dataSource.addConnectionProperty("", false);
+//		dataSource.addConnectionProperty("MaxActive", "20");
+//		dataSource.addConnectionProperty("MaxWait", "60000");
+//		dataSource.addConnectionProperty("TestWhileIdle", "true");
+//		dataSource.addConnectionProperty("TimeBetweenEvictionRunsMillis",
+//				"300000");
+//		dataSource
+//				.addConnectionProperty("MinEvictableIdleTimeMillis", "300000");
+//		dataSource.addConnectionProperty("TestOnBorrow", "true");
 		dataSource.addConnectionProperty("ValidationQuery", "SELECT 1");
 
 		return dataSource;
@@ -225,10 +227,10 @@ public class SpringContextConfig {
 
 		Properties properties = new Properties();
 
-		properties.put("mail.mstp.auth", "true");
-		properties.put("mail.smtp.starttls.enable", "true");
-		properties.put("mail.smtp.debug", "true");
-		properties.put("mail.smtp.timeout", "8500");
+//		properties.put("mail.mstp.auth", "true");
+//		properties.put("mail.smtp.starttls.enable", "true");
+//		properties.put("mail.smtp.debug", "true");
+//		properties.put("mail.smtp.timeout", "8500");
 
 		mailSender.setJavaMailProperties(properties);
 
