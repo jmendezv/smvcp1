@@ -103,7 +103,7 @@ public class ContactController {
 
 		}
 
-		return "login";
+		return "index";
 	}
 
 }

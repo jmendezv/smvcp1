@@ -44,8 +44,10 @@
 		<!-- MySQL -->
 		<mysql-connector-java.version>5.1.30</mysql-connector-java.version>
 
-		<!-- Commons-dbcp a pool connection -->
+		<!-- Commons-dbcp a pool connection last updated 2010 -->
 		<commons-dbcp.version>1.4</commons-dbcp.version>
+		<!-- 2015 -->
+		<commons-dbcp2.version>2.1.1</commons-dbcp2.version>
 
 		<!-- Apache Tiles -->
 		<tiles.version>3.0.5</tiles.version>
@@ -74,7 +76,7 @@
 
 		<!-- PagesDialect for Thymeleaf -->
 		<pagesdialect-core.version>2.1.6</pagesdialect-core.version>
-		
+
 		<!-- Tymeleaf Layout dialect -->
 		<thymeleaf-layout-dialect.version>1.2.1</thymeleaf-layout-dialect.version>
 
@@ -105,7 +107,7 @@
 		<!-- jquery -->
 		<jquery.version>2.1.4</jquery.version>
 		<jquery-ui.version>1.11.4</jquery-ui.version>
-		
+
 		<!-- kaptcha -->
 		<kaptcha.version>2.3.2</kaptcha.version>
 
@@ -290,11 +292,19 @@
 		</dependency>
 
 		<!-- Apache Commons DBCP Pooling -->
-		<dependency>
+		<!-- dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
 			<version>${commons-dbcp.version}</version>
+		</dependency -->
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>${commons-dbcp2.version}</version>
 		</dependency>
+
+
 
 		<!-- Apache Commons Lang 3 -->
 		<dependency>
@@ -377,14 +387,14 @@
 			<artifactId>json-simple</artifactId>
 			<version>${json-simple.version}</version>
 		</dependency>
-		
+
 		<!-- Thymeleaf -->
 		<dependency>
 			<groupId>org.thymeleaf</groupId>
 			<artifactId>thymeleaf-spring4</artifactId>
 			<version>${thymeleaf.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity3</artifactId>

@@ -130,7 +130,7 @@ public class ResetPwdController {
 		.append(";c=").append(reset.getResetCode())
 		.append(messageSource.getMessage("resetpwd.controller.msg2", null, Locale.getDefault()));
 
-		String from = env.getProperty("mailserver.replyTo");
+		String from = env.getProperty("mailserver.username");
 
 		String subject = messageSource.getMessage("resetpwd.controller.subject",
 				null, Locale.getDefault());
@@ -139,7 +139,7 @@ public class ResetPwdController {
 
 		// password reset successfully so go to login
 		
-		return "login";
+		return "index";
 	}
 
 }

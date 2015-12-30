@@ -140,7 +140,7 @@ public class RegisterController {
 
 		// registered ok, so go to login now
 		
-		return "login";
+		return "index";
 	}
 
 }

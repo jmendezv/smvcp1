@@ -53,6 +53,8 @@ public class ValidateNewUserController {
 	public ModelAndView validate(@PathVariable(value = "id") long id,
 			@MatrixVariable(value = "d", required = true) String digest) {
 
+		String msgIntro = messageSource.getMessage(
+				"validate.controller.msg.intro", null, null); // env.getProperty("msg.validation.ok");		
 		String msgValidated = messageSource.getMessage(
 				"validate.controller.msg.ok", null, null); // env.getProperty("msg.validation.ok");
 		String msgValidationError = messageSource.getMessage(
@@ -67,6 +69,7 @@ public class ValidateNewUserController {
 		if (md5Hex.equals(digest)) {
 			user.setEnabled(true);
 			userService.save(user);
+			mav.addObject("intro", msgIntro);
 			mav.addObject("message", msgValidated);
 			mav.addObject("user", user.getUserName());
 		}
