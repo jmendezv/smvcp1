@@ -1,5 +1,7 @@
 package pep.mendez.smvcp1.spring.controllers;
 
+import java.util.Locale;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,27 +55,29 @@ public class ValidateNewUserController {
 	public ModelAndView validate(@PathVariable(value = "id") long id,
 			@MatrixVariable(value = "d", required = true) String digest) {
 
-		String msgIntro = messageSource.getMessage(
-				"validate.controller.msg.intro", null, null); // env.getProperty("msg.validation.ok");		
-		String msgValidated = messageSource.getMessage(
-				"validate.controller.msg.ok", null, null); // env.getProperty("msg.validation.ok");
-		String msgValidationError = messageSource.getMessage(
-				"validate.controller.msg.error", null, null); // env.getProperty("msg.validation.error");
-		ModelAndView mav = new ModelAndView("validatednewuser", "message",
-				msgValidationError);
-		mav.addObject("user", "");
 		UserEntity user = userService.findOne(id);
-		// Hash del userName + SALT
+
+		// assume something went wrong
+		String msgValidation = messageSource.getMessage(
+				"validate.controller.msg.error",
+				new String[] { user.getUserName() }, Locale.getDefault());
+
+		// Calculo el hash del userName + SALT
 		String md5Hex = DigestUtils
 				.md5DigestAsHex((user.getUserName() + Utility.SALT).getBytes());
+		
+		// Lo comparo con el hash que me llega
 		if (md5Hex.equals(digest)) {
 			user.setEnabled(true);
 			userService.save(user);
-			mav.addObject("intro", msgIntro);
-			mav.addObject("message", msgValidated);
-			mav.addObject("user", user.getUserName());
+			msgValidation = messageSource.getMessage(
+					"validate.controller.msg.ok",
+					new String[] { user.getUserName() }, Locale.getDefault());
 		}
-		return mav;
 
+		ModelAndView mav = new ModelAndView("validatednewuser", "message",
+				msgValidation);
+
+		return mav;
 	}
 }

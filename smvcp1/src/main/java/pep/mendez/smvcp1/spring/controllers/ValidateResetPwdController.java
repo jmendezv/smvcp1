@@ -64,19 +64,22 @@ public class ValidateResetPwdController {
 			@MatrixVariable(value = "d", required = true) String userNameHash,
 			@MatrixVariable(value = "c", required = true) long resetCode) {
 
-		String msgValidated = messageSource.getMessage(
-				"resetpwd.controller.msg.ok", null, Locale.getDefault()); // env.getProperty("msg.validation.ok");
-		String msgValidationError = messageSource.getMessage(
-				"resetpwd.controller.msg.error", null, Locale.getDefault()); // env.getProperty("msg.validation.error");
-
-		ModelAndView mav = new ModelAndView("validatedresetpwd", "message",
-				msgValidationError);
-
 		UserEntity user = userService.findOne(id);
+
+		// assume everything is ok
+		String msgValidation = messageSource.getMessage(
+				"resetpwd.controller.msg.ok",
+				new String[] { user.getUserName() }, Locale.getDefault()); // env.getProperty("msg.validation.ok");
+
+		// String msgValidationError = messageSource.getMessage(
+		// "resetpwd.controller.msg.error", null, Locale.getDefault()); //
+		// env.getProperty("msg.validation.error");
 
 		// no resets registered
 		if (user.getAuthorities().isEmpty()) {
-
+			msgValidation = messageSource.getMessage(
+					"resetpwd.controller.error.doesnotexist",
+					new String[] { user.getUserName() }, Locale.getDefault());
 			// at least one reset registered
 		} else {
 			// Hash del userName + SALT
@@ -106,14 +109,15 @@ public class ValidateResetPwdController {
 						String encodedPassword = passwordEncoder.encode(newPwd);
 						user.setPassword(encodedPassword);
 
-//						StringBuilder body = new StringBuilder(
-//								UtilityConstants.RESETED_PASSWORD_MESSAGE_1);
-						
+						// StringBuilder body = new StringBuilder(
+						// UtilityConstants.RESETED_PASSWORD_MESSAGE_1);
+
 						StringBuilder body = new StringBuilder(
-								messageSource.getMessage(
-										"validateresetpwd.controller.validated", null,
-										Locale.getDefault()));
-						
+								messageSource
+										.getMessage(
+												"validateresetpwd.controller.validated",
+												null, Locale.getDefault()));
+
 						body.append(user.getUserName()).append("/")
 								.append(newPwd);
 
@@ -126,16 +130,28 @@ public class ValidateResetPwdController {
 						Utility.sendEmail(mailSender, from, user.getUserName(),
 								subject, body.toString());
 						userService.save(user);
-						mav = new ModelAndView("validatedresetpwd", "message",
-								msgValidated);
+
+					}
+					// code manipulated
+					else {
+						msgValidation = messageSource.getMessage(
+								"resetpwd.controller.error.manipulated",
+								new String[] { user.getUserName() },
+								Locale.getDefault());
 					}
 					// expired
 				} else {
-
+					msgValidation = messageSource.getMessage(
+							"resetpwd.controller.error.expired",
+							new String[] { user.getUserName() },
+							Locale.getDefault());
 				}
 			}
 
 		}
+
+		ModelAndView mav = new ModelAndView("validatedresetpwd", "message",
+				msgValidation);
 
 		return mav;
 

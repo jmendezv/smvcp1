@@ -12,7 +12,7 @@
 				<div class="navbar-header">
 					<a class="navbar-brand" href="#"><span
 						th:text="#{application.acronym}" /> <img class="brand"
-						th:src="@{resources/images/icon.png}" /> </a>
+						th:src="@{resources/images/smartcoding_logo.png}" /> </a>
 				</div>
 				<div>
 					<ul class="nav navbar-nav">
@@ -69,25 +69,25 @@
 						th:text="|*{#strings.capitalize(#strings.substringBefore(principal, '@'))} (${#calendars.format(#calendars.createNow(), 'dd/MMM/yyyy HH:mm ')})|" />
 				</div>
 			</div>
-			<div class="col-md-7">
+			<div class="col-md-5">
 				<div class="text-info" th:object="${#httpServletRequest.session}">
 					<p>
 						<span th:text="|#{admin.sessionId} *{id}|"></span>
 					</p>
 				</div>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-4">
 				<div class="text-info"
 					th:object="${#httpServletRequest.session.servletContext}">
 					<p>
-						<span th:text="|#{admin.path} *{contextPath}|"></span>
+						<span th:text="|#{admin.serverInfo} *{serverInfo}|"></span>
 					</p>
 				</div>
 			</div>
 		</div>
 
 		<!-- not used any more -->
-		<div id="admin_service_dialog" th:title="#{admin.title}">
+		<div id="admin_service_dialog" class="modal fade" role="dialog" th:title="#{admin.title}">
 			<p>
 				<span class="ui-icon ui-icon-circle-check"
 					style="float: left; margin: 0 7px 50px 0;"></span> <span

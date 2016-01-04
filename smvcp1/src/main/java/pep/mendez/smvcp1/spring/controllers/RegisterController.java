@@ -138,7 +138,7 @@ public class RegisterController {
 
 		model.addAttribute("registered", "yes");
 
-		// registered ok, so go to login now
+		// registered ok, so go to index page now
 		
 		return "index";
 	}

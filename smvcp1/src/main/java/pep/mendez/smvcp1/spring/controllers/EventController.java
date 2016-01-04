@@ -1,17 +1,10 @@
 package pep.mendez.smvcp1.spring.controllers;
 
-import java.io.IOException;
 import java.security.Principal;
-import java.util.Date;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +12,13 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import pep.mendez.smvcp1.spring.formbeans.EventBean;
 import pep.mendez.smvcp1.spring.model.entities.EventEntity;
@@ -34,10 +26,20 @@ import pep.mendez.smvcp1.spring.model.service.EventService;
 import pep.mendez.smvcp1.utils.UtilityConstants;
 
 /**
+ * A key difference between a traditional MVC controller and a RESTful web
+ * service controller is the way that the HTTP response body is created. Rather
+ * than relying on a view technology to perform server-side rendering of the
+ * greeting data to HTML, a RESTful web service controller simply populates and
+ * returns an object of any type. The object data will be written directly to
+ * the HTTP response as JSON.
+ * 
+ * all the json are parsed to java objects.
+ * 
  * @author pep
  *
  */
-@Controller
+//@Controller
+@RestController
 @PropertySources(value = { @PropertySource(name = "props", value = { "classpath:application.properties" }) })
 public class EventController {
 
@@ -54,6 +56,36 @@ public class EventController {
 	private EventService eventService;
 
 	/*
+	 * HttpMessageConverter is responsible for converting the HTTP request
+	 * message to an associated java object.
+	 * 
+	 * ResponseEntity is meant to represent the entire HTTP response. You can
+	 * control anything that goes into it: status code, headers, and body.
+	 */
+//	@RequestMapping(value = "/getEvents", method = RequestMethod.POST)
+//	public List<EventBean> getEvents() {
+//
+//		Collection<EventEntity> events = eventService.findAll();
+//		
+//		List<EventBean> l_events = new ArrayList<>();
+//		
+//		for(EventEntity event : events) {
+//			EventBean eventEvent = new EventBean(event.getId(), event.getResourceId(), event.getTitle(), event.getStart(), event.getEnd());
+//			l_events.add(eventEvent);
+//		}
+//
+//		return l_events;
+//
+//	}
+	
+	@RequestMapping(value = "/getEvents", method = RequestMethod.POST)
+	public Collection<EventEntity> getEvents() {
+
+		return eventService.findAll();
+		
+	}
+
+	/*
 	 * @ResponseBody indicates a method return value should be bound to the web
 	 * response body. Supported for annotated handler methods in Servlet
 	 * environments.
@@ -62,24 +94,25 @@ public class EventController {
 	 * 
 	 * @ResponseBody- convert Java object to json
 	 */
-	@RequestMapping(value = "/getEvents", method = RequestMethod.GET)
-	public @ResponseBody String getEvents(HttpServletResponse response) {
-		JSONArray jsonArray = new JSONArray();
-		for (EventEntity event : eventService.findAll()) {
-			// compulsory: 'id', 'resourceId', 'title', 'start', 'end'
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("id", event.getId().toString());
-			jsonObject.put("resourceId", event.getResourceId());
-			jsonObject.put("title", event.getTitle());
-			jsonObject.put("start", event.getStart().toString());
-			jsonObject.put("end", event.getEnd().toString());
-			jsonArray.add(jsonObject);
-		}
-
-		String json = jsonArray.toJSONString();
-
-		return json;
-	}
+//	@RequestMapping(value = "/getEvents", method = RequestMethod.GET)
+//	public @ResponseBody String getEvents(HttpServletResponse response) {
+//		
+//		JSONArray jsonArray = new JSONArray();
+//		for (EventEntity event : eventService.findAll()) {
+//			// compulsory: 'id', 'resourceId', 'title', 'start', 'end'
+//			JSONObject jsonObject = new JSONObject();
+//			jsonObject.put("id", event.getId().toString());
+//			jsonObject.put("resourceId", event.getResourceId());
+//			jsonObject.put("title", event.getTitle());
+//			jsonObject.put("start", event.getStart().toString());
+//			jsonObject.put("end", event.getEnd().toString());
+//			jsonArray.add(jsonObject);
+//		}
+//
+//		String json = jsonArray.toJSONString();
+//		
+//		return json;
+//	}
 
 	/*
 	 * Just for testing pourposes

@@ -2,7 +2,7 @@
 <html layout:decorator="layout/main">
 <head>
 <title>${#messages.msg('home.title')}</title>
-<script type="text/javascript"> 
+<script type="text/javascript" > 
 
 // <![CDATA[
 
@@ -90,16 +90,18 @@ $(document).ready(function() {
 		// Determines the action taken when the user clicks on a "more" link
 		// created by the eventLimit option. Other values "week" and "day"
 		eventLimitClick : "popover",
-		schedulerLicenseKey : 'CC-Attribution-NonCommercial-NoDerivatives',
-		// schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source'
+		schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+		//schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
 		// defaultView : 'timelineMonth',
 		// defaultView : 'timelineYear',
 		defaultView : 'agendaDay',
 		// defaultView: 'timelineDay',
 		// header : [ center, 'month,timelineFourDays' ],
 		events: {
-        		url: '/smvcp1/getEvents',	// ajax call
-        		type: 'GET', 				// GET/POST
+			type: 'POST', 		// GET/POST 
+        		url: '/getEvents',	// ajax call  
+        		dataType: "json",
+        		contentType: "application/json",					
         		//color: 'yellow',   			// background
             textColor: 'black'			// foreground
        	},
@@ -160,7 +162,7 @@ function saveEvent(date) {
 		//alert(JSON.stringify(eventJson));
 		$.ajax({
         		type: 'POST',
-        		url: "/smvcp1/saveEvent",
+        		url: "/saveEvent",
         		dataType: "json",
         		contentType: "application/json",
         		data: JSON.stringify(eventJson),
@@ -186,7 +188,7 @@ function deleteEvent(eventId) {
     }
     $.ajax({
         type: 'POST',
-        url: "/smvcp1/deleteEvent",
+        url: "/deleteEvent",
    		// param=value format
         data: 'id=' + eventId,
         success : function(data) {
@@ -219,7 +221,7 @@ function showEventPopup(date) {
 				<div class="navbar-header">
 					<a class="navbar-brand" href="#"><span
 						th:text="#{application.acronym}" /> <img class="brand"
-						th:src="@{resources/images/icon.png}" /> </a>
+						th:src="@{resources/images/smartcoding_logo.png}" /> </a>
 				</div>
 				<div>
 					<ul class="nav navbar-nav">
