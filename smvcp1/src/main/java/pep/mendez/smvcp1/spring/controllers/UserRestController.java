@@ -63,6 +63,19 @@ public class UserRestController {
 	/*
 	 * PathVariable truncates at dot position and name is supposed to be an
 	 * email thus containing one or more dots
+
+since 4.0.1+
+
+	 @Configuration
+protected static class AllResources extends WebMvcConfigurerAdapter {
+
+    @Override
+    public void configurePathMatch(PathMatchConfigurer matcher) {
+        matcher.setUseRegisteredSuffixPatternMatch(true);
+    }
+
+}
+	 
 	 */
 	@RequestMapping(value = "/user/{name:.+}", method = RequestMethod.GET)
 	public UserEntity userByName(@PathVariable("name") String name) {
